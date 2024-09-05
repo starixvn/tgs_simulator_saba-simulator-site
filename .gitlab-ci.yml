@@ -1,0 +1,7 @@
+variables:
+  GIT_SUBMODULE_STRATEGY: recursive
+
+include:
+  - project: ci/core-cicd
+    ref: main
+    file: luminet.gitlab-ci.yml
