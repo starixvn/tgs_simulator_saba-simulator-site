@@ -59,3 +59,23 @@ export const canCelBetApi = async (betData) => {
     throw error;
   }
 };
+
+// @ts-ignore
+export const getBalance = async (data) => {
+  try {
+    const response = await axios.post(
+      "https://saba-simulator-api.nexentgame.com/api/Simulator/getBalance",
+      data,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error("There was a problem with the axios operation:", error);
+    throw error;
+  }
+};

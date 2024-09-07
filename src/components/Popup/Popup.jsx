@@ -1,7 +1,12 @@
 import "./Popup.css";
 import data from "../../constant/Data.json";
-import { useState } from "react";
-import { placeBetApi, confirmBetApi, canCelBetApi } from "../../services/api";
+import { useState, useEffect } from "react";
+import {
+  placeBetApi,
+  confirmBetApi,
+  canCelBetApi,
+  getBalance,
+} from "../../services/api";
 import Dialog from "../Dialog/Dialog";
 import { nanoid } from "nanoid";
 const Popup = () => {
@@ -10,9 +15,19 @@ const Popup = () => {
   } = data.PlaceBet;
   // @ts-ignore
   const [betAmount, setBetAmount] = useState(0);
+  const [balance, setBalance] = useState(0);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const [apiResponse, setApiResponse] = useState(null);
   const uniqueId = nanoid(20);
+
+  useEffect(() => {
+    const fetchBalance = async () => {
+      const response = await getBalance(data.GetBalance);
+
+      setBalance(response?.balance);
+    };
+    fetchBalance();
+  }, [apiResponse]);
 
   const handlePlaceBet = async () => {
     const betData = {
@@ -39,7 +54,6 @@ const Popup = () => {
       message: {
         ...data.ConfirmBet.message,
         OperationId: uniqueId,
-        ActualAmount: betAmount,
       },
     };
     betData.message.Txns[0].TxId = apiResponse?.licenseeTxId;
@@ -56,11 +70,10 @@ const Popup = () => {
       message: {
         ...data.CancelBet.message,
         OperationId: uniqueId,
-        CreditAmount: betAmount,
       },
     };
     betData.message.Txns[0].TxId = apiResponse?.licenseeTxId;
-
+    betData.message.Txns[0].CreditAmount = betAmount;
     // @ts-ignore
     const response = await canCelBetApi(betData);
     setApiResponse(response);
@@ -74,6 +87,7 @@ const Popup = () => {
   return (
     <div className="popup">
       <p>user Id : {UserId} </p>
+      <p>balance: {balance}</p>
       <header className="popup-header">
         <h3>{LeagueName}</h3>
       </header>

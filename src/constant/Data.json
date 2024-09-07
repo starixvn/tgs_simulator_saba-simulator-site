@@ -96,5 +96,12 @@
         }
       ]
     }
+  },
+  "GetBalance": {
+    "key": "y2g53zl9g4",
+    "message": {
+      "Action": "GetBalance",
+      "UserId": "Starix1SW_4unxqj175ksf_test"
+    }
   }
 }
