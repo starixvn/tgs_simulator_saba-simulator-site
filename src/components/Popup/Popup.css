@@ -1,0 +1,82 @@
+.popup {
+  width: 400px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+.popup-header {
+  padding: 16px;
+  background-color: #4caf50;
+  color: white;
+  text-align: center;
+}
+
+.popup-body {
+  padding: 16px;
+}
+
+.match-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.team {
+  font-size: 18px;
+  color: #333;
+}
+
+.match-score {
+  text-align: center;
+}
+
+.match-score span {
+  display: block;
+  color: red;
+}
+
+.score {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.bet-tabs {
+  display: flex;
+  justify-content: space-around;
+  margin-bottom: 16px;
+}
+
+.bet-tabs button {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+.active-tab {
+  background-color: #4caf50;
+  color: white;
+}
+
+.bet-footer {
+  text-align: center;
+  margin-top: 20px;
+}
+.bet-footer {
+  display: flex;
+  flex-direction: column;
+}
+
+.place-bet,
+.confirm-bet,
+.cancel-bet {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}

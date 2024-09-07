@@ -1,0 +1,100 @@
+{
+  "PlaceBet": {
+    "key": "y2g53zl9g4",
+    "message": {
+      "Action": "PlaceBet-simulator",
+      "OperationId": "4351400_1_1376_U",
+      "UserId": "Starix1SW_4unxqj175ksf_test",
+      "Currency": 20,
+      "MatchId": 91708051,
+      "HomeId": 77,
+      "AwayId": 70,
+      "HomeName": "RCD Mallorca",
+      "AwayName": "Villarreal CF",
+      "KickOffTime": "2024-09-14T08:15:00.000-04:00",
+      "BetTime": "2024-09-06T04:59:22.721-04:00",
+      "BetAmount": 1,
+      "ActualAmount": 1,
+      "SportType": 1,
+      "SportTypeName": "Soccer",
+      "BetType": 1,
+      "BetTypeName": "Handicap",
+      "OddsType": 1,
+      "OddsId": 725050318,
+      "Odds": 0.75,
+      "BetChoice": "Villarreal CF",
+      "BetChoice_en": "Villarreal CF",
+      "UpdateTime": "2024-09-06T04:59:22.721-04:00",
+      "LeagueId": 43,
+      "LeagueName": "*SPAIN PRIMERA LALIGA",
+      "LeagueName_en": "*SPAIN PRIMERA LALIGA",
+      "SportTypeName_en": "Soccer",
+      "HomeName_en": "RCD Mallorca",
+      "AwayName_en": "Villarreal CF",
+      "BetTypeName_en": "Handicap",
+      "IP": "202.78.231.34",
+      "IsLive": false,
+      "RefId": "4351400_528_U",
+      "TsId": "",
+      "Point": "0.25",
+      "Point2": "",
+      "BetTeam": "a",
+      "HomeScore": 0,
+      "AwayScore": 0,
+      "BaStatus": false,
+      "Excluding": "",
+      "BetFrom": "W001",
+      "CreditAmount": 0,
+      "DebitAmount": 1,
+      "OddsInfo": "",
+      "MatchDateTime": "2024-09-14T08:00:00.000-04:00",
+      "BetRemark": "",
+      "VendorTransId": null,
+      "MmrPercentage": null,
+      "Voucher": null
+    }
+  },
+  "ConfirmBet": {
+    "key": "y2g53zl9g4",
+    "message": {
+      "Action": "ConfirmBet-simulator",
+      "OperationId": "4351400_2_1377_U",
+      "UserId": "Starix1SW_4unxqj175ksf_test",
+      "UpdateTime": "2024-09-06T04:59:23.316-04:00",
+      "TransactionTime": "2024-09-06T04:59:23.000-04:00",
+      "Txns": [
+        {
+          "RefId": "4351400_528_U",
+          "TxId": 296264967185760260,
+          "LicenseeTxId": "471",
+          "Odds": 0.75,
+          "OddsType": 1,
+          "ActualAmount": 1,
+          "IsOddsChanged": false,
+          "CreditAmount": 0,
+          "DebitAmount": 0,
+          "WinlostDate": "2024-09-14T00:00:00.000-04:00",
+          "MmrPercentage": 0,
+          "IsMmrPercentageChanged": false
+        }
+      ]
+    }
+  },
+  "CancelBet": {
+    "key": "y2g53zl9g4",
+    "message": {
+      "Action": "CancelBet-simulator",
+      "UserId": "Starix1SW_4unxqj175ksf_test",
+      "OperationId": "4351400_3_30003_M",
+      "UpdateTime": "2024-09-06T04:59:23.316-04:00",
+      "ErrorMessage": "BettingFailed",
+      "Txns": [
+        {
+          "RefId": "4351400_528_U",
+          "CreditAmount": 1,
+          "DebitAmount": 0
+        }
+      ]
+    }
+  }
+}
