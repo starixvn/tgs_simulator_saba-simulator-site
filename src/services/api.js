@@ -4,7 +4,7 @@ import axios from "axios";
 export const placeBetApi = async (betData) => {
   try {
     const response = await axios.post(
-      "https://localhost:7015/api/Simulator/PlaceBet",
+      "https://saba-simulator-api.nexentgame.com/api/Simulator/PlaceBet",
       betData,
       {
         headers: {
@@ -23,7 +23,7 @@ export const placeBetApi = async (betData) => {
 export const confirmBetApi = async (betData) => {
   try {
     const response = await axios.post(
-      "https://localhost:7015/api/Simulator/ConfirmBet",
+      "https://saba-simulator-api.nexentgame.com/api/Simulator/ConfirmBet",
       betData,
       {
         headers: {
@@ -42,7 +42,7 @@ export const confirmBetApi = async (betData) => {
 export const canCelBetApi = async (betData) => {
   try {
     const response = await axios.post(
-      "https://localhost:7015/api/Simulator/CancelBet",
+      "https://saba-simulator-api.nexentgame.com/api/Simulator/CancelBet",
       betData,
       {
         headers: {
@@ -61,7 +61,7 @@ export const canCelBetApi = async (betData) => {
 export const getBalanceApi = async (data) => {
   try {
     const response = await axios.post(
-      "https://localhost:7015/api/Simulator/getBalance",
+      "https://saba-simulator-api.nexentgame.com/api/Simulator/getBalance",
       data,
       {
         headers: {
@@ -80,7 +80,7 @@ export const getBalanceApi = async (data) => {
 export const settleBetApi = async (data) => {
   try {
     const response = await axios.post(
-      "https://localhost:7015/api/Simulator/settle",
+      "https://saba-simulator-api.nexentgame.com/api/Simulator/settle",
       data,
       {
         headers: {
@@ -99,7 +99,7 @@ export const settleBetApi = async (data) => {
 export const reSettleBetApi = async (data) => {
   try {
     const response = await axios.post(
-      "https://localhost:7015/api/Simulator/resettle",
+      "https://saba-simulator-api.nexentgame.com/api/Simulator/resettle",
       data,
       {
         headers: {
@@ -118,7 +118,7 @@ export const reSettleBetApi = async (data) => {
 export const unSettleBetApi = async (data) => {
   try {
     const response = await axios.post(
-      "https://localhost:7015/api/Simulator/unsettle",
+      "https://saba-simulator-api.nexentgame.com/api/Simulator/unsettle",
       data,
       {
         headers: {
