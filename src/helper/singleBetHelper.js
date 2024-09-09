@@ -48,6 +48,7 @@ const getConfirmBetData = () => {
           ...data.ConfirmBet.message.Txns[0],
           LicenseeTxId: licenseeTxId,
           RefId: RefId,
+          TxId: generateRandomNumber(18),
           ActualAmount: BetAmount,
         },
         ...data.ConfirmBet.message.Txns.slice(1),
@@ -83,6 +84,10 @@ const getCancelBetData = () => {
 
 const getSettleBetData = () => {
   const placeBetData = store?.getState()?.singleBet?.betData?.placeBet;
+  const txId =
+    store?.getState()?.singleBet?.betData?.confirmBet?.request?.message?.Txns[0]
+      .TxId;
+
   const userId = store.getState().userInfo.userId;
   const { BetAmount, RefId } = placeBetData.request?.message;
 
@@ -98,6 +103,7 @@ const getSettleBetData = () => {
           Payout: BetAmount,
           UserId: userId,
           RefId: RefId,
+          TxId: txId,
         },
         ...data.Settle.message.Txns.slice(1),
       ],
@@ -108,6 +114,9 @@ const getSettleBetData = () => {
 
 const getResettleBetData = () => {
   const placeBetData = store?.getState()?.singleBet?.betData?.placeBet;
+  const txId =
+    store?.getState()?.singleBet?.betData?.confirmBet?.request?.message?.Txns[0]
+      .TxId;
   const userId = store.getState().userInfo.userId;
   const { BetAmount, RefId } = placeBetData.request?.message;
   const betData = {
@@ -121,6 +130,7 @@ const getResettleBetData = () => {
           Payout: BetAmount,
           UserId: userId,
           RefId: RefId,
+          TxId: txId,
         },
         ...data.ReSettle.message.Txns.slice(1),
       ],
@@ -131,6 +141,9 @@ const getResettleBetData = () => {
 
 const getUnsettleBetData = () => {
   const placeBetData = store?.getState()?.singleBet?.betData?.placeBet;
+  const txId =
+    store?.getState()?.singleBet?.betData?.confirmBet?.request?.message?.Txns[0]
+      .TxId;
   const userId = store.getState().userInfo.userId;
   const { BetAmount, RefId } = placeBetData.request?.message;
   const betData = {
@@ -144,6 +157,7 @@ const getUnsettleBetData = () => {
           UserId: userId,
           RefId: RefId,
           DebitAmount: BetAmount,
+          TxId: txId,
         },
         ...data.UnSettle.message.Txns.slice(1),
       ],
@@ -192,7 +206,8 @@ const getConfirmBetParlayData = () => {
 
   const placeBetData = store?.getState()?.singleBet?.betData?.placeBetParlay;
 
-  const { OperationId, UserId, UpdateTime, CreditAmount, DebitAmount } = placeBetData.request?.message;
+  const { OperationId, UserId, UpdateTime, CreditAmount, DebitAmount } =
+    placeBetData.request?.message;
   const licenseeTxId = placeBetData?.response?.licenseeTxId;
 
   const getTicketDetail = (ticketDetail) => ({
@@ -239,11 +254,11 @@ const getConfirmBetParlayData = () => {
 };
 
 function generateRandomNumber(length) {
-  if (length < 1) return '';
+  if (length < 1) return "";
 
   const min = Math.pow(10, length - 1);
   const max = Math.pow(10, length) - 1;
-  
+
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
