@@ -13,6 +13,10 @@ const initialState = {
       request: null,
       response: null,
     },
+    settleBetParlay: {
+      request: null,
+      response: null,
+    },
     placeBet: {
       request: null,
       response: null,
@@ -56,7 +60,11 @@ const singleBetSlice = createSlice({
           break;
         case "confirmBetParlay":
           newClicked.push("confirmBetParlay");
-          newNext.push("settleBet");
+          newNext.push("settleBetParlay");
+          break;
+        case "settleBetParlay":
+          newClicked.push("settleBetParlay");
+          newNext.push("resettleBet", "unsettleBet");
           break;
         case "placeBet":
           newClicked.push("placeBet");
