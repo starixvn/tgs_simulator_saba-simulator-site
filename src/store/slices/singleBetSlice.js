@@ -44,53 +44,96 @@ const initialState = {
   },
 };
 
+const buttonActions = {
+  "placeBetParlay": {
+    clicked: ["placeBetParlay"],
+    next: ["cancelBet", "confirmBetParlay"]
+  },
+  "confirmBetParlay": {
+    clicked: ["confirmBetParlay"],
+    next: ["settleBetParlay"]
+  },
+  "settleBetParlay": {
+    clicked: ["settleBetParlay"],
+    next: ["resettleBet", "unsettleBet"]
+  },
+  "placeBet": {
+    clicked: ["placeBet"],
+    next: ["confirmBet", "cancelBet"]
+  },
+  "confirmBet": {
+    clicked: ["confirmBet"],
+    next: ["settleBet"]
+  },
+  "cancelBet": {
+    clicked: ["cancelBet"],
+    next: []
+  },
+  "settleBet": {
+    clicked: ["settleBet"],
+    next: ["resettleBet", "unsettleBet"]
+  },
+  "resettleBet": {
+    clicked: ["resettleBet"],
+    next: []
+  },
+  "unsettleBet": {
+    clicked: ["unsettleBet"],
+    next: []
+  }
+};
+
 const singleBetSlice = createSlice({
   name: "singleBet",
   initialState,
   reducers: {
     handleChangeState: (state, action) => {
       const button = action.payload;
-      const newClicked = [...state.clickedButtons];
-      const newNext = [];
-
-      switch (button) {
-        case "placeBetParlay":
-          newClicked.push("placeBetParlay");
-          newNext.push("cancelBet", "confirmBetParlay");
-          break;
-        case "confirmBetParlay":
-          newClicked.push("confirmBetParlay");
-          newNext.push("settleBetParlay");
-          break;
-        case "settleBetParlay":
-          newClicked.push("settleBetParlay");
-          newNext.push("resettleBet", "unsettleBet");
-          break;
-        case "placeBet":
-          newClicked.push("placeBet");
-          newNext.push("confirmBet", "cancelBet");
-          break;
-        case "confirmBet":
-          newClicked.push("confirmBet");
-          newNext.push("settleBet");
-          break;
-        case "cancelBet":
-          newClicked.push("cancelBet");
-          break;
-        case "settleBet":
-          newClicked.push("settleBet");
-          newNext.push("resettleBet", "unsettleBet");
-          break;
-        case "resettleBet":
-        case "unsettleBet":
-          newClicked.push(button);
-          break;
-        default:
-          break;
-      }
-
-      state.clickedButtons = newClicked;
-      state.nextButtons = newNext;
+    
+      const buttonActions = {
+        "placeBetParlay": {
+          clicked: ["placeBetParlay"],
+          next: ["cancelBet", "confirmBetParlay"]
+        },
+        "confirmBetParlay": {
+          clicked: ["confirmBetParlay"],
+          next: ["settleBetParlay"]
+        },
+        "settleBetParlay": {
+          clicked: ["settleBetParlay"],
+          next: ["resettleBet", "unsettleBet"]
+        },
+        "placeBet": {
+          clicked: ["placeBet"],
+          next: ["confirmBet", "cancelBet"]
+        },
+        "confirmBet": {
+          clicked: ["confirmBet"],
+          next: ["settleBet"]
+        },
+        "cancelBet": {
+          clicked: ["cancelBet"],
+          next: []
+        },
+        "settleBet": {
+          clicked: ["settleBet"],
+          next: ["resettleBet", "unsettleBet"]
+        },
+        "resettleBet": {
+          clicked: ["resettleBet"],
+          next: []
+        },
+        "unsettleBet": {
+          clicked: ["unsettleBet"],
+          next: []
+        }
+      };
+    
+      const actions = buttonActions[button] || { clicked: [], next: [] };
+    
+      // Update state
+      state.clickedButtons = [...state.clickedButtons, ...actions.clicked];
+      state.nextButtons = actions.next;
     },
     updateDisplayData: (state, action) => {
       const { type, request, response } = action.payload;
@@ -105,6 +148,5 @@ const singleBetSlice = createSlice({
   },
 });
 
-export const { handleChangeState, updateDisplayData, updateCurrentState } =
-  singleBetSlice.actions;
+export const { handleChangeState, updateDisplayData, updateCurrentState } = singleBetSlice.actions;
 export default singleBetSlice.reducer;
