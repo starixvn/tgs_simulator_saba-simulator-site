@@ -15,8 +15,7 @@ export const placeBetParlayApi = async (betData) => {
 
     return response.data;
   } catch (error) {
-    console.error("There was a problem with the axios operation:", error);
-    throw error;
+    return error.response.data;
   }
 };
 
@@ -34,8 +33,7 @@ export const placeBetApi = async (betData) => {
 
     return response.data;
   } catch (error) {
-    console.error("There was a problem with the axios operation:", error);
-    throw error;
+    return error.response.data;
   }
 };
 
@@ -53,8 +51,7 @@ export const confirmBetParlayApi = async (betData) => {
 
     return response.data;
   } catch (error) {
-    console.error("There was a problem with the axios operation:", error);
-    throw error;
+    return error.response.data;
   }
 };
 
@@ -72,8 +69,7 @@ export const confirmBetApi = async (betData) => {
 
     return response.data;
   } catch (error) {
-    console.error("There was a problem with the axios operation:", error);
-    throw error;
+    return error.response.data;
   }
 };
 
@@ -91,8 +87,7 @@ export const canCelBetApi = async (betData) => {
 
     return response.data;
   } catch (error) {
-    console.error("There was a problem with the axios operation:", error);
-    throw error;
+    return error.response.data;
   }
 };
 
@@ -110,8 +105,7 @@ export const getBalanceApi = async (data) => {
 
     return response.data;
   } catch (error) {
-    console.error("There was a problem with the axios operation:", error);
-    throw error;
+    return error.response.data;
   }
 };
 
@@ -129,8 +123,7 @@ export const settleBetApi = async (data) => {
 
     return response.data;
   } catch (error) {
-    console.error("There was a problem with the axios operation:", error);
-    throw error;
+    return error.response.data;
   }
 };
 
@@ -148,8 +141,7 @@ export const reSettleBetApi = async (data) => {
 
     return response.data;
   } catch (error) {
-    console.error("There was a problem with the axios operation:", error);
-    throw error;
+    return error.response.data;
   }
 };
 
@@ -167,7 +159,6 @@ export const unSettleBetApi = async (data) => {
 
     return response.data;
   } catch (error) {
-    console.error("There was a problem with the axios operation:", error);
-    throw error;
+    return error.response.data;
   }
 };
