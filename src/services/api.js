@@ -1,10 +1,48 @@
 //@ts-nocheck
 import axios from "axios";
 
+export const placeBetParlayApi = async (betData) => {
+  try {
+    const response = await axios.post(
+      "https://localhost:7015/api/Simulator/PlaceBetParlay",
+      betData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error("There was a problem with the axios operation:", error);
+    throw error;
+  }
+};
+
 export const placeBetApi = async (betData) => {
   try {
     const response = await axios.post(
       "https://saba-simulator-api.nexentgame.com/api/Simulator/PlaceBet",
+      betData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error("There was a problem with the axios operation:", error);
+    throw error;
+  }
+};
+
+export const confirmBetParlayApi = async (betData) => {
+  try {
+    const response = await axios.post(
+      "https://localhost:7015/api/Simulator/ConfirmBetParlay",
       betData,
       {
         headers: {

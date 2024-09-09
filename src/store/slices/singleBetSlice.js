@@ -2,9 +2,17 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   clickedButtons: [],
-  nextButtons: ["placeBet"],
+  nextButtons: ["placeBet", "placeBetParlay"],
   currentState: "",
   betData: {
+    placeBetParlay: {
+      request: null,
+      response: null,
+    },
+    confirmBetParlay: {
+      request: null,
+      response: null,
+    },
     placeBet: {
       request: null,
       response: null,
@@ -42,6 +50,14 @@ const singleBetSlice = createSlice({
       const newNext = [];
 
       switch (button) {
+        case "placeBetParlay":
+          newClicked.push("placeBetParlay");
+          newNext.push("cancelBet", "confirmBetParlay");
+          break;
+        case "confirmBetParlay":
+          newClicked.push("confirmBetParlay");
+          newNext.push("settleBet");
+          break;
         case "placeBet":
           newClicked.push("placeBet");
           newNext.push("confirmBet", "cancelBet");

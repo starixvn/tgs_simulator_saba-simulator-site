@@ -1,4 +1,219 @@
 {
+  "PlaceBetParlay": {
+    "key": "y2g53zl9g4",
+    "message": {
+      "Action": "PlaceBetParlay",
+      "OperationId": "4351400_1_342_U",
+      "UserId": "Starix1SW_4unxqhr8oh6g_test",
+      "Currency": 20,
+      "BetTime": "2024-08-30T04:43:24.693-04:00",
+      "UpdateTime": "2024-08-30T04:43:24.693-04:00",
+      "TotalBetAmount": 42,
+      "IP": "202.78.231.34",
+      "TsId": "",
+      "BetFrom": "W001",
+      "CreditAmount": 0,
+      "DebitAmount": 42,
+      "VendorTransId": null,
+      "Txns": [
+        {
+          "RefId": "4351400_158_U",
+          "ParlayType": "Parlay_System",
+          "BetAmount": 16,
+          "CreditAmount": 0,
+          "DebitAmount": 16,
+          "Detail": [
+            {
+              "type": 1,
+              "name": "Trebles",
+              "betCount": 10,
+              "stake": 1
+            },
+            {
+              "type": 4,
+              "name": "Fold4",
+              "betCount": 5,
+              "stake": 1
+            },
+            {
+              "type": 7,
+              "name": "Fold5",
+              "betCount": 1,
+              "stake": 1
+            }
+          ]
+        },
+        {
+          "RefId": "4351400_159_U",
+          "ParlayType": "Parlay_System",
+          "BetAmount": 26,
+          "CreditAmount": 0,
+          "DebitAmount": 26,
+          "Detail": [
+            {
+              "type": 8,
+              "name": "Canadian",
+              "betCount": 26,
+              "stake": 1
+            }
+          ]
+        }
+      ],
+      "TicketDetail": [
+        {
+          "MatchId": 91427454,
+          "HomeId": 293531,
+          "AwayId": 30585,
+          "HomeName": "FC Osaka",
+          "AwayName": "Zweigen Kanazawa",
+          "KickOffTime": "2024-08-30T05:59:00.000-04:00",
+          "SportType": 1,
+          "SportTypeName": "Soccer",
+          "BetType": 1,
+          "BetTypeName": "Handicap",
+          "OddsId": 723029854,
+          "Odds": 1.83,
+          "OddsType": 3,
+          "BetChoice": "Zweigen Kanazawa",
+          "BetChoice_en": "Zweigen Kanazawa",
+          "LeagueId": 36041,
+          "LeagueName": "JAPAN J-LEAGUE DIVISION 3",
+          "IsLive": false,
+          "Point": "0.00",
+          "Point2": "",
+          "BetTeam": "a",
+          "HomeScore": 0,
+          "AwayScore": 0,
+          "BaStatus": false,
+          "Excluding": "",
+          "LeagueName_en": "JAPAN J-LEAGUE DIVISION 3",
+          "SportTypeName_en": "Soccer",
+          "HomeName_en": "FC Osaka",
+          "AwayName_en": "Zweigen Kanazawa",
+          "BetTypeName_en": "Handicap",
+          "MatchDateTime": "2024-08-30T06:00:00.000-04:00",
+          "BetRemark": ""
+        },
+        {
+          "MatchId": 91612204,
+          "HomeId": 311105,
+          "AwayId": 1127549,
+          "HomeName": "Casuarina FC",
+          "AwayName": "Azzurri United FC",
+          "KickOffTime": "2024-08-30T06:59:00.000-04:00",
+          "SportType": 1,
+          "SportTypeName": "Soccer",
+          "BetType": 3,
+          "BetTypeName": "Over/Under",
+          "OddsId": 724269578,
+          "Odds": 1.79,
+          "OddsType": 3,
+          "BetChoice": "Under",
+          "BetChoice_en": "Under",
+          "LeagueId": 49449,
+          "LeagueName": "AUSTRALIA NORTHERN TERRITORY PREMIER LEAGUE",
+          "IsLive": false,
+          "Point": "4.25",
+          "Point2": "",
+          "BetTeam": "a",
+          "HomeScore": 0,
+          "AwayScore": 0,
+          "BaStatus": false,
+          "Excluding": "",
+          "LeagueName_en": "AUSTRALIA NORTHERN TERRITORY PREMIER LEAGUE",
+          "SportTypeName_en": "Soccer",
+          "HomeName_en": "Casuarina FC",
+          "AwayName_en": "Azzurri United FC",
+          "BetTypeName_en": "Over/Under",
+          "MatchDateTime": "2024-08-30T07:00:00.000-04:00",
+          "BetRemark": ""
+        },
+        {
+          "MatchId": 91612206,
+          "HomeId": 310824,
+          "AwayId": 310930,
+          "HomeName": "Port Darwin",
+          "AwayName": "Hellenic Athletic",
+          "KickOffTime": "2024-08-30T04:59:00.000-04:00",
+          "SportType": 1,
+          "SportTypeName": "Soccer",
+          "BetType": 1,
+          "BetTypeName": "Handicap",
+          "OddsId": 724269838,
+          "Odds": 1.79,
+          "OddsType": 3,
+          "BetChoice": "Hellenic Athletic",
+          "BetChoice_en": "Hellenic Athletic",
+          "LeagueId": 49449,
+          "LeagueName": "AUSTRALIA NORTHERN TERRITORY PREMIER LEAGUE",
+          "IsLive": false,
+          "Point": "-3.25",
+          "Point2": "",
+          "BetTeam": "a",
+          "HomeScore": 0,
+          "AwayScore": 0,
+          "BaStatus": false,
+          "Excluding": "",
+          "LeagueName_en": "AUSTRALIA NORTHERN TERRITORY PREMIER LEAGUE",
+          "SportTypeName_en": "Soccer",
+          "HomeName_en": "Port Darwin",
+          "AwayName_en": "Hellenic Athletic",
+          "BetTypeName_en": "Handicap",
+          "MatchDateTime": "2024-08-30T05:00:00.000-04:00",
+          "BetRemark": ""
+        }
+      ]
+    }
+  },
+  "ConfirmBetParlay": {
+    "key": "y2g53zl9g4",
+    "message": {
+      "Action": "ConfirmBetParlay",
+      "OperationId": "4351400_2_527_U",
+      "UserId": "Starix1SW_4unxqhr8oh6g_test",
+      "UpdateTime": "2024-09-02T03:07:46.679-04:00",
+      "CreditAmount": 0,
+      "DebitAmount": 0,
+      "Txns": [
+        {
+          "RefId": "4351400_224_U",
+          "TxId": 294749646889156700,
+          "LicenseeTxId": "187",
+          "ActualAmount": 1,
+          "IsOddsChanged": false,
+          "CreditAmount": 0,
+          "DebitAmount": 0,
+          "WinlostDate": "2024-09-02T00:00:00.000-04:00",
+          "Odds": 7.4799
+        }
+      ],
+      "TicketDetail": [
+        {
+          "MatchId": 91753345,
+          "SportType": 1,
+          "BetType": 3,
+          "OddsId": 725396622,
+          "Odds": 1.89,
+          "OddsType": 3,
+          "LeagueId": 95731,
+          "IsLive": false,
+          "IsOddsChanged": false
+        },
+        {
+          "MatchId": 91753357,
+          "SportType": 1,
+          "BetType": 3,
+          "OddsId": 725396777,
+          "Odds": 2.04,
+          "OddsType": 3,
+          "LeagueId": 95731,
+          "IsLive": false,
+          "IsOddsChanged": false
+        }
+      ],
+      "TransactionTime": "2024-09-02T02:59:10.000-04:00"
+    }
+  },
   "PlaceBet": {
     "key": "y2g53zl9g4",
     "message": {

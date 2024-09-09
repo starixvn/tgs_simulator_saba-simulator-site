@@ -1,6 +1,8 @@
 //@ts-nocheck
 import {
   placeBetApi,
+  placeBetParlayApi,
+  confirmBetParlayApi,
   confirmBetApi,
   canCelBetApi,
   settleBetApi,
@@ -66,7 +68,6 @@ const getCancelBetData = () => {
       ...data.CancelBet.message,
       OperationId: nanoid(20),
       UserId: userId,
-
       Txns: [
         {
           ...data.CancelBet.message.Txns[0],
@@ -151,7 +152,114 @@ const getUnsettleBetData = () => {
   return betData;
 };
 
+const getPlaceBetParlayData = () => {
+  const betAmount = Math.round(Math.random() * 9 * 100) / 100;
+  const shouldSetCreditAmount = Math.random() >= 0.5;
+  const shouldNegativeOdds = Math.random() >= 0.5;
+  const refId = nanoid(13);
+  const now = new Date();
+
+  const betData = {
+    key: nanoid(10),
+    message: {
+      ...data.PlaceBetParlay.message,
+      OperationId: nanoid(20),
+      UserId: store.getState().userInfo.userId,
+      BetTime: now,
+      UpdateTime: now,
+      CreditAmount: shouldSetCreditAmount ? betAmount : 0,
+      DebitAmount: shouldSetCreditAmount ? 0 : betAmount,
+      ActualAmount: shouldNegativeOdds ? betAmount * 0.95 : betAmount,
+      BetAmount: betAmount,
+      Txns: [
+        {
+          ...data.PlaceBetParlay.message.Txns[0],
+          RefId: nanoid(20),
+        },
+        {
+          ...data.PlaceBetParlay.message.Txns[1],
+          RefId: nanoid(20),
+        },
+      ],
+    },
+  };
+
+  return betData;
+};
+
+const getConfirmBetParlayData = () => {
+  const now = new Date();
+
+  const placeBetData = store?.getState()?.singleBet?.betData?.placeBetParlay;
+
+  const { OperationId, UserId, UpdateTime, CreditAmount, DebitAmount } = placeBetData.request?.message;
+  const licenseeTxId = placeBetData?.response?.licenseeTxId;
+
+  const getTicketDetail = (ticketDetail) => ({
+    MatchId: ticketDetail.MatchId,
+    SportType: ticketDetail.SportType,
+    BetType: ticketDetail.BetType,
+    OddsId: ticketDetail.OddsId,
+    Odds: ticketDetail.Odds,
+    OddsType: ticketDetail.OddsType,
+    LeagueId: ticketDetail.LeagueId,
+    IsOddsChanged: Math.random() >= 0.5,
+  });
+
+  return {
+    key: nanoid(10),
+    message: {
+      ...data.ConfirmBetParlay.message,
+      OperationId: OperationId,
+      UserId: UserId,
+      UpdateTime: UpdateTime,
+      CreditAmount: CreditAmount,
+      DebitAmount: DebitAmount,
+      TransactionTime: now,
+      Txns: [
+        {
+          ...data.ConfirmBetParlay.message.Txns[0],
+          LicenseeTxId: placeBetData.response.txns[0].licenseeTxId,
+          RefId: placeBetData.request.message.Txns[0].RefId,
+          TxId: generateRandomNumber(18),
+        },
+        {
+          ...data.ConfirmBetParlay.message.Txns[0],
+          LicenseeTxId: placeBetData.response.txns[1].licenseeTxId,
+          RefId: placeBetData.request.message.Txns[1].RefId,
+          TxId: generateRandomNumber(18),
+        },
+      ],
+      TicketDetail: [
+        getTicketDetail(placeBetData.request.message.TicketDetail[0]),
+        getTicketDetail(placeBetData.request.message.TicketDetail[1]),
+      ],
+    },
+  };
+};
+
+function generateRandomNumber(length) {
+  if (length < 1) return '';
+
+  const min = Math.pow(10, length - 1);
+  const max = Math.pow(10, length) - 1;
+  
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 const singleBetLookup = {
+  placeBetParlay: {
+    getSampleData: getPlaceBetParlayData,
+    callApi: placeBetParlayApi,
+    label: "Place Bet Parlay",
+  },
+
+  confirmBetParlay: {
+    getSampleData: getConfirmBetParlayData,
+    callApi: confirmBetParlayApi,
+    label: "Confirm Place Bet Parlay",
+  },
+
   placeBet: {
     getSampleData: getPlaceBetData,
     callApi: placeBetApi,
