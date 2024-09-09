@@ -1,4 +1,12 @@
-import { placeBetApi, confirmBetApi } from "../services/api";
+//@ts-nocheck
+import {
+  placeBetApi,
+  confirmBetApi,
+  canCelBetApi,
+  settleBetApi,
+  reSettleBetApi,
+  unSettleBetApi,
+} from "../services/api";
 import data from "../constant/Data.json";
 import store from "../store/store";
 import { nanoid } from "nanoid";
@@ -44,14 +52,86 @@ const getConfirmBetData = () => {
 };
 
 const getCancelBetData = () => {
-  return data.CancelBet;
+  const placeBetData = store?.getState()?.singleBet?.betData?.placeBet;
+  const betAmount = placeBetData.request?.message?.BetAmount;
+  const betData = {
+    ...data.CancelBet,
+    message: {
+      ...data.CancelBet.message,
+      OperationId: nanoid(20),
+
+      Txns: [
+        {
+          ...data.CancelBet.message.Txns[0],
+          CreditAmount: betAmount,
+        },
+        ...data.ConfirmBet.message.Txns.slice(1),
+      ],
+    },
+  };
+  return betData;
 };
 
-const getSettleBetData = () => {};
+const getSettleBetData = () => {
+  const placeBetData = store?.getState()?.singleBet?.betData?.placeBet;
+  const betAmount = placeBetData.request?.message?.BetAmount;
+  const betData = {
+    ...data.Settle,
+    message: {
+      ...data.Settle.message,
+      OperationId: nanoid(20),
+      Txns: [
+        {
+          ...data.Settle.message.Txns[0],
+          CreditAmount: betAmount,
+          Payout: betAmount,
+        },
+        ...data.Settle.message.Txns.slice(1),
+      ],
+    },
+  };
+  return betData;
+};
 
-const getResettleBetData = () => {};
+const getResettleBetData = () => {
+  const placeBetData = store?.getState()?.singleBet?.betData?.placeBet;
+  const betAmount = placeBetData.request?.message?.BetAmount;
+  const betData = {
+    ...data.ReSettle,
+    message: {
+      ...data.ReSettle.message,
+      OperationId: nanoid(20),
+      Txns: [
+        {
+          ...data.ReSettle.message.Txns[0],
+          Payout: betAmount,
+        },
+        ...data.ReSettle.message.Txns.slice(1),
+      ],
+    },
+  };
+  return betData;
+};
 
-const getUnsettleBetData = () => {};
+const getUnsettleBetData = () => {
+  const placeBetData = store?.getState()?.singleBet?.betData?.placeBet;
+  const betAmount = placeBetData.request?.message?.BetAmount;
+  const betData = {
+    ...data.UnSettle,
+    message: {
+      ...data.ReSettle.message,
+      OperationId: nanoid(20),
+      Txns: [
+        {
+          ...data.UnSettle.message.Txns[0],
+          DebitAmount: betAmount,
+        },
+        ...data.UnSettle.message.Txns.slice(1),
+      ],
+    },
+  };
+  return betData;
+};
 
 const singleBetLookup = {
   placeBet: {
@@ -68,22 +148,22 @@ const singleBetLookup = {
 
   cancelBet: {
     getSampleData: getCancelBetData,
-    callApi: null,
+    callApi: canCelBetApi,
     label: "Cancel Bet",
   },
   settleBet: {
     getSampleData: getSettleBetData,
-    callApi: null,
+    callApi: settleBetApi,
     label: "Settle Bet",
   },
   resettleBet: {
     getSampleData: getResettleBetData,
-    callApi: null,
+    callApi: reSettleBetApi,
     label: "Resettle Bet",
   },
   unsettleBet: {
     getSampleData: getUnsettleBetData,
-    callApi: null,
+    callApi: unSettleBetApi,
     label: "Unsettle Bet",
   },
 };

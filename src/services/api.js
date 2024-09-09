@@ -76,3 +76,60 @@ export const getBalance = async (data) => {
     throw error;
   }
 };
+
+export const settleBetApi = async (data) => {
+  try {
+    const response = await axios.post(
+      "https://localhost:7015/api/Simulator/settle",
+      data,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error("There was a problem with the axios operation:", error);
+    throw error;
+  }
+};
+
+export const reSettleBetApi = async (data) => {
+  try {
+    const response = await axios.post(
+      "https://localhost:7015/api/Simulator/resettle",
+      data,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error("There was a problem with the axios operation:", error);
+    throw error;
+  }
+};
+
+export const unSettleBetApi = async (data) => {
+  try {
+    const response = await axios.post(
+      "https://localhost:7015/api/Simulator/unsettle",
+      data,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    console.error("There was a problem with the axios operation:", error);
+    throw error;
+  }
+};
