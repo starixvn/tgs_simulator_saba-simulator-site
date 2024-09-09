@@ -4,7 +4,7 @@ import axios from "axios";
 export const placeBetParlayApi = async (betData) => {
   try {
     const response = await axios.post(
-      "https://localhost:7015/api/Simulator/PlaceBetParlay",
+      "https://saba-simulator-api.nexentgame.com/api/Simulator/PlaceBetParlay",
       betData,
       {
         headers: {
@@ -40,7 +40,7 @@ export const placeBetApi = async (betData) => {
 export const confirmBetParlayApi = async (betData) => {
   try {
     const response = await axios.post(
-      "https://localhost:7015/api/Simulator/ConfirmBetParlay",
+      "https://saba-simulator-api.nexentgame.com/api/Simulator/ConfirmBetParlay",
       betData,
       {
         headers: {

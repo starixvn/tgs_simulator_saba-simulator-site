@@ -179,8 +179,6 @@ const getPlaceBetParlayData = () => {
       ...data.PlaceBetParlay.message,
       OperationId: nanoid(20),
       UserId: store.getState().userInfo.userId,
-      BetTime: now,
-      UpdateTime: now,
       CreditAmount: shouldSetCreditAmount ? betAmount : 0,
       DebitAmount: shouldSetCreditAmount ? 0 : betAmount,
       ActualAmount: shouldNegativeOdds ? betAmount * 0.95 : betAmount,
