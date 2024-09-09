@@ -65,13 +65,11 @@ const DataDisplay = () => {
         </div>
       </div>
       <br />
-      <button
-        className="submit-btn"
-        onClick={handleOnSubmit}
-        disabled={isViewData}
-      >
-        Submit
-      </button>
+      {!isViewData && (
+        <button className="submit-btn" onClick={handleOnSubmit}>
+          Submit
+        </button>
+      )}
     </div>
   );
 };

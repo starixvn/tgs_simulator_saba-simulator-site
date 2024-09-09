@@ -13,6 +13,7 @@ import { nanoid } from "nanoid";
 
 const getPlaceBetData = () => {
   let betAmount = Math.round(Math.random() * 9 * 100) / 100;
+  const userId = store.getState().userInfo.userId;
   const betData = {
     ...data.PlaceBet,
     message: {
@@ -20,7 +21,9 @@ const getPlaceBetData = () => {
       BetAmount: betAmount,
       DebitAmount: betAmount,
       ActualAmount: betAmount,
+      RefId: nanoid(20),
       OperationId: nanoid(20),
+      UserId: userId,
     },
   };
   return betData;
@@ -28,7 +31,8 @@ const getPlaceBetData = () => {
 
 const getConfirmBetData = () => {
   const placeBetData = store?.getState()?.singleBet?.betData?.placeBet;
-  const betAmount = placeBetData.request?.message?.BetAmount;
+  const userId = store.getState().userInfo.userId;
+  const { BetAmount, RefId } = placeBetData.request?.message;
   const licenseeTxId = placeBetData?.response?.licenseeTxId;
 
   const betData = {
@@ -36,12 +40,13 @@ const getConfirmBetData = () => {
     message: {
       ...data.ConfirmBet.message,
       OperationId: nanoid(20),
-
+      UserId: userId,
       Txns: [
         {
           ...data.ConfirmBet.message.Txns[0],
           LicenseeTxId: licenseeTxId,
-          ActualAmount: betAmount,
+          RefId: RefId,
+          ActualAmount: BetAmount,
         },
         ...data.ConfirmBet.message.Txns.slice(1),
       ],
@@ -53,17 +58,20 @@ const getConfirmBetData = () => {
 
 const getCancelBetData = () => {
   const placeBetData = store?.getState()?.singleBet?.betData?.placeBet;
-  const betAmount = placeBetData.request?.message?.BetAmount;
+  const userId = store.getState().userInfo.userId;
+  const { BetAmount, RefId } = placeBetData.request?.message;
   const betData = {
     ...data.CancelBet,
     message: {
       ...data.CancelBet.message,
       OperationId: nanoid(20),
+      UserId: userId,
 
       Txns: [
         {
           ...data.CancelBet.message.Txns[0],
-          CreditAmount: betAmount,
+          CreditAmount: BetAmount,
+          RefId: RefId,
         },
         ...data.ConfirmBet.message.Txns.slice(1),
       ],
@@ -74,7 +82,9 @@ const getCancelBetData = () => {
 
 const getSettleBetData = () => {
   const placeBetData = store?.getState()?.singleBet?.betData?.placeBet;
-  const betAmount = placeBetData.request?.message?.BetAmount;
+  const userId = store.getState().userInfo.userId;
+  const { BetAmount, RefId } = placeBetData.request?.message;
+
   const betData = {
     ...data.Settle,
     message: {
@@ -83,8 +93,10 @@ const getSettleBetData = () => {
       Txns: [
         {
           ...data.Settle.message.Txns[0],
-          CreditAmount: betAmount,
-          Payout: betAmount,
+          CreditAmount: BetAmount,
+          Payout: BetAmount,
+          UserId: userId,
+          RefId: RefId,
         },
         ...data.Settle.message.Txns.slice(1),
       ],
@@ -95,7 +107,8 @@ const getSettleBetData = () => {
 
 const getResettleBetData = () => {
   const placeBetData = store?.getState()?.singleBet?.betData?.placeBet;
-  const betAmount = placeBetData.request?.message?.BetAmount;
+  const userId = store.getState().userInfo.userId;
+  const { BetAmount, RefId } = placeBetData.request?.message;
   const betData = {
     ...data.ReSettle,
     message: {
@@ -104,7 +117,9 @@ const getResettleBetData = () => {
       Txns: [
         {
           ...data.ReSettle.message.Txns[0],
-          Payout: betAmount,
+          Payout: BetAmount,
+          UserId: userId,
+          RefId: RefId,
         },
         ...data.ReSettle.message.Txns.slice(1),
       ],
@@ -115,16 +130,19 @@ const getResettleBetData = () => {
 
 const getUnsettleBetData = () => {
   const placeBetData = store?.getState()?.singleBet?.betData?.placeBet;
-  const betAmount = placeBetData.request?.message?.BetAmount;
+  const userId = store.getState().userInfo.userId;
+  const { BetAmount, RefId } = placeBetData.request?.message;
   const betData = {
     ...data.UnSettle,
     message: {
-      ...data.ReSettle.message,
+      ...data.UnSettle.message,
       OperationId: nanoid(20),
       Txns: [
         {
           ...data.UnSettle.message.Txns[0],
-          DebitAmount: betAmount,
+          UserId: userId,
+          RefId: RefId,
+          DebitAmount: BetAmount,
         },
         ...data.UnSettle.message.Txns.slice(1),
       ],

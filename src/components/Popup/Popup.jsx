@@ -12,8 +12,13 @@ const Popup = () => {
   const dispatch = useDispatch();
   const clickedButtons = useSelector((state) => state.singleBet.clickedButtons);
   const nextButtons = useSelector((state) => state.singleBet.nextButtons);
+  const { userId, balance } = useSelector((state) => state.userInfo);
 
   const handleActionClick = (key) => {
+    if (!userId) {
+      alert("Please insert User Id then click save");
+      return;
+    }
     const data = singleBetLookup[key]?.getSampleData();
     dispatch(updateDisplayData({ type: key, request: data, response: null }));
     dispatch(updateCurrentState(key));

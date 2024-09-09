@@ -58,7 +58,7 @@ export const canCelBetApi = async (betData) => {
   }
 };
 
-export const getBalance = async (data) => {
+export const getBalanceApi = async (data) => {
   try {
     const response = await axios.post(
       "https://localhost:7015/api/Simulator/getBalance",
