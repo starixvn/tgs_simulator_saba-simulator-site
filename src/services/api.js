@@ -1,10 +1,10 @@
+//@ts-nocheck
 import axios from "axios";
 
-// @ts-ignore
 export const placeBetApi = async (betData) => {
   try {
     const response = await axios.post(
-      "https://saba-simulator-api.nexentgame.com/api/Simulator/PlaceBet",
+      "https://localhost:7015/api/Simulator/PlaceBet",
       betData,
       {
         headers: {
@@ -20,11 +20,10 @@ export const placeBetApi = async (betData) => {
   }
 };
 
-// @ts-ignore
 export const confirmBetApi = async (betData) => {
   try {
     const response = await axios.post(
-      "https://saba-simulator-api.nexentgame.com/api/Simulator/ConfirmBet",
+      "https://localhost:7015/api/Simulator/ConfirmBet",
       betData,
       {
         headers: {
@@ -40,11 +39,10 @@ export const confirmBetApi = async (betData) => {
   }
 };
 
-// @ts-ignore
 export const canCelBetApi = async (betData) => {
   try {
     const response = await axios.post(
-      "https://saba-simulator-api.nexentgame.com/api/Simulator/CancelBet",
+      "https://localhost:7015/api/Simulator/CancelBet",
       betData,
       {
         headers: {
@@ -60,11 +58,10 @@ export const canCelBetApi = async (betData) => {
   }
 };
 
-// @ts-ignore
 export const getBalance = async (data) => {
   try {
     const response = await axios.post(
-      "https://saba-simulator-api.nexentgame.com/api/Simulator/getBalance",
+      "https://localhost:7015/api/Simulator/getBalance",
       data,
       {
         headers: {
