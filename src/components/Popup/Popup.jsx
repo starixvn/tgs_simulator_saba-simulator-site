@@ -6,24 +6,17 @@ import {
   restartSingleBetStore,
 } from "../../store/slices/singleBetSlice";
 import UserInfo from "../UserInfo/UserInfo";
-import singleBetLookup from "../../helper/singleBetHelper";
+import { betLookup } from "../../helper";
 import "./Popup.css";
+import { useState } from "react";
+import useSubmitEvent from "../../hooks/useSubmitEvent";
 
 const Popup = () => {
   const dispatch = useDispatch();
   const clickedButtons = useSelector((state) => state.singleBet.clickedButtons);
   const nextButtons = useSelector((state) => state.singleBet.nextButtons);
-  const { userId, balance } = useSelector((state) => state.userInfo);
 
-  const handleActionClick = (key) => {
-    if (!userId) {
-      alert("Please insert User Id then click save");
-      return;
-    }
-    const data = singleBetLookup[key]?.getSampleData();
-    dispatch(updateDisplayData({ type: key, request: data, response: null }));
-    dispatch(updateCurrentState(key));
-  };
+  const submitEvent = useSubmitEvent();
 
   const handleFlowClick = (key) => {
     dispatch(updateCurrentState(key));
@@ -45,9 +38,9 @@ const Popup = () => {
             <button
               key={index}
               className={`${button} next betting-btn`}
-              onClick={() => handleActionClick(button)}
+              onClick={() => submitEvent.handleActionClick(button)}
             >
-              {singleBetLookup[button]?.label}
+              {betLookup[button]?.label}
             </button>
           ))}
           {clickedButtons.length > 0 && (
@@ -68,7 +61,7 @@ const Popup = () => {
               className={`${button} clicked betting-btn`}
               onClick={() => handleFlowClick(button)}
             >
-              {singleBetLookup[button]?.label}
+              {betLookup[button]?.label}
             </button>
           ))}
         </div>

@@ -1,41 +1,40 @@
 //@ts-nocheck
 import { useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import singleBetLookup from "../../helper/singleBetHelper";
+import { betLookup } from "../../helper";
 import {
   updateDisplayData,
   handleChangeState,
+  updateCurrentState,
+  restartSingleBetStore,
 } from "../../store/slices/singleBetSlice";
 import "./DataDisplay.css";
 import { nanoid } from "nanoid";
+import useSubmitEvent from "../../hooks/useSubmitEvent";
 
 const DataDisplay = () => {
   const requestRef = useRef(null);
 
+  const dispatch = useDispatch();
+
   const currentState = useSelector((state) => state.singleBet.currentState);
-  const clickedButtons = useSelector((state) => state.singleBet.clickedButtons);
   const dataDisplay = useSelector(
     (state) => state.singleBet.betData[currentState]
   );
-
+  const clickedButtons = useSelector((state) => state.singleBet.clickedButtons);
   const isViewData = clickedButtons.includes(currentState);
 
-  const dispatch = useDispatch();
-  const handleOnSubmit = async () => {
-    const response = await singleBetLookup[currentState]?.callApi(
-      requestRef.current.value
-    );
-    dispatch(
-      updateDisplayData({
-        type: currentState,
-        request: JSON.parse(requestRef.current.value),
-        response: response,
-      })
-    );
-    if (response.status === "0") {
-      dispatch(handleChangeState(currentState));
+  const { handleActionClick, handleOnSubmit } = useSubmitEvent();
+
+  const onAutoClickHandle = async (actions) => {
+    for (let i = 0; i < actions.length; i++) {
+      await handleActionClick(actions[i]);
+      await handleOnSubmit(actions[i], requestRef.current.value);
+      await delay(1000);
     }
   };
+
+  const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
   return (
     <div className="data-container" key={nanoid(20)}>
@@ -65,11 +64,23 @@ const DataDisplay = () => {
         </div>
       </div>
       <br />
+
       {!isViewData && (
-        <button className="submit-btn" onClick={handleOnSubmit}>
+        <button
+          className="submit-btn"
+          onClick={() => handleOnSubmit(currentState, requestRef.current.value)}
+        >
           Submit
         </button>
       )}
+      <button
+        className="submit-btn"
+        onClick={() =>
+          onAutoClickHandle(["placeBet", "confirmBet", "settleBet"])
+        }
+      >
+        Auto Submit Single Bet
+      </button>
     </div>
   );
 };
