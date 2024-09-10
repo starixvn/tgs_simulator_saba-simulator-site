@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   updateDisplayData,
   updateCurrentState,
+  restartSingleBetStore,
 } from "../../store/slices/singleBetSlice";
 import UserInfo from "../UserInfo/UserInfo";
 import singleBetLookup from "../../helper/singleBetHelper";
@@ -28,6 +29,10 @@ const Popup = () => {
     dispatch(updateCurrentState(key));
   };
 
+  const restartProcess = (state) => {
+    dispatch(restartSingleBetStore());
+  };
+
   return (
     <div className="popup">
       <div className="popup-header">
@@ -45,6 +50,15 @@ const Popup = () => {
               {singleBetLookup[button]?.label}
             </button>
           ))}
+          {clickedButtons.length > 0 && (
+            <button
+              key={`ReStart`}
+              className={`next betting-btn`}
+              onClick={restartProcess}
+            >
+              Restart
+            </button>
+          )}
         </div>
         <div className="button-group">
           <h3>API Flow</h3>

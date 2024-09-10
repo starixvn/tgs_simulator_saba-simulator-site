@@ -57,42 +57,42 @@ const initialState = {
 };
 
 const buttonActions = {
-  "placeBetParlay": {
+  placeBetParlay: {
     clicked: ["placeBetParlay"],
-    next: ["cancelBet", "confirmBetParlay"]
+    next: ["cancelBet", "confirmBetParlay"],
   },
-  "confirmBetParlay": {
+  confirmBetParlay: {
     clicked: ["confirmBetParlay"],
-    next: ["settleBetParlay"]
+    next: ["settleBetParlay"],
   },
-  "settleBetParlay": {
+  settleBetParlay: {
     clicked: ["settleBetParlay"],
-    next: ["resettleBet", "unsettleBet"]
+    next: ["resettleBet", "unsettleBet"],
   },
-  "placeBet": {
+  placeBet: {
     clicked: ["placeBet"],
-    next: ["confirmBet", "cancelBet"]
+    next: ["confirmBet", "cancelBet"],
   },
-  "confirmBet": {
+  confirmBet: {
     clicked: ["confirmBet"],
-    next: ["settleBet"]
+    next: ["settleBet"],
   },
-  "cancelBet": {
+  cancelBet: {
     clicked: ["cancelBet"],
-    next: []
+    next: [],
   },
-  "settleBet": {
+  settleBet: {
     clicked: ["settleBet"],
-    next: ["resettleBet", "unsettleBet"]
+    next: ["resettleBet", "unsettleBet"],
   },
-  "resettleBet": {
+  resettleBet: {
     clicked: ["resettleBet"],
-    next: []
+    next: [],
   },
-  "unsettleBet": {
+  unsettleBet: {
     clicked: ["unsettleBet"],
-    next: []
-  }
+    next: [],
+  },
 };
 
 const singleBetSlice = createSlice({
@@ -101,60 +101,60 @@ const singleBetSlice = createSlice({
   reducers: {
     handleChangeState: (state, action) => {
       const button = action.payload;
-    
+
       const buttonActions = {
-        "placeBetParlay": {
+        placeBetParlay: {
           clicked: ["placeBetParlay"],
-          next: ["cancelBetParlay", "confirmBetParlay"]
+          next: ["cancelBetParlay", "confirmBetParlay"],
         },
-        "confirmBetParlay": {
+        confirmBetParlay: {
           clicked: ["confirmBetParlay"],
-          next: ["settleBetParlay"]
+          next: ["settleBetParlay"],
         },
-        "settleBetParlay": {
+        settleBetParlay: {
           clicked: ["settleBetParlay"],
-          next: ["resettleBetParlay", "unsettleBetParlay"]
+          next: ["resettleBetParlay", "unsettleBetParlay"],
         },
-        "resettleBetParlay": {
+        resettleBetParlay: {
           clicked: ["resettleBetParlay"],
-          next: []
+          next: [],
         },
-        "unsettleBetParlay": {
+        unsettleBetParlay: {
           clicked: ["unsettleBetParlay"],
-          next: []
+          next: [],
         },
-        "cancelBetParlay": {
+        cancelBetParlay: {
           clicked: ["cancelBetParlay"],
-          next: []
+          next: [],
         },
-        "placeBet": {
+        placeBet: {
           clicked: ["placeBet"],
-          next: ["confirmBet", "cancelBet"]
+          next: ["confirmBet", "cancelBet"],
         },
-        "confirmBet": {
+        confirmBet: {
           clicked: ["confirmBet"],
-          next: ["settleBet"]
+          next: ["settleBet"],
         },
-        "cancelBet": {
+        cancelBet: {
           clicked: ["cancelBet"],
-          next: []
+          next: [],
         },
-        "settleBet": {
+        settleBet: {
           clicked: ["settleBet"],
-          next: ["resettleBet", "unsettleBet"]
+          next: ["resettleBet", "unsettleBet"],
         },
-        "resettleBet": {
+        resettleBet: {
           clicked: ["resettleBet"],
-          next: []
+          next: [],
         },
-        "unsettleBet": {
+        unsettleBet: {
           clicked: ["unsettleBet"],
-          next: []
-        }
+          next: [],
+        },
       };
-    
+
       const actions = buttonActions[button] || { clicked: [], next: [] };
-    
+
       // Update state
       state.clickedButtons = [...state.clickedButtons, ...actions.clicked];
       state.nextButtons = actions.next;
@@ -169,8 +169,16 @@ const singleBetSlice = createSlice({
     updateCurrentState: (state, action) => {
       state.currentState = action.payload;
     },
+    restartSingleBetStore: () => {
+      return initialState;
+    },
   },
 });
 
-export const { handleChangeState, updateDisplayData, updateCurrentState } = singleBetSlice.actions;
+export const {
+  handleChangeState,
+  updateDisplayData,
+  updateCurrentState,
+  restartSingleBetStore,
+} = singleBetSlice.actions;
 export default singleBetSlice.reducer;
