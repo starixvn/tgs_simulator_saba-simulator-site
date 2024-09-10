@@ -17,6 +17,18 @@ const initialState = {
       request: null,
       response: null,
     },
+    cancelBetParlay: {
+      request: null,
+      response: null,
+    },
+    resettleBetParlay: {
+      request: null,
+      response: null,
+    },
+    unsettleBetParlay: {
+      request: null,
+      response: null,
+    },
     placeBet: {
       request: null,
       response: null,
@@ -93,7 +105,7 @@ const singleBetSlice = createSlice({
       const buttonActions = {
         "placeBetParlay": {
           clicked: ["placeBetParlay"],
-          next: ["cancelBet", "confirmBetParlay"]
+          next: ["cancelBetParlay", "confirmBetParlay"]
         },
         "confirmBetParlay": {
           clicked: ["confirmBetParlay"],
@@ -101,7 +113,19 @@ const singleBetSlice = createSlice({
         },
         "settleBetParlay": {
           clicked: ["settleBetParlay"],
-          next: ["resettleBet", "unsettleBet"]
+          next: ["resettleBetParlay", "unsettleBetParlay"]
+        },
+        "resettleBetParlay": {
+          clicked: ["resettleBetParlay"],
+          next: []
+        },
+        "unsettleBetParlay": {
+          clicked: ["unsettleBetParlay"],
+          next: []
+        },
+        "cancelBetParlay": {
+          clicked: ["cancelBetParlay"],
+          next: []
         },
         "placeBet": {
           clicked: ["placeBet"],

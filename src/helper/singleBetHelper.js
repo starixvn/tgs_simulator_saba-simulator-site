@@ -236,6 +236,26 @@ const getConfirmBetParlayData = () => {
   };
 };
 
+const getCancelBetParlayData = () => {
+  const placeBetData = store?.getState()?.singleBet?.betData?.placeBetParlay;
+  const { OperationId, UserId } = placeBetData.request?.message;
+  const betData = {
+    key: nanoid(10),
+    message: {
+      ...data.CancelBet.message,
+      OperationId: OperationId,
+      UserId: UserId,
+      Txns: placeBetData.request.message.Txns.map((item, index) => ({
+        ...data.CancelBet.message.Txns[0],
+        CreditAmount: item.CreditAmount,
+        DebitAmount: item.DebitAmount,
+        RefId: item.RefId,
+      }))
+    }   
+  };
+  return betData;
+};
+
 const getSettleBetParlayData = () => {
   const placeBetData = store?.getState()?.singleBet?.betData?.placeBetParlay;
   const confirmBetParlay =
@@ -260,6 +280,52 @@ const getSettleBetParlayData = () => {
   return betData;
 };
 
+const getResettleParlayBetData = () => {
+  const placeBetData = store?.getState()?.singleBet?.betData?.placeBetParlay;
+  const confirmBetParlay = store?.getState()?.singleBet?.betData?.confirmBetParlay;
+
+  const { OperationId, UserId } = placeBetData.request?.message;
+  const betData = {
+    key: nanoid(10),
+    message: {
+      ...data.ReSettle.message,
+      OperationId: OperationId,
+      Txns: placeBetData.request.message.Txns.map((item, index) => ({
+        ...data.ReSettle.message.Txns[0],
+        UserId: UserId,
+        RefId: confirmBetParlay.request.message.Txns[index].RefId,
+        TxId: confirmBetParlay.request.message.Txns[index].TxId,
+        CreditAmount: item.CreditAmount,
+        DebitAmount: item.DebitAmount,
+      })),
+    },
+  };
+  return betData;
+};
+
+const getUnsettleParlayBetData = () => {
+  const placeBetData = store?.getState()?.singleBet?.betData?.placeBetParlay;
+  const confirmBetParlay = store?.getState()?.singleBet?.betData?.confirmBetParlay;
+
+  const { OperationId, UserId } = placeBetData.request?.message;
+  const betData = {
+    key: nanoid(10),
+    message: {
+      ...data.UnSettle.message,
+      OperationId: OperationId,
+      Txns: placeBetData.request.message.Txns.map((item, index) => ({
+        ...data.UnSettle.message.Txns[0],
+        UserId: store.getState().userInfo.userId,
+        RefId: confirmBetParlay.request.message.Txns[index].RefId,
+        TxId: confirmBetParlay.request.message.Txns[index].TxId,
+        CreditAmount: item.CreditAmount,
+        DebitAmount: item.DebitAmount,
+      }))
+    },
+  };
+  return betData;
+};
+
 function generateRandomNumber(length) {
   if (length < 1) return "";
 
@@ -275,25 +341,41 @@ const singleBetLookup = {
     callApi: placeBetParlayApi,
     label: "Place Bet Parlay",
   },
-
   confirmBetParlay: {
     getSampleData: getConfirmBetParlayData,
     callApi: confirmBetParlayApi,
     label: "Confirm Place Bet Parlay",
   },
-
+  settleBetParlay: {
+    getSampleData: getSettleBetParlayData,
+    callApi: settleBetApi,
+    label: "Settle Bet Parlay",
+  },
+  resettleBetParlay: {
+    getSampleData: getResettleParlayBetData,
+    callApi: reSettleBetApi,
+    label: "Resettle Bet Parlay",
+  },
+  unsettleBetParlay: {
+    getSampleData: getUnsettleParlayBetData,
+    callApi: unSettleBetApi,
+    label: "Unsettle Bet Parlay",
+  },
+  cancelBetParlay: {
+    getSampleData: getCancelBetParlayData,
+    callApi: canCelBetApi,
+    label: "Cancel Bet Parlay",
+  },
   placeBet: {
     getSampleData: getPlaceBetData,
     callApi: placeBetApi,
     label: "Place Bet",
   },
-
   confirmBet: {
     getSampleData: getConfirmBetData,
     callApi: confirmBetApi,
     label: "Confirm Bet",
   },
-
   cancelBet: {
     getSampleData: getCancelBetData,
     callApi: canCelBetApi,
@@ -304,11 +386,10 @@ const singleBetLookup = {
     callApi: settleBetApi,
     label: "Settle Bet",
   },
-
-  settleBetParlay: {
-    getSampleData: getSettleBetParlayData,
-    callApi: settleBetApi,
-    label: "Settle Bet Parlay",
+  unsettleBetParlay: {
+    getSampleData: getUnsettleParlayBetData,
+    callApi: unSettleBetApi,
+    label: "Unsettle Bet Parlay",
   },
   resettleBet: {
     getSampleData: getResettleBetData,
