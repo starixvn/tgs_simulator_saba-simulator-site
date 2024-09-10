@@ -23,7 +23,7 @@ const getPlaceBetData = () => {
       BetAmount: betAmount,
       DebitAmount: betAmount,
       ActualAmount: betAmount,
-      RefId: nanoid(20),
+      RefId: `simulator_${nanoid(15)}`,
       OperationId: nanoid(20),
       UserId: userId,
     },
@@ -84,7 +84,9 @@ const getCancelBetData = () => {
 
 const getSettleBetData = () => {
   const placeBetData = store?.getState()?.singleBet?.betData?.placeBet;
-  const txId = store?.getState()?.singleBet?.betData?.confirmBet?.request?.message?.Txns[0].TxId;
+  const txId =
+    store?.getState()?.singleBet?.betData?.confirmBet?.request?.message?.Txns[0]
+      .TxId;
 
   const userId = store.getState().userInfo.userId;
   const { BetAmount, RefId } = placeBetData.request?.message;
@@ -139,7 +141,9 @@ const getResettleBetData = () => {
 const getUnsettleBetData = () => {
   const placeBetData = store?.getState()?.singleBet?.betData?.placeBet;
   const userId = store.getState().userInfo.userId;
-  const txId = store?.getState()?.singleBet?.betData?.confirmBet?.request?.message?.Txns[0].TxId;
+  const txId =
+    store?.getState()?.singleBet?.betData?.confirmBet?.request?.message?.Txns[0]
+      .TxId;
   const { BetAmount, RefId } = placeBetData.request?.message;
   const betData = {
     ...data.UnSettle,
@@ -165,7 +169,7 @@ const getPlaceBetParlayData = () => {
   const betAmount = Math.round(Math.random() * 9 * 100) / 100;
   const shouldSetCreditAmount = Math.random() >= 0.5;
   const shouldNegativeOdds = Math.random() >= 0.5;
-  const refId = nanoid(13);
+
   const now = new Date();
 
   const betData = {
@@ -180,9 +184,9 @@ const getPlaceBetParlayData = () => {
       DebitAmount: shouldSetCreditAmount ? 0 : betAmount,
       ActualAmount: shouldNegativeOdds ? betAmount * 0.95 : betAmount,
       BetAmount: betAmount,
-      Txns: data.PlaceBetParlay.message.Txns.map(item => ({
+      Txns: data.PlaceBetParlay.message.Txns.map((item) => ({
         ...item,
-        RefId: nanoid(20)
+        RefId: `simulator_${nanoid(15)}`,
       })),
     },
   };
@@ -225,14 +229,17 @@ const getConfirmBetParlayData = () => {
         RefId: placeBetData.request.message.Txns[index].RefId,
         TxId: generateRandomNumber(18),
       })),
-      TicketDetail: placeBetData.request.message.TicketDetail.map(item => getTicketDetail(item))
+      TicketDetail: placeBetData.request.message.TicketDetail.map((item) =>
+        getTicketDetail(item)
+      ),
     },
   };
 };
 
 const getSettleBetParlayData = () => {
   const placeBetData = store?.getState()?.singleBet?.betData?.placeBetParlay;
-  const confirmBetParlay = store?.getState()?.singleBet?.betData?.confirmBetParlay;
+  const confirmBetParlay =
+    store?.getState()?.singleBet?.betData?.confirmBetParlay;
 
   const { OperationId, UserId } = placeBetData.request?.message;
 
