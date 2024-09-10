@@ -180,7 +180,7 @@ const getPlaceBetParlayData = () => {
       UserId: store.getState().userInfo.userId,
       BetTime: now,
       UpdateTime: now,
-      CreditAmount: shouldSetCreditAmount ? betAmount : 0,
+      CreditAmount: betAmount,
       DebitAmount: shouldSetCreditAmount ? 0 : betAmount,
       ActualAmount: shouldNegativeOdds ? betAmount * 0.95 : betAmount,
       BetAmount: betAmount,
@@ -238,7 +238,7 @@ const getConfirmBetParlayData = () => {
 
 const getCancelBetParlayData = () => {
   const placeBetData = store?.getState()?.singleBet?.betData?.placeBetParlay;
-  const { OperationId, UserId } = placeBetData.request?.message;
+  const { OperationId, UserId, CreditAmount, DebitAmount } = placeBetData.request?.message;
   const betData = {
     key: nanoid(10),
     message: {
@@ -247,8 +247,8 @@ const getCancelBetParlayData = () => {
       UserId: UserId,
       Txns: placeBetData.request.message.Txns.map((item, index) => ({
         ...data.CancelBet.message.Txns[0],
-        CreditAmount: item.CreditAmount,
-        DebitAmount: item.DebitAmount,
+        CreditAmount: CreditAmount,
+        DebitAmount: DebitAmount,
         RefId: item.RefId,
       }))
     }   
