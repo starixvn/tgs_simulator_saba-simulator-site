@@ -10,9 +10,11 @@ const UserInfo = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (userId) {
+    const validUserId = userId || localStorage.getItem("saba-simulator-userId");
+
+    if (validUserId) {
       const fetchBalance = async () => {
-        GetBalance.message.UserId = userId;
+        GetBalance.message.UserId = validUserId;
         const res = await getBalanceApi(GetBalance);
         if (res.status === "0") {
           dispatch(
@@ -21,6 +23,7 @@ const UserInfo = () => {
               balance: res.balance,
             })
           );
+
           return;
         }
       };
@@ -36,6 +39,7 @@ const UserInfo = () => {
       dispatch(
         setUserInfo({ userId: response.userId, balance: response.balance })
       );
+      localStorage.setItem("saba-simulator-userId", response.userId);
       return;
     }
     alert(response.msg);
