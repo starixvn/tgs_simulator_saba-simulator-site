@@ -30,7 +30,10 @@ const DataDisplay = () => {
     dispatch(restartSingleBetStore());
     for (let i = 0; i < actions.length; i++) {
       await handleActionClick(actions[i]);
-      const response = await handleOnSubmit(actions[i], requestRef.current.value);
+      const response = await handleOnSubmit(
+        actions[i],
+        requestRef.current.value
+      );
       await delay(1000);
 
       if (response.status !== "0") {
@@ -78,14 +81,17 @@ const DataDisplay = () => {
           Submit
         </button>
       )}
-      <button
-        className="submit-btn"
-        onClick={() =>
-          onAutoClickHandle(["placeBet", "confirmBet", "settleBet"])
-        }
-      >
-        Auto Submit Single Bet
-      </button>
+      {!currentState && (
+        <button
+          button
+          className="submit-btn"
+          onClick={() =>
+            onAutoClickHandle(["placeBet", "confirmBet", "settleBet"])
+          }
+        >
+          Auto Submit
+        </button>
+      )}
     </div>
   );
 };
