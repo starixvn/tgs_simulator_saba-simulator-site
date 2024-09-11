@@ -23,6 +23,8 @@ function useSubmitEvent() {
       if (response.status === "0") {
         dispatch(handleChangeState(betAction));
       }
+
+      return response;
     };
   
     const handleActionClick = async (key) => {

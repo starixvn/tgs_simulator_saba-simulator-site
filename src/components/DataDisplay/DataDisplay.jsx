@@ -27,10 +27,15 @@ const DataDisplay = () => {
   const { handleActionClick, handleOnSubmit } = useSubmitEvent();
 
   const onAutoClickHandle = async (actions) => {
+    dispatch(restartSingleBetStore());
     for (let i = 0; i < actions.length; i++) {
       await handleActionClick(actions[i]);
-      await handleOnSubmit(actions[i], requestRef.current.value);
+      const response = await handleOnSubmit(actions[i], requestRef.current.value);
       await delay(1000);
+
+      if (response.status !== "0") {
+        break;
+      }
     }
   };
 
