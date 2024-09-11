@@ -11,10 +11,12 @@ import {
 } from "../services/api";
 import data from "../constant/Data.json";
 import store from "../store/store";
+import { formatCurrentDate, formatCurrentDateTime } from "./datetimeHelper";
 import { nanoid } from "nanoid";
 
 const getPlaceBetData = () => {
   let betAmount = Math.round(Math.random() * 9 * 100) / 100;
+  const simulatedTime = formatCurrentDateTime();
   const userId = store.getState().userInfo.userId;
   const betData = {
     ...data.PlaceBet,
@@ -23,6 +25,10 @@ const getPlaceBetData = () => {
       BetAmount: betAmount,
       DebitAmount: betAmount,
       ActualAmount: betAmount,
+      KickOffTime: simulatedTime,
+      BetTime: simulatedTime,
+      UpdateTime: simulatedTime,
+      MatchDateTime: simulatedTime,
       RefId: `simulator_${nanoid(15)}`,
       OperationId: nanoid(20),
       UserId: userId,
@@ -36,12 +42,16 @@ const getConfirmBetData = () => {
   const userId = store.getState().userInfo.userId;
   const { BetAmount, RefId } = placeBetData.request?.message;
   const licenseeTxId = placeBetData?.response?.licenseeTxId;
+  const simulatedTime = formatCurrentDateTime();
+  const simulatedDate = formatCurrentDate();
 
   const betData = {
     ...data.ConfirmBet,
     message: {
       ...data.ConfirmBet.message,
       OperationId: nanoid(20),
+      UpdateTime: simulatedTime,
+      TransactionTime: simulatedTime,
       UserId: userId,
       Txns: [
         {
@@ -49,6 +59,7 @@ const getConfirmBetData = () => {
           LicenseeTxId: licenseeTxId,
           RefId: RefId,
           TxId: generateRandomNumber(18),
+          WinlostDate: simulatedDate,
           ActualAmount: BetAmount,
         },
         ...data.ConfirmBet.message.Txns.slice(1),
@@ -63,11 +74,13 @@ const getCancelBetData = () => {
   const placeBetData = store?.getState()?.singleBet?.betData?.placeBet;
   const userId = store.getState().userInfo.userId;
   const { BetAmount, RefId } = placeBetData.request?.message;
+  const simulatedTime = formatCurrentDateTime();
   const betData = {
     ...data.CancelBet,
     message: {
       ...data.CancelBet.message,
       OperationId: nanoid(20),
+      UpdateTime: simulatedTime,
       UserId: userId,
       Txns: [
         {
@@ -87,7 +100,8 @@ const getSettleBetData = () => {
   const txId =
     store?.getState()?.singleBet?.betData?.confirmBet?.request?.message?.Txns[0]
       .TxId;
-
+  const simulatedTime = formatCurrentDateTime();
+  const simulatedDate = formatCurrentDate();
   const userId = store.getState().userInfo.userId;
   const { BetAmount, RefId } = placeBetData.request?.message;
 
@@ -104,6 +118,9 @@ const getSettleBetData = () => {
           UserId: userId,
           RefId: RefId,
           TxId: txId,
+          SettlementTime: simulatedTime,
+          UpdateTime: simulatedTime,
+          WinlostDate: simulatedDate,
         },
       ],
     },
@@ -116,6 +133,8 @@ const getResettleBetData = () => {
   const txId =
     store?.getState()?.singleBet?.betData?.confirmBet?.request?.message?.Txns[0]
       .TxId;
+  const simulatedTime = formatCurrentDateTime();
+  const simulatedDate = formatCurrentDate();
   const userId = store.getState().userInfo.userId;
   const { BetAmount, RefId } = placeBetData.request?.message;
   const betData = {
@@ -128,6 +147,9 @@ const getResettleBetData = () => {
           ...data.ReSettle.message.Txns[0],
           Payout: BetAmount,
           UserId: userId,
+          UpdateTime: simulatedTime,
+          WinlostDate: simulatedDate,
+          SettlementTime: simulatedTime,
           RefId: RefId,
           TxId: txId,
         },
@@ -144,6 +166,7 @@ const getUnsettleBetData = () => {
   const txId =
     store?.getState()?.singleBet?.betData?.confirmBet?.request?.message?.Txns[0]
       .TxId;
+  const simulatedTime = formatCurrentDateTime();
   const { BetAmount, RefId } = placeBetData.request?.message;
   const betData = {
     ...data.UnSettle,
@@ -155,6 +178,7 @@ const getUnsettleBetData = () => {
           ...data.UnSettle.message.Txns[0],
           UserId: userId,
           RefId: RefId,
+          UpdateTime: simulatedTime,
           DebitAmount: BetAmount,
           TxId: txId,
         },
