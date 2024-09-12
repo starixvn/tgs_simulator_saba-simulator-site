@@ -1,5 +1,6 @@
 
 FROM node:18.18.0 AS dependencies
+ARG TRANSFORM_CONFIG
 WORKDIR /app
 COPY package.json yarn.lock ./
 
@@ -13,9 +14,11 @@ COPY --from=dependencies /app/node_modules ./node_modules
 
 COPY . .
 
-
-RUN yarn build
-
+RUN if [ "$TRANSFORM_CONFIG" = "LOCAL" ]; then \
+        yarn run build ; \
+    else \
+        yarn build; \
+    fi
 
 FROM caddy:2.1.1-alpine AS runner
 
