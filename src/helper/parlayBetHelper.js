@@ -12,13 +12,14 @@ import {
 import data from "../constant/Data.json";
 import store from "../store/store";
 import { nanoid } from "nanoid";
+import { formatCurrentDateTime } from "./datetimeHelper";
 
 const getPlaceBetParlayData = () => {
   const betAmount = Math.round(Math.random() * 9 * 100) / 100;
   const shouldSetCreditAmount = Math.random() >= 0.5;
   const shouldNegativeOdds = Math.random() >= 0.5;
 
-  const now = new Date();
+  const now = formatCurrentDateTime();
 
   const betData = {
     key: nanoid(10),
@@ -28,16 +29,23 @@ const getPlaceBetParlayData = () => {
       UserId: store.getState().userInfo.userId,
       BetTime: now,
       UpdateTime: now,
-      CreditAmount: betAmount,
-      DebitAmount: shouldSetCreditAmount ? 0 : betAmount,
-      ActualAmount: shouldNegativeOdds ? betAmount * 0.95 : betAmount,
-      BetAmount: betAmount,
-      Txns: data.PlaceBetParlay.message.Txns.map((item) => ({
+      CreditAmount: 0,
+      Txns: data.PlaceBetParlay.message.Txns.map((item, index) => ({
         ...item,
         RefId: `simulator_${nanoid(15)}`,
+        Detail: item.ParlayType.includes("SingleBet_") ? [{
+          MatchId: generateRandomNumber(10)
+        }] : item.Detail
       })),
     },
   };
+
+  betData.message.TicketDetail = betData.message.TicketDetail.map((item, index) => ({
+    ...item,
+    MatchId: betData.message.Txns.filter(txn => txn.ParlayType.includes("SingleBet_"))[index].Detail.MatchId,
+    HomeId: generateRandomNumber(6),
+    AwayId: generateRandomNumber(6)
+  }))
 
   return betData;
 };
@@ -47,8 +55,7 @@ const getConfirmBetParlayData = () => {
 
   const placeBetData = store?.getState()?.singleBet?.betData?.placeBetParlay;
 
-  const { OperationId, UserId, UpdateTime, CreditAmount, DebitAmount } =
-    placeBetData.request?.message;
+  const { OperationId, UserId, UpdateTime, CreditAmount, DebitAmount } = placeBetData.request?.message;
   const licenseeTxId = placeBetData?.response?.licenseeTxId;
 
   const getTicketDetail = (ticketDetail) => ({
@@ -71,15 +78,14 @@ const getConfirmBetParlayData = () => {
       UpdateTime: UpdateTime,
       CreditAmount: CreditAmount,
       DebitAmount: DebitAmount,
+      TransactionTime: UpdateTime,
       Txns: placeBetData.request?.message.Txns.map((item, index) => ({
         ...data.ConfirmBetParlay.message.Txns[index],
         LicenseeTxId: placeBetData.response.txns[index].licenseeTxId,
         RefId: placeBetData.request.message.Txns[index].RefId,
         TxId: generateRandomNumber(18),
       })),
-      TicketDetail: placeBetData.request.message.TicketDetail.map((item) =>
-        getTicketDetail(item)
-      ),
+      TicketDetail: placeBetData.request.message.TicketDetail.map(getTicketDetail),
     },
   };
 };
