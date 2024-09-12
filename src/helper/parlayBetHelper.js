@@ -55,7 +55,7 @@ const getConfirmBetParlayData = () => {
 
   const placeBetData = store?.getState()?.singleBet?.betData?.placeBetParlay;
 
-  const { OperationId, UserId, UpdateTime, CreditAmount, DebitAmount } = placeBetData.request?.message;
+  const { UserId, UpdateTime, CreditAmount, DebitAmount } = placeBetData.request?.message;
   const licenseeTxId = placeBetData?.response?.licenseeTxId;
 
   const getTicketDetail = (ticketDetail) => ({
@@ -73,7 +73,7 @@ const getConfirmBetParlayData = () => {
     key: nanoid(10),
     message: {
       ...data.ConfirmBetParlay.message,
-      OperationId: OperationId,
+      OperationId: nanoid(20),
       UserId: UserId,
       UpdateTime: UpdateTime,
       CreditAmount: CreditAmount,
@@ -92,12 +92,12 @@ const getConfirmBetParlayData = () => {
 
 const getCancelBetParlayData = () => {
   const placeBetData = store?.getState()?.singleBet?.betData?.placeBetParlay;
-  const { OperationId, UserId, CreditAmount, DebitAmount } = placeBetData.request?.message;
+  const { UserId, CreditAmount, DebitAmount } = placeBetData.request?.message;
   const betData = {
     key: nanoid(10),
     message: {
       ...data.CancelBet.message,
-      OperationId: OperationId,
+      OperationId: nanoid(20),
       UserId: UserId,
       Txns: placeBetData.request.message.Txns.map((item, index) => ({
         ...data.CancelBet.message.Txns[0],
@@ -115,18 +115,20 @@ const getSettleBetParlayData = () => {
   const confirmBetParlay =
     store?.getState()?.singleBet?.betData?.confirmBetParlay;
 
-  const { OperationId, UserId } = placeBetData.request?.message;
+  const { UserId } = placeBetData.request?.message;
 
   const betData = {
     key: nanoid(10),
     message: {
       ...data.Settle.message,
-      OperationId: OperationId,
+      OperationId: nanoid(20),
       Txns: placeBetData.request.message.Txns.map((item, index) => ({
         ...data.Settle.message.Txns[0],
         UserId: UserId,
         RefId: confirmBetParlay.request.message.Txns[index].RefId,
         TxId: confirmBetParlay.request.message.Txns[index].TxId,
+        Payout: confirmBetParlay.request.message.Txns[index].ActualAmount,
+        CreditAmount: confirmBetParlay.request.message.Txns[index].ActualAmount,
       })),
     },
   };
@@ -138,19 +140,20 @@ const getResettleParlayBetData = () => {
   const placeBetData = store?.getState()?.singleBet?.betData?.placeBetParlay;
   const confirmBetParlay = store?.getState()?.singleBet?.betData?.confirmBetParlay;
 
-  const { OperationId, UserId } = placeBetData.request?.message;
+  const { UserId } = placeBetData.request?.message;
   const betData = {
     key: nanoid(10),
     message: {
       ...data.ReSettle.message,
-      OperationId: OperationId,
+      OperationId: nanoid(20),
       Txns: placeBetData.request.message.Txns.map((item, index) => ({
         ...data.ReSettle.message.Txns[0],
         UserId: UserId,
         RefId: confirmBetParlay.request.message.Txns[index].RefId,
         TxId: confirmBetParlay.request.message.Txns[index].TxId,
-        CreditAmount: item.CreditAmount,
-        DebitAmount: item.DebitAmount,
+        Payout: confirmBetParlay.request.message.Txns[index].ActualAmount,
+        CreditAmount: confirmBetParlay.request.message.Txns[index].ActualAmount,
+        DebitAmount: 0,
       })),
     },
   };
@@ -161,19 +164,20 @@ const getUnsettleParlayBetData = () => {
   const placeBetData = store?.getState()?.singleBet?.betData?.placeBetParlay;
   const confirmBetParlay = store?.getState()?.singleBet?.betData?.confirmBetParlay;
 
-  const { OperationId, UserId } = placeBetData.request?.message;
+  const { UserId } = placeBetData.request?.message;
   const betData = {
     key: nanoid(10),
     message: {
       ...data.UnSettle.message,
-      OperationId: OperationId,
+      OperationId: nanoid(20),
       Txns: placeBetData.request.message.Txns.map((item, index) => ({
         ...data.UnSettle.message.Txns[0],
         UserId: store.getState().userInfo.userId,
         RefId: confirmBetParlay.request.message.Txns[index].RefId,
         TxId: confirmBetParlay.request.message.Txns[index].TxId,
-        CreditAmount: item.CreditAmount,
-        DebitAmount: item.DebitAmount,
+        Payout: confirmBetParlay.request.message.Txns[index].ActualAmount,
+        CreditAmount: confirmBetParlay.request.message.Txns[index].ActualAmount,
+        DebitAmount: 0,
       }))
     },
   };

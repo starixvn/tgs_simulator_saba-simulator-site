@@ -627,7 +627,7 @@
           "TxId": 293676764058615900,
           "UpdateTime": "2024-08-30T23:56:38.021-04:00",
           "WinlostDate": "2024-08-31T00:00:00.000-04:00",
-          "Status": "void",
+          "Status": "won",
           "Payout": 15,
           "CreditAmount": 0,
           "DebitAmount": 0,
