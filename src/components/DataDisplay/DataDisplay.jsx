@@ -10,7 +10,6 @@ import {
 } from "../../store/slices/singleBetSlice";
 import "./DataDisplay.css";
 import { nanoid } from "nanoid";
-import useSubmitEvent from "../../hooks/useSubmitEvent";
 
 const DataDisplay = () => {
   const requestRef = useRef(null);
@@ -24,25 +23,19 @@ const DataDisplay = () => {
   const clickedButtons = useSelector((state) => state.singleBet.clickedButtons);
   const isViewData = clickedButtons.includes(currentState);
 
-  const { handleActionClick, handleOnSubmit } = useSubmitEvent();
-
-  const onAutoClickHandle = async (actions) => {
-    dispatch(restartSingleBetStore());
-    for (let i = 0; i < actions.length; i++) {
-      await handleActionClick(actions[i]);
-      const response = await handleOnSubmit(
-        actions[i],
-        requestRef.current.value
-      );
-      await delay(1000);
-
-      if (response.status !== "0") {
-        break;
-      }
+  const handleOnSubmit = async (betAction, params) => {
+    const response = await betLookup[betAction]?.callApi(params);
+    dispatch(
+      updateDisplayData({
+        type: betAction,
+        request: JSON.parse(params),
+        response: response,
+      })
+    );
+    if (response.status === "0") {
+      dispatch(handleChangeState(betAction));
     }
   };
-
-  const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
   return (
     <div className="data-container" key={nanoid(20)}>
@@ -81,7 +74,7 @@ const DataDisplay = () => {
           Submit
         </button>
       )}
-      {!currentState && (
+      {/* {!currentState && (
         <button
           button
           className="submit-btn"
@@ -91,7 +84,7 @@ const DataDisplay = () => {
         >
           Auto Submit
         </button>
-      )}
+      )} */}
     </div>
   );
 };

@@ -1,4 +1,4 @@
-import Popup from "./components/Popup/Popup";
+import Popup from "./components/PopupCenter/Popup";
 import { Provider } from "react-redux";
 import store from "./store/store";
 import "./App.css";

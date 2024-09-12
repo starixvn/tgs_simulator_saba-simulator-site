@@ -9,14 +9,15 @@ import UserInfo from "../UserInfo/UserInfo";
 import { betLookup } from "../../helper";
 import "./Popup.css";
 import { useState } from "react";
-import useSubmitEvent from "../../hooks/useSubmitEvent";
+
+import GroupButton from "../GroupButton/GroupButton";
+import GroupAutoButton from "../GroupAutoButton/GroupAutoButton";
 
 const Popup = () => {
   const dispatch = useDispatch();
   const clickedButtons = useSelector((state) => state.singleBet.clickedButtons);
   const nextButtons = useSelector((state) => state.singleBet.nextButtons);
-
-  const submitEvent = useSubmitEvent();
+  const userId = useSelector((state) => state.userInfo.userId);
 
   const handleFlowClick = (key) => {
     dispatch(updateCurrentState(key));
@@ -26,23 +27,32 @@ const Popup = () => {
     dispatch(restartSingleBetStore());
   };
 
+  const handleActionClick = async (key) => {
+    if (!userId) {
+      alert("Please insert User Id then click save");
+      return;
+    }
+    const data = betLookup[key]?.getSampleData();
+    dispatch(updateDisplayData({ type: key, request: data, response: null }));
+    dispatch(updateCurrentState(key));
+  };
+
   return (
     <div className="popup">
       <div className="popup-header">
         <UserInfo></UserInfo>
       </div>
       <div className="popup-body">
-        <div className="button-group">
-          <h3>Action</h3>
-          {nextButtons.map((button, index) => (
-            <button
-              key={index}
-              className={`${button} next betting-btn`}
-              onClick={() => submitEvent.handleActionClick(button)}
-            >
-              {betLookup[button]?.label}
-            </button>
-          ))}
+        <GroupAutoButton
+          headerText="Auto Action"
+          className={"next"}
+        ></GroupAutoButton>
+        <GroupButton
+          headerText="Action"
+          buttons={nextButtons}
+          handleClick={handleActionClick}
+          className={"next"}
+        >
           {clickedButtons.length > 0 && (
             <button
               key={`ReStart`}
@@ -52,19 +62,13 @@ const Popup = () => {
               Restart
             </button>
           )}
-        </div>
-        <div className="button-group">
-          <h3>API Flow</h3>
-          {clickedButtons.map((button, index) => (
-            <button
-              key={index}
-              className={`${button} clicked betting-btn`}
-              onClick={() => handleFlowClick(button)}
-            >
-              {betLookup[button]?.label}
-            </button>
-          ))}
-        </div>
+        </GroupButton>
+        <GroupButton
+          headerText="API Flow"
+          buttons={clickedButtons}
+          handleClick={handleFlowClick}
+          className={"clicked"}
+        ></GroupButton>
       </div>
     </div>
   );
