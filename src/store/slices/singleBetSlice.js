@@ -79,7 +79,7 @@ const buttonActions = {
   },
   cancelBet: {
     clicked: ["cancelBet"],
-    next: [],
+    next: ["cancelBet"],
   },
   settleBet: {
     clicked: ["settleBet"],
@@ -125,7 +125,7 @@ const singleBetSlice = createSlice({
         },
         cancelBetParlay: {
           clicked: ["cancelBetParlay"],
-          next: [],
+          next: ["cancelBetParlay"],
         },
         placeBet: {
           clicked: ["placeBet"],
@@ -137,7 +137,7 @@ const singleBetSlice = createSlice({
         },
         cancelBet: {
           clicked: ["cancelBet"],
-          next: [],
+          next: ["cancelBet"],
         },
         settleBet: {
           clicked: ["settleBet"],

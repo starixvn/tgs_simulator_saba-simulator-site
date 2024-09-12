@@ -21,7 +21,7 @@ const DataDisplay = () => {
     (state) => state.singleBet.betData[currentState]
   );
   const clickedButtons = useSelector((state) => state.singleBet.clickedButtons);
-  const isViewData = clickedButtons.includes(currentState);
+  const isViewData = clickedButtons.filter(item => item !== 'cancelBetParlay' && item !== 'cancelBet').includes(currentState);
 
   const handleOnSubmit = async (betAction, params) => {
     const response = await betLookup[betAction]?.callApi(params);
