@@ -3,7 +3,10 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   clickedButtons: [],
   nextButtons: ["placeBet", "placeBetParlay"],
-  currentState: "",
+  currentState: {
+    type: "",
+    retryId: null,
+  },
   betData: {
     placeBetParlay: {
       request: null,
@@ -53,6 +56,20 @@ const initialState = {
       request: null,
       response: null,
     },
+  },
+  betRetryData: {
+    placeBetParlay: [],
+    confirmBetParlay: [],
+    settleBetParlay: [],
+    cancelBetParlay: [],
+    resettleBetParlay: [],
+    unsettleBetParlay: [],
+    placeBet: [],
+    confirmBet: [],
+    cancelBet: [],
+    settleBet: [],
+    resettleBet: [],
+    unsettleBet: [],
   },
 };
 
@@ -172,6 +189,16 @@ const singleBetSlice = createSlice({
     restartSingleBetStore: () => {
       return initialState;
     },
+    updateStateRetry: (state, action) => {
+      const { type, request, response, retryId } = action.payload;
+
+      if (state.betData[type]) {
+        state.betRetryData[type] = [
+          ...state.betRetryData[type],
+          { request: request, response: response, retryId: retryId },
+        ];
+      }
+    },
   },
 });
 
@@ -180,5 +207,6 @@ export const {
   updateDisplayData,
   updateCurrentState,
   restartSingleBetStore,
+  updateStateRetry,
 } = singleBetSlice.actions;
 export default singleBetSlice.reducer;

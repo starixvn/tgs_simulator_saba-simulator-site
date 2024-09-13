@@ -25,7 +25,7 @@ const GroupAutoButton = ({ headerText }: Props) => {
     for (let i = 0; i < keys.length; i++) {
       const dataSample = betLookup[keys[i]]?.getSampleData();
       const response = await betLookup[keys[i]]?.callApi(dataSample);
-      dispatch(updateCurrentState(keys[i]));
+      dispatch(updateCurrentState({ type: keys[i], retryId: null }));
       dispatch(
         updateDisplayData({
           type: keys[i],

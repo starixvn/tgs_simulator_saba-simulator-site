@@ -12,6 +12,7 @@ import { useState } from "react";
 
 import GroupButton from "../GroupButton/GroupButton";
 import GroupAutoButton from "../GroupAutoButton/GroupAutoButton";
+import GroupAPIFlowButton from "../GroupAPIFlowButton/GroupAPIFlowButton";
 
 const Popup = () => {
   const dispatch = useDispatch();
@@ -20,7 +21,7 @@ const Popup = () => {
   const userId = useSelector((state) => state.userInfo.userId);
 
   const handleFlowClick = (key) => {
-    dispatch(updateCurrentState(key));
+    dispatch(updateCurrentState({ type: key, retryId: null }));
   };
 
   const restartProcess = (state) => {
@@ -34,7 +35,7 @@ const Popup = () => {
     }
     const data = betLookup[key]?.getSampleData();
     dispatch(updateDisplayData({ type: key, request: data, response: null }));
-    dispatch(updateCurrentState(key));
+    dispatch(updateCurrentState({ type: key, retryId: null }));
   };
 
   return (
@@ -63,12 +64,13 @@ const Popup = () => {
             </button>
           )}
         </GroupButton>
-        <GroupButton
+        <GroupAPIFlowButton
           headerText="API Flow"
           buttons={clickedButtons}
           handleClick={handleFlowClick}
           className={"clicked"}
-        ></GroupButton>
+          isRetry={true}
+        ></GroupAPIFlowButton>
       </div>
     </div>
   );

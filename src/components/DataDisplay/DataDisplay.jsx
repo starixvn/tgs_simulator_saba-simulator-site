@@ -13,15 +13,20 @@ import { nanoid } from "nanoid";
 
 const DataDisplay = () => {
   const requestRef = useRef(null);
-
   const dispatch = useDispatch();
-
   const currentState = useSelector((state) => state.singleBet.currentState);
-  const dataDisplay = useSelector(
-    (state) => state.singleBet.betData[currentState]
-  );
+  const { betData, betRetryData } = useSelector((state) => state.singleBet);
+  console.log(currentState);
+  const dataDisplay = Boolean(currentState.retryId)
+    ? betRetryData[currentState.type].find(
+        (x) => x.retryId === currentState.retryId
+      )
+    : betData[currentState.type];
+
   const clickedButtons = useSelector((state) => state.singleBet.clickedButtons);
-  const isViewData = clickedButtons.filter(item => item !== 'cancelBetParlay' && item !== 'cancelBet').includes(currentState);
+  const isViewData = clickedButtons
+    .filter((item) => item !== "cancelBetParlay" && item !== "cancelBet")
+    .includes(currentState.type);
 
   const handleOnSubmit = async (betAction, params) => {
     const response = await betLookup[betAction]?.callApi(params);
@@ -69,22 +74,13 @@ const DataDisplay = () => {
       {!isViewData && (
         <button
           className="submit-btn"
-          onClick={() => handleOnSubmit(currentState, requestRef.current.value)}
+          onClick={() =>
+            handleOnSubmit(currentState.type, requestRef.current.value)
+          }
         >
           Submit
         </button>
       )}
-      {/* {!currentState && (
-        <button
-          button
-          className="submit-btn"
-          onClick={() =>
-            onAutoClickHandle(["placeBet", "confirmBet", "settleBet"])
-          }
-        >
-          Auto Submit
-        </button>
-      )} */}
     </div>
   );
 };
