@@ -1,4 +1,4 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
   restartSingleBetStore,
   handleChangeState,
@@ -12,10 +12,15 @@ type Props = {
 };
 const GroupAutoButton = ({ headerText }: Props) => {
   const dispatch = useDispatch();
+  const userId = useSelector((state) => state.userInfo.userId);
 
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
   const onAutoClickHandle = async (keys) => {
+    if (!userId) {
+      alert("Please insert User Id then click save");
+      return;
+    }
     dispatch(restartSingleBetStore());
     for (let i = 0; i < keys.length; i++) {
       const dataSample = betLookup[keys[i]]?.getSampleData();
