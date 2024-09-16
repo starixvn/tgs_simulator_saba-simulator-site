@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { ReactNode, useState } from "react";
 import { betLookup } from "../../helper";
 import { useDispatch } from "react-redux";
 import {
@@ -10,9 +10,15 @@ type Props = {
   headerText: string;
   buttons: string[];
   className: string;
+  children?: ReactNode;
 };
 
-const GroupScheduleButton = ({ headerText, buttons, className }: Props) => {
+const GroupScheduleButton = ({
+  headerText,
+  buttons,
+  className,
+  children,
+}: Props) => {
   const [intervalValue, setIntervalValue] = useState(null);
   const [loopValue, setLoopValue] = useState(null);
   const dispatch = useDispatch();
@@ -67,6 +73,7 @@ const GroupScheduleButton = ({ headerText, buttons, className }: Props) => {
           )}
         </div>
       ))}
+      {children}
     </div>
   );
 };

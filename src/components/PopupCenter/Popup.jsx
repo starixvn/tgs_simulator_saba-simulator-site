@@ -74,7 +74,17 @@ const Popup = () => {
             headerText="Action"
             className={"next"}
             handleClick={handleActionClick}
-          ></GroupScheduleButton>
+          >
+            {clickedButtons.length > 0 && (
+              <button
+                key={`ReStart`}
+                className={`next betting-btn`}
+                onClick={restartProcess}
+              >
+                Restart
+              </button>
+            )}
+          </GroupScheduleButton>
         </TabPanel>
 
         <GroupAPIFlowButton
