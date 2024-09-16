@@ -71,7 +71,7 @@ const DataDisplay = ({ children }) => {
         };
       }
       const retryId = nanoid(20);
-      //response.retryId = retryId;
+      response.retryId = retryId;
       dispatch(
         updateStateRetry({
           type: betAction,
