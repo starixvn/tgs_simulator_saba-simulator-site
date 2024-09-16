@@ -7,6 +7,10 @@ const initialState = {
     type: "",
     retryId: null,
   },
+  scheduleData: {
+    interval: null,
+    loop: null,
+  },
   betData: {
     placeBetParlay: {
       request: null,
@@ -73,45 +77,6 @@ const initialState = {
   },
 };
 
-const buttonActions = {
-  placeBetParlay: {
-    clicked: ["placeBetParlay"],
-    next: ["cancelBet", "confirmBetParlay"],
-  },
-  confirmBetParlay: {
-    clicked: ["confirmBetParlay"],
-    next: ["settleBetParlay"],
-  },
-  settleBetParlay: {
-    clicked: ["settleBetParlay"],
-    next: ["resettleBet", "unsettleBet"],
-  },
-  placeBet: {
-    clicked: ["placeBet"],
-    next: ["confirmBet", "cancelBet"],
-  },
-  confirmBet: {
-    clicked: ["confirmBet"],
-    next: ["settleBet"],
-  },
-  cancelBet: {
-    clicked: ["cancelBet"],
-    next: ["cancelBet"],
-  },
-  settleBet: {
-    clicked: ["settleBet"],
-    next: ["resettleBet", "unsettleBet"],
-  },
-  resettleBet: {
-    clicked: ["resettleBet"],
-    next: [],
-  },
-  unsettleBet: {
-    clicked: ["unsettleBet"],
-    next: [],
-  },
-};
-
 const singleBetSlice = createSlice({
   name: "singleBet",
   initialState,
@@ -172,7 +137,6 @@ const singleBetSlice = createSlice({
 
       const actions = buttonActions[button] || { clicked: [], next: [] };
 
-      // Update state
       state.clickedButtons = [...state.clickedButtons, ...actions.clicked];
       state.nextButtons = actions.next;
     },
@@ -199,6 +163,9 @@ const singleBetSlice = createSlice({
         ];
       }
     },
+    updateScheduleData: (state, action) => {
+      state.scheduleData = action.payload;
+    },
   },
 });
 
@@ -208,5 +175,6 @@ export const {
   updateCurrentState,
   restartSingleBetStore,
   updateStateRetry,
+  updateScheduleData,
 } = singleBetSlice.actions;
 export default singleBetSlice.reducer;

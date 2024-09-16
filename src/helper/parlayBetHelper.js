@@ -33,19 +33,27 @@ const getPlaceBetParlayData = () => {
       Txns: data.PlaceBetParlay.message.Txns.map((item, index) => ({
         ...item,
         RefId: `simulator_${nanoid(15)}`,
-        Detail: item.ParlayType.includes("SingleBet_") ? [{
-          MatchId: generateRandomNumber(10)
-        }] : item.Detail
+        Detail: item.ParlayType.includes("SingleBet_")
+          ? [
+              {
+                MatchId: generateRandomNumber(10),
+              },
+            ]
+          : item.Detail,
       })),
     },
   };
 
-  betData.message.TicketDetail = betData.message.TicketDetail.map((item, index) => ({
-    ...item,
-    MatchId: betData.message.Txns.filter(txn => txn.ParlayType.includes("SingleBet_"))[index].Detail.MatchId,
-    HomeId: generateRandomNumber(6),
-    AwayId: generateRandomNumber(6)
-  }))
+  betData.message.TicketDetail = betData.message.TicketDetail.map(
+    (item, index) => ({
+      ...item,
+      MatchId: betData.message.Txns.filter((txn) =>
+        txn.ParlayType.includes("SingleBet_")
+      )[index].Detail.MatchId,
+      HomeId: generateRandomNumber(6),
+      AwayId: generateRandomNumber(6),
+    })
+  );
 
   return betData;
 };
@@ -55,7 +63,8 @@ const getConfirmBetParlayData = () => {
 
   const placeBetData = store?.getState()?.singleBet?.betData?.placeBetParlay;
 
-  const { UserId, UpdateTime, CreditAmount, DebitAmount } = placeBetData.request?.message;
+  const { UserId, UpdateTime, CreditAmount, DebitAmount } =
+    placeBetData.request?.message;
   const licenseeTxId = placeBetData?.response?.licenseeTxId;
 
   const getTicketDetail = (ticketDetail) => ({
@@ -85,7 +94,8 @@ const getConfirmBetParlayData = () => {
         RefId: placeBetData.request.message.Txns[index].RefId,
         TxId: generateRandomNumber(18),
       })),
-      TicketDetail: placeBetData.request.message.TicketDetail.map(getTicketDetail),
+      TicketDetail:
+        placeBetData.request.message.TicketDetail.map(getTicketDetail),
     },
   };
 };
@@ -104,8 +114,8 @@ const getCancelBetParlayData = () => {
         CreditAmount: item.DebitAmount,
         DebitAmount: item.CreditAmount,
         RefId: item.RefId,
-      }))
-    }   
+      })),
+    },
   };
   return betData;
 };
@@ -138,7 +148,8 @@ const getSettleBetParlayData = () => {
 
 const getResettleParlayBetData = () => {
   const placeBetData = store?.getState()?.singleBet?.betData?.placeBetParlay;
-  const confirmBetParlay = store?.getState()?.singleBet?.betData?.confirmBetParlay;
+  const confirmBetParlay =
+    store?.getState()?.singleBet?.betData?.confirmBetParlay;
 
   const { UserId } = placeBetData.request?.message;
   const betData = {
@@ -162,7 +173,8 @@ const getResettleParlayBetData = () => {
 
 const getUnsettleParlayBetData = () => {
   const placeBetData = store?.getState()?.singleBet?.betData?.placeBetParlay;
-  const confirmBetParlay = store?.getState()?.singleBet?.betData?.confirmBetParlay;
+  const confirmBetParlay =
+    store?.getState()?.singleBet?.betData?.confirmBetParlay;
 
   const { UserId } = placeBetData.request?.message;
   const betData = {
@@ -178,7 +190,7 @@ const getUnsettleParlayBetData = () => {
         Payout: confirmBetParlay.request.message.Txns[index].ActualAmount,
         CreditAmount: confirmBetParlay.request.message.Txns[index].ActualAmount,
         DebitAmount: 0,
-      }))
+      })),
     },
   };
   return betData;

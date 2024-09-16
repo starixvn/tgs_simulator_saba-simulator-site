@@ -44,7 +44,7 @@ const GroupAutoButton = ({ headerText }: Props) => {
 
   return (
     <div className="button-group">
-      <h3>{headerText}</h3>
+      <h4 className="header-text">{headerText}</h4>
       <button
         className={`betting-btn next`}
         onClick={() =>

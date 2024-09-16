@@ -23,7 +23,7 @@
 
 .data-row textarea {
   width: 100%;
-  height: 92%;
+  height: 100%;
 }
 
 .data-box {
@@ -53,9 +53,16 @@ h3 {
   font-size: 14px;
 }
 
+.json-editor::placeholder {
+  font-size: 18px;
+  color: #a4a9b2;
+}
 .submit-btn {
   width: 100%;
   background-color: #333;
   color: white;
   margin: 5px;
+}
+.data-row {
+  margin-top: 10px;
 }

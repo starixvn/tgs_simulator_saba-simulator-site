@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useEffect, useState } from "react";
 import "./UserInfo.css";
 import { getBalanceApi } from "../../services/api";
@@ -59,13 +60,14 @@ const UserInfo = () => {
       ) : (
         <>
           <div className="form-group">
-            <label htmlFor="username" className="icon-username">
-              User Id
+            <label htmlFor="user-id" className="icon-username">
+              User Info
             </label>
             <input
+              placeholder="User ID"
               type="text"
-              name="username"
-              id="username"
+              name="user-id"
+              id="user-id"
               value={userNameInput}
               onChange={(e) => setUserNameInput(e.target.value)}
             />
