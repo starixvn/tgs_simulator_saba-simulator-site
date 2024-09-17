@@ -32,7 +32,7 @@ const GroupAPIFlowButton = ({
     <div className="button-group">
       <h4 className="header-text">{headerText}</h4>
       {buttons.map((betKey, index) => (
-        <>
+        <div key={index}>
           {tabValue === "schedule" ? (
             betRetryData[betKey]?.map((x) => (
               <button
@@ -53,7 +53,7 @@ const GroupAPIFlowButton = ({
               </button>
             </div>
           )}
-        </>
+        </div>
       ))}
       {children}
     </div>

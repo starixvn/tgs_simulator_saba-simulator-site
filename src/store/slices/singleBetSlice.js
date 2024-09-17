@@ -87,7 +87,7 @@ const singleBetSlice = createSlice({
       const buttonActions = {
         placeBetParlay: {
           clicked: ["placeBetParlay"],
-          next: ["cancelBetParlay", "confirmBetParlay"],
+          next: ["confirmBetParlay", "cancelBetParlay"],
         },
         confirmBetParlay: {
           clicked: ["confirmBetParlay"],

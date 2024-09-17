@@ -96,15 +96,21 @@ const getCancelBetData = () => {
 };
 
 const getSettleBetData = () => {
-  const placeBetData = store?.getState()?.singleBet?.betData?.placeBet;
+  const confirmBetData = store?.getState()?.singleBet?.betData?.confirmBet;
+
   const txId =
     store?.getState()?.singleBet?.betData?.confirmBet?.request?.message?.Txns[0]
       .TxId;
   const simulatedTime = formatCurrentDateTime();
   const simulatedDate = formatCurrentDate();
   const userId = store.getState().userInfo.userId;
-  const { BetAmount, RefId } = placeBetData.request?.message;
+  let { ActualAmount, RefId } = confirmBetData.request.message.Txns[0];
+  const odds = confirmBetData.request.message.Txns[0].Odds;
+  const isWon = data.Settle.message.Txns[0].Status === "won";
 
+  if (Boolean(odds) && isWon) {
+    ActualAmount += ActualAmount * odds;
+  }
   const betData = {
     ...data.Settle,
     message: {
@@ -113,8 +119,8 @@ const getSettleBetData = () => {
       Txns: [
         {
           ...data.Settle.message.Txns[0],
-          CreditAmount: BetAmount,
-          Payout: BetAmount,
+          CreditAmount: ActualAmount,
+          Payout: ActualAmount,
           UserId: userId,
           RefId: RefId,
           TxId: txId,
@@ -129,14 +135,28 @@ const getSettleBetData = () => {
 };
 
 const getResettleBetData = () => {
-  const placeBetData = store?.getState()?.singleBet?.betData?.placeBet;
+  const settleBetData = store?.getState()?.singleBet?.betData?.settleBet;
   const txId =
     store?.getState()?.singleBet?.betData?.confirmBet?.request?.message?.Txns[0]
       .TxId;
   const simulatedTime = formatCurrentDateTime();
   const simulatedDate = formatCurrentDate();
   const userId = store.getState().userInfo.userId;
-  const { BetAmount, RefId } = placeBetData.request?.message;
+  const { Payout, RefId, Status } = settleBetData.request?.message.Txns[0];
+  const finalBetData =
+    Status === "won"
+      ? {
+          Payout: Payout,
+          CreditAmount: Payout,
+          DebitAmount: 0,
+          Status,
+        }
+      : {
+          Payout: 0,
+          CreditAmount: 0,
+          DebitAmount: Payout,
+          Status,
+        };
   const betData = {
     ...data.ReSettle,
     message: {
@@ -145,7 +165,7 @@ const getResettleBetData = () => {
       Txns: [
         {
           ...data.ReSettle.message.Txns[0],
-          Payout: BetAmount,
+          ...finalBetData,
           UserId: userId,
           UpdateTime: simulatedTime,
           WinlostDate: simulatedDate,
@@ -161,13 +181,13 @@ const getResettleBetData = () => {
 };
 
 const getUnsettleBetData = () => {
-  const placeBetData = store?.getState()?.singleBet?.betData?.placeBet;
+  const settleBetData = store?.getState()?.singleBet?.betData?.settleBet;
   const userId = store.getState().userInfo.userId;
   const txId =
     store?.getState()?.singleBet?.betData?.confirmBet?.request?.message?.Txns[0]
       .TxId;
   const simulatedTime = formatCurrentDateTime();
-  const { BetAmount, RefId } = placeBetData.request?.message;
+  const { Payout, RefId, Status } = settleBetData.request?.message.Txns[0];
   const betData = {
     ...data.UnSettle,
     message: {
@@ -179,7 +199,8 @@ const getUnsettleBetData = () => {
           UserId: userId,
           RefId: RefId,
           UpdateTime: simulatedTime,
-          DebitAmount: BetAmount,
+          CreditAmount: Status == "won" ? Payout : 0,
+          DebitAmount: Status == "won" ? 0 : Payout,
           TxId: txId,
         },
         ...data.UnSettle.message.Txns.slice(1),
