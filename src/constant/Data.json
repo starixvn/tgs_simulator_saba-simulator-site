@@ -47,38 +47,6 @@
           ]
         },
         {
-          "RefId": "4351400_1015_U",
-          "ParlayType": "Parlay_System",
-          "BetAmount": 26,
-          "CreditAmount": 0,
-          "DebitAmount": 26,
-          "Detail": [
-            {
-              "Type": 8,
-              "Name": "Canadian",
-              "BetCount": 26,
-              "Stake": 1,
-              "Odds": null
-            }
-          ]
-        },
-        {
-          "RefId": "4351400_1016_U",
-          "ParlayType": "Parlay_Lucky",
-          "BetAmount": 26,
-          "CreditAmount": 0,
-          "DebitAmount": 26,
-          "Detail": [
-            {
-              "Type": 9,
-              "Name": "Lucky31",
-              "BetCount": 26,
-              "Stake": 1,
-              "Odds": null
-            }
-          ]
-        },
-        {
           "RefId": "4351400_1017_U",
           "ParlayType": "SingleBet_ViaLucky",
           "BetAmount": 1,
@@ -99,42 +67,6 @@
           "Detail": [
             {
               "MatchId": 92318856
-            }
-          ]
-        },
-        {
-          "RefId": "4351400_1019_U",
-          "ParlayType": "SingleBet_ViaLucky",
-          "BetAmount": 1,
-          "CreditAmount": 0,
-          "DebitAmount": 1,
-          "Detail": [
-            {
-              "MatchId": 92318848
-            }
-          ]
-        },
-        {
-          "RefId": "4351400_1020_U",
-          "ParlayType": "SingleBet_ViaLucky",
-          "BetAmount": 1,
-          "CreditAmount": 0,
-          "DebitAmount": 1,
-          "Detail": [
-            {
-              "MatchId": 92266927
-            }
-          ]
-        },
-        {
-          "RefId": "4351400_1021_U",
-          "ParlayType": "SingleBet_ViaLucky",
-          "BetAmount": 1,
-          "CreditAmount": 0,
-          "DebitAmount": 1,
-          "Detail": [
-            {
-              "MatchId": 92266921
             }
           ]
         }
@@ -207,108 +139,6 @@
           "BetTypeName_en": "Handicap",
           "MatchDateTime": "2024-09-12T00:00:00.000-04:00",
           "BetRemark": ""
-        },
-        {
-          "MatchId": 92318848,
-          "HomeId": 674802,
-          "AwayId": 674799,
-          "HomeName": "Egypt (V)",
-          "AwayName": "Australia (V)",
-          "KickOffTime": "2024-09-12T00:00:01.000-04:00",
-          "SportType": 1,
-          "SportTypeName": "Soccer",
-          "BetType": 1,
-          "BetTypeName": "Handicap",
-          "OddsId": 729707806,
-          "Odds": 1.87,
-          "OddsType": 3,
-          "BetChoice": "Egypt (V)",
-          "BetChoice_en": "Egypt (V)",
-          "LeagueId": 95731,
-          "LeagueName": "SABA INTERNATIONAL FRIENDLY Virtual PES 21 - 20 Mins Play",
-          "IsLive": false,
-          "Point": "0.25",
-          "Point2": "",
-          "BetTeam": "h",
-          "HomeScore": 0,
-          "AwayScore": 0,
-          "BaStatus": false,
-          "Excluding": "",
-          "LeagueName_en": "SABA INTERNATIONAL FRIENDLY Virtual PES 21 - 20 Mins Play",
-          "SportTypeName_en": "Soccer",
-          "HomeName_en": "Egypt (V)",
-          "AwayName_en": "Australia (V)",
-          "BetTypeName_en": "Handicap",
-          "MatchDateTime": "2024-09-12T00:00:00.000-04:00",
-          "BetRemark": ""
-        },
-        {
-          "MatchId": 92266927,
-          "HomeId": 676039,
-          "AwayId": 674773,
-          "HomeName": "Slovenia (V)",
-          "AwayName": "Poland (V)",
-          "KickOffTime": "2024-09-11T23:44:00.000-04:00",
-          "SportType": 1,
-          "SportTypeName": "Soccer",
-          "BetType": 1,
-          "BetTypeName": "Handicap",
-          "OddsId": 729334303,
-          "Odds": 1.76,
-          "OddsType": 3,
-          "BetChoice": "Slovenia (V)",
-          "BetChoice_en": "Slovenia (V)",
-          "LeagueId": 95731,
-          "LeagueName": "SABA INTERNATIONAL FRIENDLY Virtual PES 21 - 20 Mins Play",
-          "IsLive": false,
-          "Point": "0.75",
-          "Point2": "",
-          "BetTeam": "h",
-          "HomeScore": 0,
-          "AwayScore": 0,
-          "BaStatus": false,
-          "Excluding": "",
-          "LeagueName_en": "SABA INTERNATIONAL FRIENDLY Virtual PES 21 - 20 Mins Play",
-          "SportTypeName_en": "Soccer",
-          "HomeName_en": "Slovenia (V)",
-          "AwayName_en": "Poland (V)",
-          "BetTypeName_en": "Handicap",
-          "MatchDateTime": "2024-09-11T23:45:00.000-04:00",
-          "BetRemark": ""
-        },
-        {
-          "MatchId": 92266921,
-          "HomeId": 676401,
-          "AwayId": 676190,
-          "HomeName": "Nigeria (V)",
-          "AwayName": "Slovakia (V)",
-          "KickOffTime": "2024-09-11T23:44:00.000-04:00",
-          "SportType": 1,
-          "SportTypeName": "Soccer",
-          "BetType": 1,
-          "BetTypeName": "Handicap",
-          "OddsId": 729334154,
-          "Odds": 2,
-          "OddsType": 3,
-          "BetChoice": "Nigeria (V)",
-          "BetChoice_en": "Nigeria (V)",
-          "LeagueId": 95731,
-          "LeagueName": "SABA INTERNATIONAL FRIENDLY Virtual PES 21 - 20 Mins Play",
-          "IsLive": false,
-          "Point": "-0.25",
-          "Point2": "",
-          "BetTeam": "h",
-          "HomeScore": 0,
-          "AwayScore": 0,
-          "BaStatus": false,
-          "Excluding": "",
-          "LeagueName_en": "SABA INTERNATIONAL FRIENDLY Virtual PES 21 - 20 Mins Play",
-          "SportTypeName_en": "Soccer",
-          "HomeName_en": "Nigeria (V)",
-          "AwayName_en": "Slovakia (V)",
-          "BetTypeName_en": "Handicap",
-          "MatchDateTime": "2024-09-11T23:45:00.000-04:00",
-          "BetRemark": ""
         }
       ]
     }
@@ -326,7 +156,7 @@
         {
           "CreditAmount": 0,
           "DebitAmount": 0,
-          "Odds": 22.8475,
+          "Odds": 0.22,
           "RefId": "4351400_1014_U",
           "TxId": {
             "$numberLong": "298405909598568489"
@@ -340,21 +170,7 @@
         {
           "CreditAmount": 0,
           "DebitAmount": 0,
-          "Odds": null,
-          "RefId": "4351400_1015_U",
-          "TxId": {
-            "$numberLong": "298405909598568490"
-          },
-          "LicenseeTxId": "1594",
-          "ActualAmount": 26,
-          "IsOddsChanged": false,
-
-          "WinlostDate": "2024-09-12T00:00:00.000-04:00"
-        },
-        {
-          "CreditAmount": 0,
-          "DebitAmount": 0,
-          "Odds": null,
+          "Odds": 0.3,
           "RefId": "4351400_1017_U",
           "TxId": {
             "$numberLong": "298405909598568484"
@@ -368,68 +184,13 @@
         {
           "CreditAmount": 0,
           "DebitAmount": 0,
-          "Odds": null,
+          "Odds": 0.12,
           "RefId": "4351400_1018_U",
           "TxId": {
             "$numberLong": "298405909598568485"
           },
           "LicenseeTxId": "1597",
           "ActualAmount": 1,
-          "IsOddsChanged": false,
-
-          "WinlostDate": "2024-09-12T00:00:00.000-04:00"
-        },
-        {
-          "CreditAmount": 0,
-          "DebitAmount": 0,
-          "Odds": null,
-          "RefId": "4351400_1019_U",
-          "TxId": {
-            "$numberLong": "298405909598568486"
-          },
-          "LicenseeTxId": "1598",
-          "ActualAmount": 1,
-          "IsOddsChanged": false,
-          "WinlostDate": "2024-09-12T00:00:00.000-04:00"
-        },
-        {
-          "CreditAmount": 0,
-          "DebitAmount": 0,
-          "Odds": null,
-          "RefId": "4351400_1020_U",
-          "TxId": {
-            "$numberLong": "298405909598568487"
-          },
-          "LicenseeTxId": "1599",
-          "ActualAmount": 1,
-          "IsOddsChanged": false,
-
-          "WinlostDate": "2024-09-12T00:00:00.000-04:00"
-        },
-        {
-          "CreditAmount": 0,
-          "DebitAmount": 0,
-          "Odds": null,
-          "RefId": "4351400_1021_U",
-          "TxId": {
-            "$numberLong": "298405909598568488"
-          },
-          "LicenseeTxId": "1600",
-          "ActualAmount": 1,
-          "IsOddsChanged": false,
-
-          "WinlostDate": "2024-09-12T00:00:00.000-04:00"
-        },
-        {
-          "CreditAmount": 0,
-          "DebitAmount": 0,
-          "Odds": null,
-          "RefId": "4351400_1016_U",
-          "TxId": {
-            "$numberLong": "298405909598568491"
-          },
-          "LicenseeTxId": "1595",
-          "ActualAmount": 26,
           "IsOddsChanged": false,
 
           "WinlostDate": "2024-09-12T00:00:00.000-04:00"

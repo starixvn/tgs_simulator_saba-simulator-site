@@ -33,27 +33,9 @@ const getPlaceBetParlayData = () => {
       Txns: data.PlaceBetParlay.message.Txns.map((item, index) => ({
         ...item,
         RefId: `simulator_${nanoid(15)}`,
-        Detail: item.ParlayType.includes("SingleBet_")
-          ? [
-              {
-                MatchId: generateRandomNumber(10),
-              },
-            ]
-          : item.Detail,
       })),
     },
   };
-
-  betData.message.TicketDetail = betData.message.TicketDetail.map(
-    (item, index) => ({
-      ...item,
-      MatchId: betData.message.Txns.filter((txn) =>
-        txn.ParlayType.includes("SingleBet_")
-      )[index].Detail.MatchId,
-      HomeId: generateRandomNumber(6),
-      AwayId: generateRandomNumber(6),
-    })
-  );
 
   return betData;
 };
