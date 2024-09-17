@@ -44,4 +44,11 @@ input {
 
 .icon-username {
   color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.icon-username button {
+  padding: 0px;
+  margin-left: 5px;
 }

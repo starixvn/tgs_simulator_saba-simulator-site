@@ -13,8 +13,11 @@ const userInfoSlice = createSlice({
       state.userId = action.payload.userId;
       state.balance = action.payload.balance;
     },
+    restartUserInfoStore: () => {
+      return initialState;
+    },
   },
 });
 
-export const { setUserInfo } = userInfoSlice.actions;
+export const { setUserInfo, restartUserInfoStore } = userInfoSlice.actions;
 export default userInfoSlice.reducer;

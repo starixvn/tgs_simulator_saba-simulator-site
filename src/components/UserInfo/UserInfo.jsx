@@ -4,7 +4,11 @@ import "./UserInfo.css";
 import { getBalanceApi } from "../../services/api";
 import { GetBalance } from "../../constant/Data.json";
 import { useDispatch, useSelector } from "react-redux";
-import { setUserInfo } from "../../store/slices/userInfoSlice";
+import {
+  setUserInfo,
+  restartUserInfoStore,
+} from "../../store/slices/userInfoSlice";
+import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
 const UserInfo = () => {
   const { userId, balance } = useSelector((state) => state.userInfo);
   const [userNameInput, setUserNameInput] = useState("");
@@ -45,17 +49,23 @@ const UserInfo = () => {
     }
     alert(response.msg);
   };
+  const handleOnChangeAccount = () => {
+    localStorage.removeItem("saba-simulator-userId");
+    setUserNameInput("");
+    dispatch(restartUserInfoStore());
+  };
 
   return (
     <div className="form-container">
       {Boolean(userId) ? (
         <>
           <label htmlFor="username" className="icon-username">
-            {userId}
+            {userId}{" "}
+            <button onClick={handleOnChangeAccount}>
+              <ChangeCircleIcon></ChangeCircleIcon>
+            </button>
           </label>
-          <label htmlFor="username" className="icon-username">
-            balance: {balance}
-          </label>
+          <label className="icon-username">balance: {balance}</label>
         </>
       ) : (
         <>
