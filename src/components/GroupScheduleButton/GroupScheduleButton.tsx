@@ -28,11 +28,12 @@ const GroupScheduleButton = ({
       alert("Please insert Interval and Loop");
       return;
     }
-    if (intervalValue < 0 || intervalValue < 0) {
+    if (intervalValue < 0 || loopValue < 0) {
       alert("Please insert Interval and Loop greater than 0");
       return;
     }
     const data = betLookup[key]?.getSampleData();
+
     dispatch(updateScheduleData({ interval: intervalValue, loop: loopValue }));
     dispatch(updateDisplayData({ type: key, request: data, response: null }));
     dispatch(updateCurrentState({ type: key, retryId: null }));

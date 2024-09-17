@@ -53,9 +53,9 @@ const DataDisplay = ({ children }) => {
     let count = 0;
     let acceptedAction = null;
     setLoading(true);
-    const intervalId = setInterval(async () => {
-      if (count >= scheduleData.loop) {
-        clearInterval(intervalId);
+
+    const callApiWithDelay = async () => {
+      if (count >= parseInt(scheduleData.loop)) {
         setLoading(false);
         acceptedAction && dispatch(handleChangeState(betAction));
         acceptedAction && dispatch(updateDisplayData(acceptedAction));
@@ -63,6 +63,7 @@ const DataDisplay = ({ children }) => {
       }
 
       const response = await betLookup[betAction]?.callApi(requestRaw);
+
       if (response.status === "0") {
         acceptedAction = {
           type: betAction,
@@ -82,7 +83,11 @@ const DataDisplay = ({ children }) => {
       );
       dispatch(updateCurrentState({ type: betAction, retryId: retryId }));
       count++;
-    }, scheduleData.interval * 1000);
+
+      setTimeout(callApiWithDelay, scheduleData.interval * 1000);
+    };
+
+    callApiWithDelay();
   };
 
   const handleOnSubmit = (betAction, requestRaw) => {
