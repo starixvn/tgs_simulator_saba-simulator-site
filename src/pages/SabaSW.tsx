@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { restartSingleBetStore } from "../store/slices/singleBetSlice";
 import { updateTabValue } from "../store/slices/tabSlice";
 
-const Simulator = () => {
+const SabaSW = () => {
   const dispatch = useDispatch();
   const tabValue = useSelector((state) => state.tabSimulator.tabValue);
 
@@ -27,4 +27,4 @@ const Simulator = () => {
   );
 };
 
-export default Simulator;
+export default SabaSW;

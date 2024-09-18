@@ -1,13 +1,24 @@
-import { Provider } from "react-redux";
-import store from "./store/store";
 import "./App.css";
-import Simulator from "./pages/Simulator";
+import CardNavigation from "./components/CardNavigation/CardNavigation";
 
 function App() {
   return (
-    <Provider store={store}>
-      <Simulator></Simulator>
-    </Provider>
+    <>
+      <CardNavigation
+        description=" This function will be triggered when player place on SaBa SW bet, and
+          we will send all the relevant bet details in Saba Single Wallet API
+          Project."
+        title="SaBa SW API"
+        link="/saba-sw"
+      ></CardNavigation>
+      <CardNavigation
+        title="SaBa Plus API"
+        description=" This function will be triggered when player place on SaBa SW bet, and
+          we will send all the relevant bet details in Saba Plus API
+          Project."
+        link="/saba-plus"
+      ></CardNavigation>
+    </>
   );
 }
 
