@@ -7,7 +7,7 @@ import "./Simulator.css";
 const SabaPlus = () => {
   const handleChangeTab = (event: React.SyntheticEvent, newValue: TTab) => {};
   return (
-    <div className="container-root">
+    <div className="container-root saba-plus-root">
       <TabContext value={"manual"}>
         <SabaPlusPopup />
         <SabaPlusDataDisplay>

@@ -25,7 +25,7 @@ function App() {
       ></CardNavigation>
       <CardNavigation
         title="Saba Plus API"
-        description=" This function will be triggered when player place on Saba SW bet, and
+        description=" This function will be triggered when player place on Saba Plus bet, and
           we will send all the relevant bet details in Saba Plus API
           Project."
         link="/saba-plus"

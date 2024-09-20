@@ -303,3 +303,24 @@ input {
 .MuiAspectRatio-content {
   border-color: #302f59 !important;
 }
+
+.saba-plus-root .btn-save,
+.saba-plus-root .next,
+.saba-plus-root .btn-save:hover {
+  background-color: #ff6026;
+}
+
+.MuiCard-root:nth-of-type(2) .MuiCardOverflow-root {
+  background-color: #ff6026 !important;
+}
+
+.MuiCard-root:nth-of-type(2) .MuiButton-root {
+  background-color: #ff6026 !important;
+}
+
+.MuiCard-root:nth-of-type(2) svg {
+  color: #ff6026 !important;
+}
+.MuiCard-root:nth-of-type(2) .MuiAspectRatio-content {
+  border-color: #ff6026 !important;
+}
