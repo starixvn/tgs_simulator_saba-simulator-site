@@ -7,7 +7,6 @@ import {
 } from "../../store/slices/singleBetSlice";
 import UserInfo from "../UserInfo/UserInfo";
 import { betLookup } from "../../helper";
-import "./Popup.css";
 import { useState } from "react";
 import GroupButton from "../GroupButton/GroupButton";
 import GroupAutoButton from "../GroupAutoButton/GroupAutoButton";

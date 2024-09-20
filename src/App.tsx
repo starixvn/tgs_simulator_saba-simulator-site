@@ -5,15 +5,15 @@ function App() {
   return (
     <>
       <CardNavigation
-        description=" This function will be triggered when player place on SaBa SW bet, and
+        description=" This function will be triggered when player place on Saba SW bet, and
           we will send all the relevant bet details in Saba Single Wallet API
           Project."
-        title="SaBa SW API"
+        title="Saba SW API"
         link="/saba-sw"
       ></CardNavigation>
       <CardNavigation
-        title="SaBa Plus API"
-        description=" This function will be triggered when player place on SaBa SW bet, and
+        title="Saba Plus API"
+        description=" This function will be triggered when player place on Saba SW bet, and
           we will send all the relevant bet details in Saba Plus API
           Project."
         link="/saba-plus"

@@ -1,6 +1,5 @@
 //@ts-nocheck
 import { useEffect, useState } from "react";
-import "./UserInfo.css";
 import { getBalanceApi } from "../../services/api";
 import { GetBalance } from "../../constant/Data.json";
 import { useDispatch, useSelector } from "react-redux";
@@ -47,7 +46,7 @@ const UserInfo = () => {
       localStorage.setItem("saba-simulator-userId", response.userId);
       return;
     }
-    alert(response.msg);
+    alert(response?.msg || "Something went wrong");
   };
   const handleOnChangeAccount = () => {
     localStorage.removeItem("saba-simulator-userId");

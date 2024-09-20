@@ -5,26 +5,6 @@
   display: flex;
   box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.1);
 }
-
-.simulator-tab {
-  height: 40px !important;
-  min-height: 20px !important;
-}
-.simulator-tab button:focus {
-  outline: none !important;
-}
-.simulator-tab .Mui-selected {
-  color: #292548 !important;
-}
-.simulator-tab button {
-  font-size: 13px;
-  font-weight: 700;
-  padding: 0 20px;
-}
-.simulator-tab .MuiTabs-indicator {
-  background-color: #423f5a !important;
-}
-
-.MuiTabs-indicator {
-  background-color: transparent !important;
+.MuiAspectRatio-content {
+  border-color: #302f59 !important;
 }

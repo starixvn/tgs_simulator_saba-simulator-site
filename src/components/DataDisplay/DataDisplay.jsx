@@ -11,7 +11,6 @@ import {
   updateStateRetry,
 } from "../../store/slices/singleBetSlice";
 
-import "./DataDisplay.css";
 import { nanoid } from "nanoid";
 import SimulatorTab from "../Tab/SimulatorTab";
 
