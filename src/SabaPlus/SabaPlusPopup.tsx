@@ -14,7 +14,7 @@ const SabaPlusPopup = () => {
   const dispatch = useDispatch();
   const clickedButtons = useSelector((state) => state.sabaPlus.clickedButtons);
   const nextButtons = useSelector((state) => state.sabaPlus.nextButtons);
-
+  const userId = useSelector((state) => state.userInfo.userId);
   const handleFlowClick = (key) => {
     dispatch(updateCurrentState(key));
   };
@@ -24,8 +24,11 @@ const SabaPlusPopup = () => {
   };
 
   const handleActionClick = async (key) => {
+    if (!userId) {
+      alert("Please insert User Id then click save");
+      return;
+    }
     const data = sabaPlusLookup[key]?.getSampleData();
-
     dispatch(updateDisplayData({ type: key, request: data, response: null }));
     dispatch(updateCurrentState(key));
   };
