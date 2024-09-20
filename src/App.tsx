@@ -1,7 +1,19 @@
-import "./App.css";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import CardNavigation from "./components/CardNavigation/CardNavigation";
+import { restartSingleBetStore } from "./store/slices/singleBetSlice";
+import { restartUserInfoStore } from "./store/slices/userInfoSlice";
+import { restartSabaPlusStore } from "./store/slices/sabaPlusSlice";
 
 function App() {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    // initialize State
+    dispatch(restartSingleBetStore());
+    dispatch(restartUserInfoStore());
+    dispatch(restartSabaPlusStore());
+  }, []);
+
   return (
     <>
       <CardNavigation

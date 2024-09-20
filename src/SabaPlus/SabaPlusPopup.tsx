@@ -6,6 +6,7 @@ import SabaPlusUserInfo from "./SabaPlusUserInfo";
 import {
   updateDisplayData,
   updateCurrentState,
+  restartSabaPlusStore,
 } from "../store/slices/sabaPlusSlice";
 import TabPanel from "@mui/lab/TabPanel";
 import { sabaPlusLookup } from "../helper/sabaPlusHelper";
@@ -18,9 +19,9 @@ const SabaPlusPopup = () => {
     dispatch(updateCurrentState(key));
   };
 
-  // const restartProcess = (state) => {
-  //   dispatch(restartSingleBetStore());
-  // };
+  const restartProcess = () => {
+    dispatch(restartSabaPlusStore());
+  };
 
   const handleActionClick = async (key) => {
     const data = sabaPlusLookup[key]?.getSampleData();
@@ -41,7 +42,17 @@ const SabaPlusPopup = () => {
             buttons={nextButtons}
             handleClick={handleActionClick}
             className={"next"}
-          ></SabaPlusButtonGroup>
+          >
+            {clickedButtons.length > 0 && (
+              <button
+                key={`ReStart`}
+                className={`next betting-btn`}
+                onClick={restartProcess}
+              >
+                Restart
+              </button>
+            )}
+          </SabaPlusButtonGroup>
           <SabaPlusGroupAPIFlowButton
             headerText="API Flow"
             buttons={clickedButtons}

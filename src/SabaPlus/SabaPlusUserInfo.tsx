@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
 import { getBalanceSabaPlusApi } from "../services/sabaPlusApi";
-import { setUserInfo } from "../store/slices/userInfoSlice";
+import {
+  setUserInfo,
+  restartUserInfoStore,
+} from "../store/slices/userInfoSlice";
 import { balanceData } from "../constant/SabaPlusData.json";
 import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
 import { useDispatch, useSelector } from "react-redux";
@@ -44,18 +47,23 @@ const SabaPlusUserInfo = () => {
     const custId = getUserCustId(userIdInput);
     console.log();
     balanceData.Payload.OperatorCustId = custId;
-
     const response = await getBalanceSabaPlusApi(balanceData);
-    console.log(response);
+
     if (response.ErrorCode === 0) {
-      dispatch(setUserInfo({ userId: custId, balance: response.balance }));
+      dispatch(
+        setUserInfo({ userId: custId, balance: response.Payload.Balance })
+      );
       localStorage.setItem("saba-simulator-saba-plus-userId", custId);
       return;
     }
     alert(response?.msg || "Something went wrong");
   };
 
-  const handleOnChangeAccount = async () => {};
+  const handleOnChangeAccount = () => {
+    localStorage.removeItem("saba-simulator-saba-plus-userId");
+    setUserIdInput("");
+    dispatch(restartUserInfoStore());
+  };
 
   return (
     <div className="form-container">

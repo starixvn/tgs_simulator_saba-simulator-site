@@ -19,7 +19,7 @@ export const placeBetApi = async (betData) => {
   }
 };
 
-export const placeBetAndSettle = async (betData) => {
+export const placeBetAndSettleApi = async (betData) => {
   try {
     const response = await axios.post(
       `${apiUrl}/api/Simulator/sabaPlus-PlaceBetAndSettle`,

@@ -1,7 +1,11 @@
 import spPlusData from "../constant/SabaPlusData.json";
 import moment from "moment";
 import store from "../store/store";
-import { placeBetApi, endGameApi } from "../services/sabaPlusApi";
+import {
+  placeBetApi,
+  endGameApi,
+  placeBetAndSettleApi,
+} from "../services/sabaPlusApi";
 
 const getPlaceBetSBPlusData = () => {
   const operatorCustId = store?.getState().userInfo.userId;
@@ -51,7 +55,7 @@ const getEndGameSBPlusData = () => {
           Stake: ActualStake,
           ActualStake: Stake,
           SettleDate: moment().format("YYYY/MM/DD HH:mm:ss.SSS"),
-          SettleDateWithTz: moment().format("YYYY/MM/DD HH:mm:ss.SSS"),
+          SettleDateWithTz: moment().format("YYYY-MM-DDTHH:mm:ssZ"),
         },
       ],
     },
@@ -81,7 +85,7 @@ const getPlaceBetAndSettleSBPlusData = () => {
           Stake: stake,
           ActualStake: stake,
           SettleDate: moment().format("YYYY/MM/DD HH:mm:ss.SSS"),
-          SettleDateWithTz: moment().format("YYYY/MM/DD HH:mm:ss.SSS"),
+          SettleDateWithTz: moment().format("YYYY-MM-DDTHH:mm:ssZ"),
         },
       ],
     },
@@ -110,7 +114,7 @@ const sabaPlusLookup = {
   },
   placeBetAndSettle: {
     getSampleData: getPlaceBetAndSettleSBPlusData,
-    callApi: () => "This is Call API for Place Bet And Settle Plus",
+    callApi: placeBetAndSettleApi,
     label: "Place Bet And Settle",
   },
 };

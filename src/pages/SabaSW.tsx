@@ -18,12 +18,14 @@ const SabaSW = () => {
   };
 
   return (
-    <TabContext value={tabValue}>
-      <Popup />
-      <DataDisplay>
-        <SimulatorTab handleChange={handleChangeTab}></SimulatorTab>
-      </DataDisplay>
-    </TabContext>
+    <div className="container-root">
+      <TabContext value={tabValue}>
+        <Popup />
+        <DataDisplay>
+          <SimulatorTab handleChange={handleChangeTab}></SimulatorTab>
+        </DataDisplay>
+      </TabContext>
+    </div>
   );
 };
 

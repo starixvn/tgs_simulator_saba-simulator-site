@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   clickedButtons: [],
   currentState: "",
-  nextButtons: ["placeBet", "placeBetAndSettle", "endGame"],
+  nextButtons: ["placeBet", "placeBetAndSettle"],
   betData: {
     placeBet: {
       request: null,
@@ -35,6 +35,10 @@ const sabaPlusSlice = createSlice({
           clicked: ["endGame"],
           next: [],
         },
+        placeBetAndSettle: {
+          clicked: ["placeBetAndSettle"],
+          next: [],
+        },
       };
 
       const actions = buttonActions[key] || { clicked: [], next: [] };
@@ -52,9 +56,16 @@ const sabaPlusSlice = createSlice({
     updateCurrentState: (state, action) => {
       state.currentState = action.payload;
     },
+    restartSabaPlusStore: (state) => {
+      return initialState;
+    },
   },
 });
 
-export const { handleChangeState, updateCurrentState, updateDisplayData } =
-  sabaPlusSlice.actions;
+export const {
+  handleChangeState,
+  updateCurrentState,
+  updateDisplayData,
+  restartSabaPlusStore,
+} = sabaPlusSlice.actions;
 export default sabaPlusSlice.reducer;
