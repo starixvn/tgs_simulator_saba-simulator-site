@@ -62,7 +62,6 @@ const SabaPlusGroupScheduleButton = ({
           placeholder="Interval (s)"
           type="number"
           id="interval"
-          value={intervalValue}
           onChange={handleIntervalChange}
         />
       </div>
@@ -71,7 +70,6 @@ const SabaPlusGroupScheduleButton = ({
           placeholder="Loop"
           type="number"
           id="loop"
-          value={loopValue}
           onChange={handleLoopChange}
         />
       </div>
