@@ -64,12 +64,10 @@ const getPlaceFreeSpinSBPlusData = () => {
 
 const getEndGameSBPlusData = () => {
   const clickedAction = store?.getState().sabaPlus.clickedButtons;
-  console.log(clickedAction);
   const betData = clickedAction.includes("placeFreeSpin")
     ? store?.getState().sabaPlus.betData.placeFreeSpin.request.Payload
         .BetDataSet[0]
     : store?.getState().sabaPlus.betData.placeBet.request.Payload.BetDataSet[0];
-  console.log(betData);
   const operatorCustId = store?.getState().userInfo.userId;
   const { GameId, GameRoundId, ActualStake, TicketNo, Stake } = betData;
 

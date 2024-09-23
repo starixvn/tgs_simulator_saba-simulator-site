@@ -20,17 +20,20 @@ const SabaPlusGroupAPIFlowButton = ({
 }: Props) => {
   const dispatch = useDispatch();
   const betRetryData = useSelector((state) => state.sabaPlus.betRetryData);
+  const tabValue = useSelector((state) => state.tabSimulator.tabValue);
 
   const handleOnReTryButtonOnClick = (key, retryId) => {
     dispatch(updateCurrentState({ type: key, retryId: retryId }));
   };
-  console.log(buttons);
+
   return (
     <div className="button-group">
       <h4 className="header-text">{headerText}</h4>
       {buttons.map((betKey, index) => (
         <div key={index}>
-          {betKey === "placeBet" && betRetryData[betKey] ? (
+          {betKey === "placeBet" &&
+          tabValue == "manual" &&
+          betRetryData[betKey] ? (
             betRetryData[betKey]?.map((x) => (
               <button
                 className={`betting-btn ${className}`}

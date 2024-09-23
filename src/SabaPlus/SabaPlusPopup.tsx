@@ -11,6 +11,7 @@ import {
 import TabPanel from "@mui/lab/TabPanel";
 import { sabaPlusLookup } from "../helper/sabaPlusHelper";
 import SabaIcon from "../components/SabaIcon/SabaIcon";
+import SabaPlusGroupAutoButton from "./SabaPlusGroupAutoButton";
 const SabaPlusPopup = () => {
   const dispatch = useDispatch();
   const clickedButtons = useSelector((state) => state.sabaPlus.clickedButtons);
@@ -64,14 +65,20 @@ const SabaPlusPopup = () => {
               </button>
             )}
           </SabaPlusButtonGroup>
-          <SabaPlusGroupAPIFlowButton
-            headerText="API Flow"
-            buttons={clickedButtons}
-            handleClick={handleFlowClick}
-            className={"clicked"}
-            isRetry={true}
-          ></SabaPlusGroupAPIFlowButton>
         </TabPanel>
+        <TabPanel value="automate">
+          <SabaPlusGroupAutoButton
+            headerText="Playbook"
+            className={"next"}
+          ></SabaPlusGroupAutoButton>
+        </TabPanel>
+        <SabaPlusGroupAPIFlowButton
+          headerText="API Flow"
+          buttons={clickedButtons}
+          handleClick={handleFlowClick}
+          className={"clicked"}
+          isRetry={true}
+        ></SabaPlusGroupAPIFlowButton>
       </div>
     </div>
   );
