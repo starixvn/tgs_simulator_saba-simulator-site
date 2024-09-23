@@ -35,9 +35,41 @@ const getPlaceBetSBPlusData = () => {
   };
 };
 
+const getPlaceFreeSpinSBPlusData = () => {
+  const operatorCustId = store?.getState().userInfo.userId;
+  const gameId = generateRandomNumber(4);
+  const gameRoundId = `simulator_${gameId}_${generateRandomNumber(8)}`;
+  const ticketNo = `${gameId}|$|${operatorCustId}|$|${gameRoundId}`;
+  const stake = generateRandomStake();
+  return {
+    ...spPlusData.placeFreeSpin,
+    Seq: `${nanoid(8)}-${nanoid(4)}-${nanoid(4)}-${nanoid(4)}-${nanoid(8)}`,
+    TimeStamp: moment().format("YYYY/MM/DD HH:mm:ss.SSS"),
+    Payload: {
+      ...spPlusData.placeFreeSpin.Payload,
+      OperatorCustId: operatorCustId,
+      BetDataSet: [
+        {
+          ...spPlusData.placeFreeSpin.Payload.BetDataSet[0],
+          GameId: gameId,
+          GameRoundId: gameRoundId,
+          TicketNo: ticketNo,
+          Stake: stake,
+          ActualStake: stake,
+        },
+      ],
+    },
+  };
+};
+
 const getEndGameSBPlusData = () => {
-  const betData =
-    store?.getState().sabaPlus.betData.placeBet.request.Payload.BetDataSet[0];
+  const clickedAction = store?.getState().sabaPlus.clickedButtons;
+  console.log(clickedAction);
+  const betData = clickedAction.includes("placeFreeSpin")
+    ? store?.getState().sabaPlus.betData.placeFreeSpin.request.Payload
+        .BetDataSet[0]
+    : store?.getState().sabaPlus.betData.placeBet.request.Payload.BetDataSet[0];
+  console.log(betData);
   const operatorCustId = store?.getState().userInfo.userId;
   const { GameId, GameRoundId, ActualStake, TicketNo, Stake } = betData;
 
@@ -122,6 +154,11 @@ const sabaPlusLookup = {
     getSampleData: getPlaceBetAndSettleSBPlusData,
     callApi: placeBetAndSettleApi,
     label: "Place Bet And Settle",
+  },
+  placeFreeSpin: {
+    getSampleData: getPlaceFreeSpinSBPlusData,
+    callApi: placeBetApi,
+    label: "Place Free Spin",
   },
 };
 

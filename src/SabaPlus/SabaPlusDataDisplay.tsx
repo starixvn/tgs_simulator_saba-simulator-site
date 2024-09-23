@@ -32,7 +32,7 @@ const SabaPlusDataDisplay = ({ children }) => {
 
     if (betAction === "placeBet") {
       const retryId = nanoid(20);
-      response.retryId = retryId;
+
       dispatch(
         updateStateRetry({
           type: betAction,

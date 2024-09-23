@@ -83,5 +83,35 @@
       "WalletSideToken": "SABAPLUS-MAXPLAY@7600001@8a16e864-415d-41e1-80c8-e15bbcf5ea57",
       "GameType": "MaxGame"
     }
+  },
+  "placeFreeSpin": {
+    "TimeStamp": "2024/09/21 04:31:42.116",
+    "Seq": "bbfa4a0d-0282-4328-bed7-3bb74d155325",
+    "Payload": {
+      "OperatorCustId": "",
+      "WalletSideToken": "SABAPLUS-SBPLAY@8400004@8518ef5d-387e-4f5d-9694-f68b7b34558d",
+      "GameType": "SabaPlay",
+      "IpAddress": "120.72.109.34",
+      "BetDataSet": [
+        {
+          "TicketNo": "",
+          "GameId": "3835",
+          "GameRoundId": "16437",
+          "TransactionId": null,
+          "Stake": 0,
+          "ActualStake": 0,
+          "Odds": 0,
+          "BetChoice": null,
+          "TableCode": null,
+          "OtherBetInfo": {
+            "FreeBet": "False",
+            "FreeSpin": "True",
+            "ContributionAmount": "0.0",
+            "ContributionRate": "0.0"
+          }
+        }
+      ],
+      "GameProviderCode": "SABAPLUS-SBPLAY"
+    }
   }
 }
