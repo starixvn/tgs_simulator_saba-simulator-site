@@ -14,7 +14,7 @@ COPY --from=dependencies /app/node_modules ./node_modules
 
 COPY . .
 
-RUN if [ "$TRANSFORM_CONFIG" = "LOCAL" ]; then \
+RUN if [ "${TRANSFORM_CONFIG}" = "LOCAL" ]; then \
         yarn run build ; \
     else \
         yarn build; \
