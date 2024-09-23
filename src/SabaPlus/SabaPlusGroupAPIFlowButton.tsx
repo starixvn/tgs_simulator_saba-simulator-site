@@ -31,8 +31,8 @@ const SabaPlusGroupAPIFlowButton = ({
       <h4 className="header-text">{headerText}</h4>
       {buttons.map((betKey, index) => (
         <div key={index}>
-          {betKey === "placeBet" &&
-          tabValue == "manual" &&
+          {((betKey === "placeBet" && tabValue == "manual") ||
+            tabValue === "schedule") &&
           betRetryData[betKey] ? (
             betRetryData[betKey]?.map((x) => (
               <button

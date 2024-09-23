@@ -28,6 +28,10 @@ const initialState = {
     placeBetAndSettle: [],
     placeFreeSpin: [],
   },
+  scheduleData: {
+    interval: null,
+    loop: null,
+  },
 };
 
 const sabaPlusSlice = createSlice({
@@ -83,6 +87,9 @@ const sabaPlusSlice = createSlice({
     restartSabaPlusStore: (state) => {
       return initialState;
     },
+    updateScheduleData: (state, action) => {
+      state.scheduleData = action.payload;
+    },
   },
 });
 
@@ -92,5 +99,6 @@ export const {
   updateDisplayData,
   restartSabaPlusStore,
   updateStateRetry,
+  updateScheduleData,
 } = sabaPlusSlice.actions;
 export default sabaPlusSlice.reducer;

@@ -12,6 +12,7 @@ import TabPanel from "@mui/lab/TabPanel";
 import { sabaPlusLookup } from "../helper/sabaPlusHelper";
 import SabaIcon from "../components/SabaIcon/SabaIcon";
 import SabaPlusGroupAutoButton from "./SabaPlusGroupAutoButton";
+import SabaPlusGroupScheduleButton from "./SabaPlusGroupScheduleButton";
 const SabaPlusPopup = () => {
   const dispatch = useDispatch();
   const clickedButtons = useSelector((state) => state.sabaPlus.clickedButtons);
@@ -65,6 +66,24 @@ const SabaPlusPopup = () => {
               </button>
             )}
           </SabaPlusButtonGroup>
+        </TabPanel>
+        <TabPanel value="schedule">
+          <SabaPlusGroupScheduleButton
+            buttons={nextButtons}
+            headerText="Action"
+            className={"next"}
+            handleClick={handleActionClick}
+          >
+            {clickedButtons.length > 0 && (
+              <button
+                key={`ReStart`}
+                className={`next betting-btn`}
+                onClick={restartProcess}
+              >
+                Restart
+              </button>
+            )}
+          </SabaPlusGroupScheduleButton>
         </TabPanel>
         <TabPanel value="automate">
           <SabaPlusGroupAutoButton

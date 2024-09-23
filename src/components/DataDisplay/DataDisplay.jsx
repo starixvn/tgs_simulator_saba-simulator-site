@@ -2,7 +2,7 @@
 import { useRef, useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { betLookup } from "../../helper";
-import { TailSpin } from "react-loader-spinner";
+
 import {
   updateDisplayData,
   handleChangeState,
@@ -13,6 +13,7 @@ import {
 
 import { nanoid } from "nanoid";
 import SimulatorTab from "../Tab/SimulatorTab";
+import LoadingOverlay from "../LoadingOverlay/LoadingOverlay";
 
 const DataDisplay = ({ children }) => {
   const requestRef = useRef(null);
@@ -142,28 +143,4 @@ const DataDisplay = ({ children }) => {
   );
 };
 
-function LoadingOverlay() {
-  const [loading, setLoading] = useState(true);
-
-  return (
-    loading && (
-      <div
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          backgroundColor: "rgba(0,0,0,0.5)",
-          zIndex: 9999,
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        <TailSpin height={80} width={80} color="white" />
-      </div>
-    )
-  );
-}
 export default DataDisplay;
