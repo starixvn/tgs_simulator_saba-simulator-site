@@ -22,9 +22,11 @@ const SabaPlusDataDisplay = ({ children }) => {
       )
     : betData[currentState.type];
 
-  const isViewData = clickedButtons
-    .filter((item) => item !== "placeBet")
-    .includes(currentState.type);
+  const isViewData =
+    currentState.retryId ||
+    clickedButtons
+      .filter((item) => item !== "placeBet")
+      .includes(currentState.type);
   const handleOnSubmitManual = async (betAction, requestRaw) => {
     const response = await sabaPlusLookup[betAction]?.callApi(requestRaw);
 
