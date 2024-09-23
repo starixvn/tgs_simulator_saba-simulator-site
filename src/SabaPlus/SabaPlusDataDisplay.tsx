@@ -81,12 +81,18 @@ const SabaPlusDataDisplay = ({ children }) => {
         return;
       }
 
-      const response = await sabaPlusLookup[betAction]?.callApi(requestRaw);
+      const requestInJson = JSON.parse(requestRaw);
+      if (count > 0) {
+        requestInJson.Seq = `${nanoid(8)}-${nanoid(4)}-${nanoid(4)}-${nanoid(
+          4
+        )}-${nanoid(8)}`;
+      }
+      const response = await sabaPlusLookup[betAction]?.callApi(requestInJson);
 
       if (response.ErrorCode === 0) {
         acceptedAction = {
           type: betAction,
-          request: JSON.parse(requestRaw),
+          request: requestInJson,
           response,
         };
       }
@@ -95,7 +101,7 @@ const SabaPlusDataDisplay = ({ children }) => {
       dispatch(
         updateStateRetry({
           type: betAction,
-          request: JSON.parse(requestRaw),
+          request: requestInJson,
           response,
           retryId: retryId,
         })
