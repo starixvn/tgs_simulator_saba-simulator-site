@@ -18,6 +18,11 @@ const initialState = {
       response: null,
     },
   },
+  betRetryData: {
+    placeBet: [],
+    endGame: [],
+    placeBetAndSettle: [],
+  },
 };
 
 const sabaPlusSlice = createSlice({
@@ -53,6 +58,16 @@ const sabaPlusSlice = createSlice({
         state.betData[type].response = response;
       }
     },
+    updateStateRetry: (state, action) => {
+      const { type, request, response, retryId } = action.payload;
+
+      if (state.betData[type]) {
+        state.betRetryData[type] = [
+          ...state.betRetryData[type],
+          { request: request, response: response, retryId: retryId },
+        ];
+      }
+    },
     updateCurrentState: (state, action) => {
       state.currentState = action.payload;
     },
@@ -67,5 +82,6 @@ export const {
   updateCurrentState,
   updateDisplayData,
   restartSabaPlusStore,
+  updateStateRetry,
 } = sabaPlusSlice.actions;
 export default sabaPlusSlice.reducer;

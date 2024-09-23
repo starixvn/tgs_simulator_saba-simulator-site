@@ -45,7 +45,6 @@ const SabaPlusUserInfo = () => {
 
   const handleOnSave = async () => {
     const custId = getUserCustId(userIdInput);
-    console.log();
     balanceData.Payload.OperatorCustId = custId;
     const response = await getBalanceSabaPlusApi(balanceData);
 

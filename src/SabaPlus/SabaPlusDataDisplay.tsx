@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   updateDisplayData,
   handleChangeState,
+  updateStateRetry,
+  updateCurrentState,
 } from "../store/slices/sabaPlusSlice";
 
 import { sabaPlusLookup } from "../helper/sabaPlusHelper";
@@ -11,15 +13,39 @@ import { sabaPlusLookup } from "../helper/sabaPlusHelper";
 const SabaPlusDataDisplay = ({ children }) => {
   const requestRef = useRef(null);
   const dispatch = useDispatch();
-  const { betData, currentState, clickedButtons } = useSelector(
+  const { betData, currentState, clickedButtons, betRetryData } = useSelector(
     (state) => state.sabaPlus
   );
-  const dataDisplay = betData[currentState];
+  const dataDisplay = currentState.retryId
+    ? betRetryData[currentState.type].find(
+        (x) => x.retryId === currentState.retryId
+      )
+    : betData[currentState.type];
+
   const isViewData = clickedButtons
     .filter((item) => item !== "placeBet")
-    .includes(currentState);
+    .includes(currentState.type);
   const handleOnSubmitManual = async (betAction, requestRaw) => {
     const response = await sabaPlusLookup[betAction]?.callApi(requestRaw);
+
+    if (betAction === "placeBet") {
+      const retryId = nanoid(20);
+      response.retryId = retryId;
+      dispatch(
+        updateStateRetry({
+          type: betAction,
+          request: JSON.parse(requestRaw),
+          response,
+          retryId: retryId,
+        })
+      );
+      dispatch(updateCurrentState({ type: betAction, retryId: retryId }));
+      if (response.ErrorCode === 0 && !clickedButtons.includes("placeBet")) {
+        dispatch(handleChangeState(betAction));
+      }
+
+      return;
+    }
 
     dispatch(
       updateDisplayData({
@@ -28,52 +54,11 @@ const SabaPlusDataDisplay = ({ children }) => {
         response: response,
       })
     );
-
+    dispatch(updateCurrentState({ type: betAction, retryId: null }));
     if (response.ErrorCode === 0) {
       dispatch(handleChangeState(betAction));
     }
   };
-
-  // const handleOnSubmitSchedule = async (betAction, requestRaw) => {
-  //   let acceptedAction = null;
-  //   setLoading(true);
-
-  //   const callApi = async (index) => {
-  //     const response = await betLookup[betAction]?.callApi(requestRaw);
-
-  //     if (response.status === "0") {
-  //       acceptedAction = {
-  //         type: betAction,
-  //         request: JSON.parse(requestRaw),
-  //         response,
-  //       };
-  //     }
-  //     const retryId = nanoid(20);
-  //     response.retryId = retryId;
-  //     dispatch(
-  //       updateStateRetry({
-  //         type: betAction,
-  //         request: JSON.parse(requestRaw),
-  //         response,
-  //         retryId: retryId,
-  //       })
-  //     );
-  //     dispatch(updateCurrentState({ type: betAction, retryId: retryId }));
-  //   };
-
-  //   const promises = [];
-  //   for (let i = 0; i < parseInt(scheduleData.loop); i++) {
-  //     promises.push(callApi(i));
-  //   }
-
-  //   await Promise.all(promises);
-
-  //   setLoading(false);
-  //   if (acceptedAction) {
-  //     dispatch(handleChangeState(betAction));
-  //     dispatch(updateDisplayData(acceptedAction));
-  //   }
-  // };
 
   return (
     <div className="data-container" key={nanoid(20)}>
@@ -109,7 +94,7 @@ const SabaPlusDataDisplay = ({ children }) => {
         <button
           className="submit-btn"
           onClick={() =>
-            handleOnSubmitManual(currentState, requestRef.current.value)
+            handleOnSubmitManual(currentState?.type, requestRef.current.value)
           }
         >
           Submit

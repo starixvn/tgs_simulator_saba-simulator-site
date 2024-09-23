@@ -72,7 +72,7 @@ const getPlaceBetAndSettleSBPlusData = () => {
   const gameRoundId = `simulator_${gameId}_${generateRandomNumber(8)}`;
   const ticketNo = `${gameId}|$|${operatorCustId}|$|${gameRoundId}`;
   const stake = generateRandomStake();
-  console.log(stake);
+
   return {
     ...spPlusData.placeBetAndSettle,
     Seq: `${nanoid(8)}-${nanoid(4)}-${nanoid(4)}-${nanoid(4)}-${nanoid(8)}`,

@@ -17,7 +17,7 @@ const SabaPlusPopup = () => {
   const nextButtons = useSelector((state) => state.sabaPlus.nextButtons);
   const userId = useSelector((state) => state.userInfo.userId);
   const handleFlowClick = (key) => {
-    dispatch(updateCurrentState(key));
+    dispatch(updateCurrentState({ type: key, retryId: null }));
   };
 
   const restartProcess = () => {
@@ -29,9 +29,11 @@ const SabaPlusPopup = () => {
       alert("Please insert User Id then click save");
       return;
     }
+
     const data = sabaPlusLookup[key]?.getSampleData();
+
     dispatch(updateDisplayData({ type: key, request: data, response: null }));
-    dispatch(updateCurrentState(key));
+    dispatch(updateCurrentState({ type: key, retryId: null }));
   };
 
   return (
