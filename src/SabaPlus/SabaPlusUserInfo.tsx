@@ -20,7 +20,7 @@ const SabaPlusUserInfo = () => {
       const fetchBalance = async () => {
         balanceData.Payload.OperatorCustId = validCustId;
         const res = await getBalanceSabaPlusApi(balanceData);
-        console.log(res);
+
         if (res.ErrorCode === 0) {
           dispatch(
             setUserInfo({

@@ -6,15 +6,16 @@ import {
   endGameApi,
   placeBetAndSettleApi,
 } from "../services/sabaPlusApi";
-
+import { nanoid } from "nanoid";
 const getPlaceBetSBPlusData = () => {
   const operatorCustId = store?.getState().userInfo.userId;
   const gameId = generateRandomNumber(4);
   const gameRoundId = `simulator_${gameId}_${generateRandomNumber(8)}`;
   const ticketNo = `${gameId}|$|${operatorCustId}|$|${gameRoundId}`;
-  const stake = generateRandomStake(20);
+  const stake = generateRandomStake();
   return {
     ...spPlusData.placeBet,
+    Seq: `${nanoid(8)}-${nanoid(4)}-${nanoid(4)}-${nanoid(4)}-${nanoid(8)}`,
     TimeStamp: moment().format("YYYY/MM/DD HH:mm:ss.SSS"),
     Payload: {
       ...spPlusData.placeBet.Payload,
@@ -42,6 +43,7 @@ const getEndGameSBPlusData = () => {
 
   const endGameData = {
     ...spPlusData.endGame,
+    Seq: `${nanoid(8)}-${nanoid(4)}-${nanoid(4)}-${nanoid(4)}-${nanoid(8)}`,
     TimeStamp: moment().format("YYYY/MM/DD HH:mm:ss.SSS"),
     Payload: {
       ...spPlusData.endGame.Payload,
@@ -69,9 +71,11 @@ const getPlaceBetAndSettleSBPlusData = () => {
   const gameId = generateRandomNumber(4);
   const gameRoundId = `simulator_${gameId}_${generateRandomNumber(8)}`;
   const ticketNo = `${gameId}|$|${operatorCustId}|$|${gameRoundId}`;
-  const stake = generateRandomStake(20);
+  const stake = generateRandomStake();
+  console.log(stake);
   return {
     ...spPlusData.placeBetAndSettle,
+    Seq: `${nanoid(8)}-${nanoid(4)}-${nanoid(4)}-${nanoid(4)}-${nanoid(8)}`,
     TimeStamp: moment().format("YYYY/MM/DD HH:mm:ss.SSS"),
     Payload: {
       ...spPlusData.placeBetAndSettle.Payload,
@@ -97,8 +101,10 @@ const generateRandomNumber = (length) =>
     .toString()
     .padStart(length, "0");
 
-const generateRandomStake = (max) => {
-  return Math.floor(Math.random() * max);
+const generateRandomStake = () => {
+  const min = 51;
+  const max = 59;
+  return Math.floor(Math.random() * (max - min + 1)) + min;
 };
 
 const sabaPlusLookup = {
