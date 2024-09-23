@@ -27,12 +27,12 @@ const SabaPlusDataDisplay = ({ children }) => {
     : betData[currentState.type];
 
   const isViewData =
-    tabValue === "manual"
-      ? currentState.retryId ||
+    tabValue === "automate"
+      ? clickedButtons.includes(currentState.type)
+      : currentState.retryId ||
         clickedButtons
           .filter((item) => item !== "placeBet")
-          .includes(currentState.type)
-      : clickedButtons.includes(currentState.type);
+          .includes(currentState.type);
 
   const handleOnSubmitManual = async (betAction, requestRaw) => {
     const response = await sabaPlusLookup[betAction]?.callApi(requestRaw);
