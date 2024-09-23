@@ -15,7 +15,9 @@ const SabaPlusDataDisplay = ({ children }) => {
     (state) => state.sabaPlus
   );
   const dataDisplay = betData[currentState];
-  const isViewData = clickedButtons.includes(currentState);
+  const isViewData = clickedButtons
+    .filter((item) => item !== "placeBet")
+    .includes(currentState);
   const handleOnSubmitManual = async (betAction, requestRaw) => {
     const response = await sabaPlusLookup[betAction]?.callApi(requestRaw);
 

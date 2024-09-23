@@ -29,7 +29,7 @@ const sabaPlusSlice = createSlice({
       const buttonActions = {
         placeBet: {
           clicked: ["placeBet"],
-          next: ["endGame"],
+          next: ["endGame", "placeBet"],
         },
         endGame: {
           clicked: ["endGame"],
