@@ -324,3 +324,7 @@ input {
 .MuiCard-root:nth-of-type(2) .MuiAspectRatio-content {
   border-color: #ff6026 !important;
 }
+
+.custom-icon-class {
+  width: 100%;
+}

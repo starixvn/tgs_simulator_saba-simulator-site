@@ -12,6 +12,7 @@ import GroupButton from "../GroupButton/GroupButton";
 import GroupAutoButton from "../GroupAutoButton/GroupAutoButton";
 import GroupAPIFlowButton from "../GroupAPIFlowButton/GroupAPIFlowButton";
 import GroupScheduleButton from "../GroupScheduleButton/GroupScheduleButton";
+import SabaIcon from "../SabaIcon/SabaIcon";
 import TabPanel from "@mui/lab/TabPanel";
 const Popup = () => {
   const dispatch = useDispatch();
@@ -40,6 +41,11 @@ const Popup = () => {
   return (
     <div className="popup">
       <div className="popup-header">
+        <SabaIcon
+          altText="saba-plus-icon"
+          imageName="saba-sports.png"
+          className="custom-icon-class"
+        ></SabaIcon>
         <UserInfo></UserInfo>
       </div>
       <div className="popup-body">

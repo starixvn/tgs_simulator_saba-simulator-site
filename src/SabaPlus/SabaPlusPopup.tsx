@@ -10,6 +10,7 @@ import {
 } from "../store/slices/sabaPlusSlice";
 import TabPanel from "@mui/lab/TabPanel";
 import { sabaPlusLookup } from "../helper/sabaPlusHelper";
+import SabaIcon from "../components/SabaIcon/SabaIcon";
 const SabaPlusPopup = () => {
   const dispatch = useDispatch();
   const clickedButtons = useSelector((state) => state.sabaPlus.clickedButtons);
@@ -36,6 +37,11 @@ const SabaPlusPopup = () => {
   return (
     <div className="popup">
       <div className="popup-header">
+        <SabaIcon
+          altText="saba-plus-icon"
+          imageName="saba-plus.png"
+          className="custom-icon-class"
+        ></SabaIcon>
         <SabaPlusUserInfo></SabaPlusUserInfo>
       </div>
       <div className="popup-body">
