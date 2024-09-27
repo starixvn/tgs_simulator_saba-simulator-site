@@ -5,6 +5,7 @@ import {
   placeBetApi,
   endGameApi,
   placeBetAndSettleApi,
+  voidGameApi,
 } from "../services/sabaPlusApi";
 import { nanoid } from "nanoid";
 const getPlaceBetSBPlusData = () => {
@@ -128,6 +129,51 @@ const getPlaceBetAndSettleSBPlusData = () => {
   };
 };
 
+const getVoidSBPlusData = () => {
+  const preData = getPlaceBetData();
+  const preRequest = preData.request;
+
+  console.log(preRequest)
+
+  const operatorCustId = store?.getState().userInfo.userId;
+
+  return {
+    ...spPlusData.voidGame,
+    Seq: `${nanoid(8)}-${nanoid(4)}-${nanoid(4)}-${nanoid(4)}-${nanoid(8)}`,
+    TimeStamp: moment().format("YYYY/MM/DD HH:mm:ss.SSS"),
+    Payload: {
+      ...spPlusData.voidGame.Payload,
+      OperatorCustId: operatorCustId,
+      GameType: preRequest.Payload.GameType,
+      BetDataSet: preRequest.Payload.BetDataSet.map((item, index) => (
+        {
+          ...spPlusData.voidGame.Payload.BetDataSet[0],
+          GameId: item.GameId,
+          GameRoundId: item.GameRoundId,
+          TicketNo: item.TicketNo,
+        }
+      ))
+    },
+  };
+};
+
+const getPlaceBetData = () => {
+  const clickedAction = store?.getState().sabaPlus.clickedButtons;
+
+  if (clickedAction.includes("placeFreeSpin")) {
+    console.log("placeFreeSpin")
+    return store?.getState().sabaPlus.betData.placeFreeSpin
+  }
+
+  if (clickedAction.includes("placeBetAndSettle")) {
+    console.log("placeBetAndSettle")
+    return store?.getState().sabaPlus.betData.placeBetAndSettle
+  }
+
+  console.log("place bet")
+  return store?.getState().sabaPlus.betData.placeBet;
+}
+
 const generateRandomNumber = (length) =>
   Math.floor(Math.random() * Math.pow(10, length))
     .toString()
@@ -159,6 +205,11 @@ const sabaPlusLookup = {
     getSampleData: getPlaceFreeSpinSBPlusData,
     callApi: placeBetApi,
     label: "Place Free Spin",
+  },
+  voidGame: {
+    getSampleData: getVoidSBPlusData,
+    callApi: voidGameApi,
+    label: "Void Game",
   },
 };
 

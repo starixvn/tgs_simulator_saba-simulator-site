@@ -19,6 +19,24 @@ export const placeBetApi = async (betData) => {
   }
 };
 
+export const voidGameApi = async (betData) => {
+  try {
+    const response = await axios.post(
+      `${apiUrl}/api/Simulator/sabaPlus-VoidGame`,
+      betData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+};
+
 export const placeBetAndSettleApi = async (betData) => {
   try {
     const response = await axios.post(

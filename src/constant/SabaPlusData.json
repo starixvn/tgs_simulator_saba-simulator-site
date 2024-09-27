@@ -25,6 +25,24 @@
       "S1GameId": "7600001"
     }
   },
+  "voidGame": {
+    "TimeStamp": "2024/09/27 05:36:03.825",
+    "Seq": "f6a45a2b-d3da-4b8f-9c14-43ba59e364e9",
+    "Payload": {
+      "OperatorCustId": "4uo2mwf6dow8_test",
+      "GameType": "FaChai",
+      "BetDataSet": [
+        {
+          "Status": 5,
+          "TicketNo": "11314|$|4uo2mwf6dow8_test|$|66f51c802ffa022cbfa6783b",
+          "GameId": "11314",
+          "GameRoundId": "66f51c802ffa022cbfa6783b",
+          "TransactionId": null
+        }
+      ],
+      "Action": "VoidGame"
+    }
+  },
   "endGame": {
     "TimeStamp": "2024/09/19 03:08:19.723",
     "Seq": "b4f0ab88-2b13-4faf-9543-09386f22eb58",
