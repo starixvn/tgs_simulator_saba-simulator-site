@@ -51,7 +51,7 @@ const sabaPlusSlice = createSlice({
         },
         endGame: {
           clicked: ["endGame"],
-          next: [],
+          next: ["voidGame"],
         },
         placeBetAndSettle: {
           clicked: ["placeBetAndSettle"],

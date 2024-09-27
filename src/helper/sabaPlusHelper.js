@@ -161,16 +161,13 @@ const getPlaceBetData = () => {
   const clickedAction = store?.getState().sabaPlus.clickedButtons;
 
   if (clickedAction.includes("placeFreeSpin")) {
-    console.log("placeFreeSpin")
     return store?.getState().sabaPlus.betData.placeFreeSpin
   }
 
   if (clickedAction.includes("placeBetAndSettle")) {
-    console.log("placeBetAndSettle")
     return store?.getState().sabaPlus.betData.placeBetAndSettle
   }
 
-  console.log("place bet")
   return store?.getState().sabaPlus.betData.placeBet;
 }
 
