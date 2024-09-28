@@ -5,7 +5,7 @@ const initialState = {
   clickedButtons: [],
   currentState: "",
   nextButtons: ["placeBet", "placeBetAndSettle", "placeFreeSpin"],
-  vendorOptions: {name: Provider.SBPLAY, gameTypes: ProviderGameTypes[Provider.SBPLAY][0]},
+  vendorOptions: {name: Provider.SBPLAY, gameType: ProviderGameTypes[Provider.SBPLAY][0]},
   betData: {
     placeBet: {
       request: null,

@@ -8,6 +8,7 @@ import {
   voidGameApi,
 } from "../services/sabaPlusApi";
 import { nanoid } from "nanoid";
+import { ProviderWithGameTypePlaceRequest } from "../constant/Provider";
 
 const getPlaceBetSBPlusData = () => {
   const operatorCustId = store?.getState().userInfo.userId;
@@ -17,24 +18,31 @@ const getPlaceBetSBPlusData = () => {
   const stake = generateRandomStake();
 
   const vendor = getProviderRandomAndGameType();
+  let templateData = spPlusData.placeBet;
+  if (ProviderWithGameTypePlaceRequest[vendor.ProviderName] && ProviderWithGameTypePlaceRequest[vendor.ProviderName][vendor.GameType]) {
+    templateData = ProviderWithGameTypePlaceRequest[vendor.ProviderName][vendor.GameType]
+  }
+
   const walletSiteTokenParts = spPlusData.placeBet.Payload.WalletSideToken.split('@');
   walletSiteTokenParts[0] = vendor.GameProviderCode;
   const walletSiteToken = walletSiteTokenParts.join('@');
 
+  console.log('vendor', vendor)
+  console.log('templateData', templateData)
+
   return {
-    ...spPlusData.placeBet,
+    ...templateData,
     Seq: `${nanoid(8)}-${nanoid(4)}-${nanoid(4)}-${nanoid(4)}-${nanoid(8)}`,
     TimeStamp: moment().tz("UTC").format("YYYY/MM/DD HH:mm:ss.SSS"),
     Payload: {
-      ...spPlusData.placeBet.Payload,
-      WalletSideToken: walletSiteToken,
+      ...templateData.Payload,
       OperatorCustId: operatorCustId,
+      WalletSideToken: walletSiteToken,
       GameType: vendor.GameType,
       GameProviderCode: vendor.GameProviderCode,
       BetDataSet: [
         {
-          ...spPlusData.placeBet.Payload.BetDataSet[0],
-
+          ...templateData.Payload.BetDataSet[0],
           GameId: gameId,
           GameRoundId: gameRoundId,
           TicketNo: ticketNo,
@@ -209,10 +217,9 @@ const getProviderRandomAndGameType = () => {
   return {
     ProviderName: providerName,
     GameProviderCode: `SABAPLUS-${providerName}`,
-    GameType: store?.getState().sabaPlus.vendorOptions.gameTypes[Math.floor(Math.random() * store?.getState().sabaPlus.vendorOptions.gameTypes.length)]
+    GameType: store?.getState().sabaPlus.vendorOptions.gameType
   }
 }
-
 
 const sabaPlusLookup = {
   placeBet: {

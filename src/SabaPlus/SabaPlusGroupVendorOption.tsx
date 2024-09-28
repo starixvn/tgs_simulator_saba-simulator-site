@@ -5,7 +5,7 @@ import {
   restartSabaPlusStore,
   updateVendorOption,
 } from "../store/slices/sabaPlusSlice";
-import { Provider, ProviderGameTypes } from "../constant/Provider";
+import { GameType, Provider, ProviderGameTypes } from "../constant/Provider";
 
 type Option = {
   value: Provider;
@@ -17,6 +17,7 @@ const options = Object.values(Provider).map((provider) => ({
   label: provider.toString(),
 }));
 
+
 type Props = {
   headerText: string;
 };
@@ -25,18 +26,40 @@ const SabaPlusGroupVendorOption = ({ headerText }: Props) => {
   const dispatch = useDispatch();
   const vendor = useSelector((state) => state.sabaPlus.vendorOptions);
 
-  const handleChange = (selected: SingleValue<Option> | null) => {
+  const gameOptions = Object.values(ProviderGameTypes[vendor.name]).map((gameType) => ({
+    value: gameType,
+    label: gameType.toString(),
+  }));
+
+  const handleProviderChange = (selected: SingleValue<Option> | null) => {
     dispatch(
       updateVendorOption({
         name: selected.label,
-        gameTypes: ProviderGameTypes[selected.value],
+        gameType: ProviderGameTypes[selected.value][0],
       })
     );
     dispatch(
       restartSabaPlusStore({
         vendorOptions: {
           name: selected.label,
-          gameTypes: ProviderGameTypes[selected.value],
+          gameType: ProviderGameTypes[selected.value][0],
+        },
+      })
+    );
+  };
+
+  const handleGameTypeChange = (selected: SingleValue<Option> | null) => {
+    dispatch(
+      updateVendorOption({
+        ...vendor,
+        gameType: selected.value,
+      })
+    );
+    dispatch(
+      restartSabaPlusStore({
+        vendorOptions: {
+          ...vendor,
+          gameType: selected.value,
         },
       })
     );
@@ -50,7 +73,14 @@ const SabaPlusGroupVendorOption = ({ headerText }: Props) => {
           value={options.find((item) => item.value == vendor.name)}
           defaultValue={options.find((item) => item.value == vendor.name)}
           options={options}
-          onChange={handleChange}
+          onChange={handleProviderChange}
+        ></Select>
+        <div className="gap"/>
+        <Select
+          value={gameOptions.find((item) => item.value == vendor.gameType)}
+          defaultValue={gameOptions.find((item) => item.value == vendor.gameType)}
+          options={gameOptions}
+          onChange={handleGameTypeChange}
         ></Select>
       </div>
     </div>

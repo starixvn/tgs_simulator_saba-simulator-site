@@ -25,8 +25,7 @@ const SabaPlusGroupAutoButton = ({ headerText }: Props) => {
     dispatch(
       restartSabaPlusStore({
         vendorOptions: {
-          name: vendorOptions.name,
-          gameTypes: vendorOptions.gameTypes,
+          ...vendorOptions
         },
       })
     );

@@ -78,6 +78,9 @@
 .button-group .options {
   text-align: left;
 }
+.gap {
+  margin: 1rem;
+}
 .place-bet,
 .confirm-bet,
 .cancel-bet,

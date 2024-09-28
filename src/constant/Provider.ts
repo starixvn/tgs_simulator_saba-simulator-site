@@ -1,49 +1,61 @@
-export const Provider = {
-  UUSLOTS: "UUSLOTS",
-  FS: "FS",
-  SBPLAY: "SBPLAY",
-  WE: "WE",
-  ALLBET: "ALLBET",
-  PP: "PP",
-  MAXPLAY: "MAXPLAY",
-  LIVE22: "LIVE22",
-};
+export enum Provider {
+  JILI = "JILI",
+  FACHAI = "FACHAI",
+  UUSLOTS = "UUSLOTS",
+  FS = "FS",
+  MAXGAME = "maxgame",
+  SBPLAY = "SBPLAY",
+  WE = "WE",
+  ALLBET = "ALLBET",
+  PP = "PP",
+  MAXPLAY = "MAXPLAY",
+  LIVE22 = "LIVE22",
+}
 
-export const GameType = {
-  ALLBET: "AllBet",
-  FS: "FastSpin",
-  LIVE22: "Live22",
-  KENO: "Keno",
-  LOTTERY: "Lottery",
-  MAXGAME: "MaxGame",
-  TABLEGAME: "TableGame",
-  PRAGMATICPLAY: "PragmaticPlay",
-  PRAGMATICPLAYCASINO: "PragmaticPlayCasino",
-  FA_CHAI: "FaChai",
-  JILI: "JiLi",
-  SABAPLAY: "SabaPlay",
-  UUSLOTS: "UuSlots",
-  WORLD_ENTERTAINMENT: "WorldEntertainment",
-};
+export enum GameType {
+  ALLBET = "AllBet",
+  FACHAI = "FaChai",
+  FS = "FastSpin",
+  JILI = "JiLi",
+  LIVE22 = "Live22",
+  MAXGAME = "max-game",
+  MAXPLAY = "MaxPlay",
+  KENO = "Keno",
+  LOTTERY = "Lottery",
+  TABLEGAME = "TableGame",
+  PRAGMATICPLAY = "PragmaticPlay",
+  PRAGMATICPLAYCASINO = "PragmaticPlayCasino",
+  SABAPLAY = "SabaPlay",
+  UUSLOTS = "UuSlots",
+  WORLDENTERTAINMENT = "WorldEntertainment",
+}
 
-export   const ProviderGameTypes = {
+export const ProviderGameTypes = {
   [Provider.ALLBET]: [GameType.ALLBET],
+  [Provider.FACHAI]: [GameType.FACHAI],
   [Provider.FS]: [GameType.FS],
+  [Provider.JILI]: [GameType.JILI],
   [Provider.LIVE22]: [GameType.LIVE22],
+  [Provider.MAXGAME]: [GameType.MAXGAME],
   [Provider.MAXPLAY]: [GameType.KENO, GameType.LOTTERY, GameType.MAXGAME, GameType.TABLEGAME],
   [Provider.PP]: [GameType.ALLBET, GameType.PRAGMATICPLAY, GameType.PRAGMATICPLAYCASINO],
   [Provider.SBPLAY]: [
+    GameType.FACHAI,
+    GameType.FS,
+    GameType.JILI,
+    GameType.KENO,
+    GameType.LIVE22,
     GameType.PRAGMATICPLAYCASINO,
     GameType.SABAPLAY,
     GameType.TABLEGAME,
     GameType.UUSLOTS,
-    GameType.WORLD_ENTERTAINMENT
+    GameType.WORLDENTERTAINMENT,
   ],
   [Provider.UUSLOTS]: [GameType.UUSLOTS],
-  [Provider.WE]: [GameType.WORLD_ENTERTAINMENT]
+  [Provider.WE]: [GameType.WORLDENTERTAINMENT],
 };
 
-export const ProviderWithGameTypeRequest = {
+export const ProviderWithGameTypePlaceRequest = {
   [Provider.ALLBET]: {
     [GameType.ALLBET]: {
       TimeStamp: "2024/09/26 08:51:45.563",
@@ -159,7 +171,7 @@ export const ProviderWithGameTypeRequest = {
     },
   },
   [Provider.WE]: {
-    [GameType.WORLD_ENTERTAINMENT]: {
+    [GameType.WORLDENTERTAINMENT]: {
       TimeStamp: "2024/09/26 09:00:20.032",
       Seq: "d733c283-1cb2-4702-b935-55327a34407b",
       Payload: {
@@ -484,7 +496,7 @@ export const ProviderWithGameTypeRequest = {
         GameProviderCode: "SABAPLUS-SBPLAY",
       },
     },
-    [GameType.WORLD_ENTERTAINMENT]: {
+    [GameType.WORLDENTERTAINMENT]: {
       TimeStamp: "2024/09/26 07:25:23.281",
       Seq: "e5ee3894-97ef-4de3-a8ae-7b39134964fd",
       Payload: {
