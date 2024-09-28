@@ -133,8 +133,6 @@ const getVoidSBPlusData = () => {
   const preData = getPlaceBetData();
   const preRequest = preData.request;
 
-  console.log(preRequest);
-
   const operatorCustId = store?.getState().userInfo.userId;
 
   return {

@@ -13,6 +13,7 @@ import { sabaPlusLookup } from "../helper/sabaPlusHelper";
 import SabaIcon from "../components/SabaIcon/SabaIcon";
 import SabaPlusGroupAutoButton from "./SabaPlusGroupAutoButton";
 import SabaPlusGroupScheduleButton from "./SabaPlusGroupScheduleButton";
+import BetResultCheckButtonGroup from "./BetResultCheckButtonGroup";
 const SabaPlusPopup = () => {
   const dispatch = useDispatch();
   const clickedButtons = useSelector((state) => state.sabaPlus.clickedButtons);
@@ -31,7 +32,6 @@ const SabaPlusPopup = () => {
       alert("Please insert User Id then click save");
       return;
     }
-
     const data = sabaPlusLookup[key]?.getSampleData();
 
     dispatch(updateDisplayData({ type: key, request: data, response: null }));
@@ -66,6 +66,13 @@ const SabaPlusPopup = () => {
               </button>
             )}
           </SabaPlusButtonGroup>
+          <SabaPlusGroupAPIFlowButton
+            headerText="API Flow"
+            buttons={clickedButtons}
+            handleClick={handleFlowClick}
+            className={"clicked"}
+            isRetry={true}
+          ></SabaPlusGroupAPIFlowButton>
         </TabPanel>
         <TabPanel value="schedule">
           <SabaPlusGroupScheduleButton
@@ -84,20 +91,30 @@ const SabaPlusPopup = () => {
               </button>
             )}
           </SabaPlusGroupScheduleButton>
+          <SabaPlusGroupAPIFlowButton
+            headerText="API Flow"
+            buttons={clickedButtons}
+            handleClick={handleFlowClick}
+            className={"clicked"}
+            isRetry={true}
+          ></SabaPlusGroupAPIFlowButton>
         </TabPanel>
         <TabPanel value="automate">
           <SabaPlusGroupAutoButton
             headerText="Playbook"
             className={"next"}
           ></SabaPlusGroupAutoButton>
+          <SabaPlusGroupAPIFlowButton
+            headerText="API Flow"
+            buttons={clickedButtons}
+            handleClick={handleFlowClick}
+            className={"clicked"}
+            isRetry={true}
+          ></SabaPlusGroupAPIFlowButton>
         </TabPanel>
-        <SabaPlusGroupAPIFlowButton
-          headerText="API Flow"
-          buttons={clickedButtons}
-          handleClick={handleFlowClick}
-          className={"clicked"}
-          isRetry={true}
-        ></SabaPlusGroupAPIFlowButton>
+        <TabPanel value="bet-result-check">
+          <BetResultCheckButtonGroup></BetResultCheckButtonGroup>
+        </TabPanel>
       </div>
     </div>
   );

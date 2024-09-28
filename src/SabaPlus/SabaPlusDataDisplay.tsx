@@ -9,10 +9,11 @@ import {
   updateStateRetry,
   updateCurrentState,
 } from "../store/slices/sabaPlusSlice";
+import { addBetResultTicket } from "../store/slices/betResultCheckSlice";
 import { sabaPlusLookup } from "../helper/sabaPlusHelper";
 import LoadingOverlay from "../components/LoadingOverlay/LoadingOverlay";
 
-const SabaPlusDataDisplay = ({ children }) => {
+const SabaPlusDataDisplay = () => {
   const requestRef = useRef(null);
   const dispatch = useDispatch();
   const { betData, currentState, clickedButtons, betRetryData, scheduleData } =
@@ -50,6 +51,8 @@ const SabaPlusDataDisplay = ({ children }) => {
       dispatch(updateCurrentState({ type: betAction, retryId: retryId }));
       if (response.ErrorCode === 0 && !clickedButtons.includes("placeBet")) {
         dispatch(handleChangeState(betAction));
+        const betDataset = response?.Payload?.BetDataSet || [];
+        updateBetResultTicketNo(betDataset);
       }
 
       return;
@@ -65,7 +68,18 @@ const SabaPlusDataDisplay = ({ children }) => {
     dispatch(updateCurrentState({ type: betAction, retryId: null }));
     if (response.ErrorCode === 0) {
       dispatch(handleChangeState(betAction));
+      const betDataset = response?.Payload?.BetDataSet || [];
+      updateBetResultTicketNo(betDataset);
     }
+  };
+
+  const updateBetResultTicketNo = (betDataSet) => {
+    betDataSet.forEach((bet) => {
+      const ticketNo = bet?.TicketNo;
+      if (ticketNo) {
+        dispatch(addBetResultTicket(ticketNo));
+      }
+    });
   };
 
   const handleOnSubmitSchedule = async (betAction, requestRaw) => {
@@ -125,8 +139,7 @@ const SabaPlusDataDisplay = ({ children }) => {
   };
 
   return (
-    <div className="data-container" key={nanoid(20)}>
-      {children}
+    <div key={nanoid(20)}>
       <div className="data-row">
         <div className="data-box">
           <textarea
