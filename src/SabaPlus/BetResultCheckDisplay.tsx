@@ -4,15 +4,22 @@ import { nanoid } from "nanoid";
 import { updateBetResultCheckApi } from "../services/betResultCheckApi";
 import { updateDataDisplay } from "../store/slices/betResultCheckSlice";
 const BetResultCheckDisplay = () => {
-  const dataDisplay = useSelector((state) => state.betResultCheck.dataDisplay);
+  const { dataDisplay, ticketSelected } = useSelector(
+    (state) => state.betResultCheck
+  );
+
   const requestRef = useRef(null);
   const dispatch = useDispatch();
-  console.log(dataDisplay);
+
   const handleOnSubmit = async (requestRaw) => {
-    const response = await updateBetResultCheckApi(requestRaw);
+    const request = JSON.parse(requestRaw);
+    const response = await updateBetResultCheckApi({
+      TicketNo: ticketSelected,
+      BetResult: request,
+    });
     dispatch(
       updateDataDisplay({
-        request: JSON.parse(requestRaw),
+        request: request,
         response: response,
       })
     );

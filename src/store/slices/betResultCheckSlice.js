@@ -6,6 +6,7 @@ const initialState = {
     request: "",
     response: "",
   },
+  ticketSelected: "",
 };
 
 const sabaPlusSlice = createSlice({
@@ -23,8 +24,12 @@ const sabaPlusSlice = createSlice({
     updateDataDisplay: (state, action) => {
       state.dataDisplay = action.payload;
     },
+    updateTicketSelected: (state, action) => {
+      state.ticketSelected = action.payload;
+    },
   },
 });
 
-export const { addBetResultTicket, updateDataDisplay } = sabaPlusSlice.actions;
+export const { addBetResultTicket, updateDataDisplay, updateTicketSelected } =
+  sabaPlusSlice.actions;
 export default sabaPlusSlice.reducer;

@@ -1,12 +1,15 @@
 import { useDispatch, useSelector } from "react-redux";
 import { getBetResultCheckApi } from "../services/betResultCheckApi";
-import { updateDataDisplay } from "../store/slices/betResultCheckSlice";
+import {
+  updateDataDisplay,
+  updateTicketSelected,
+} from "../store/slices/betResultCheckSlice";
 const SabaPlusButtonGroup = () => {
   const dispatch = useDispatch();
   const { betResultTicket } = useSelector((state) => state.betResultCheck);
   const handleOnClick = async (key) => {
     const response = await getBetResultCheckApi({ ticketNo: key });
-    console.log(response);
+    dispatch(updateTicketSelected(key));
     dispatch(updateDataDisplay({ request: response, response: null }));
   };
 
