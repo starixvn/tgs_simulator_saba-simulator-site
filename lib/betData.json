@@ -1,0 +1,432 @@
+{
+  "PlaceBetParlay": {
+    "key": "y2g53zl9g4",
+    "message": {
+      "Action": "PlaceBetParlay",
+      "OperationId": "4351400_1_2656_U",
+      "UserId": "Starix1SW_4unxqhr8oh6g_test",
+      "Currency": 20,
+      "BetTime": "2024-09-11T23:27:18.975-04:00",
+      "UpdateTime": "2024-09-11T23:27:18.975-04:00",
+      "TotalBetAmount": 73,
+      "IP": "202.78.231.34",
+      "TsId": "",
+      "BetFrom": "W001",
+      "CreditAmount": 0,
+      "DebitAmount": 73,
+      "VendorTransId": null,
+      "Txns": [
+        {
+          "RefId": "4351400_1014_U",
+          "ParlayType": "Parlay_System",
+          "BetAmount": 16,
+          "CreditAmount": 0,
+          "DebitAmount": 16,
+          "Detail": [
+            {
+              "Type": 1,
+              "Name": "Trebles",
+              "BetCount": 10,
+              "Stake": 1,
+              "Odds": null
+            },
+            {
+              "Type": 4,
+              "Name": "Fold4",
+              "BetCount": 5,
+              "Stake": 1,
+              "Odds": null
+            },
+            {
+              "Type": 7,
+              "Name": "Fold5",
+              "BetCount": 1,
+              "Stake": 1,
+              "Odds": null
+            }
+          ]
+        },
+        {
+          "RefId": "4351400_1017_U",
+          "ParlayType": "SingleBet_ViaLucky",
+          "BetAmount": 1,
+          "CreditAmount": 0,
+          "DebitAmount": 1,
+          "Detail": [
+            {
+              "MatchId": 92318906
+            }
+          ]
+        },
+        {
+          "RefId": "4351400_1018_U",
+          "ParlayType": "SingleBet_ViaLucky",
+          "BetAmount": 1,
+          "CreditAmount": 0,
+          "DebitAmount": 1,
+          "Detail": [
+            {
+              "MatchId": 92318856
+            }
+          ]
+        }
+      ],
+      "TicketDetail": [
+        {
+          "MatchId": 92318906,
+          "HomeId": 676400,
+          "AwayId": 674850,
+          "HomeName": "Ukraine (V)",
+          "AwayName": "Argentina (V)",
+          "KickOffTime": "2024-09-12T00:14:00.000-04:00",
+          "SportType": 1,
+          "SportTypeName": "Soccer",
+          "BetType": 1,
+          "BetTypeName": "Handicap",
+          "OddsId": 729708282,
+          "Odds": 1.78,
+          "OddsType": 3,
+          "BetChoice": "Ukraine (V)",
+          "BetChoice_en": "Ukraine (V)",
+          "LeagueId": 95731,
+          "LeagueName": "SABA INTERNATIONAL FRIENDLY Virtual PES 21 - 20 Mins Play",
+          "IsLive": false,
+          "Point": "0.50",
+          "Point2": "",
+          "BetTeam": "h",
+          "HomeScore": 0,
+          "AwayScore": 0,
+          "BaStatus": false,
+          "Excluding": "",
+          "LeagueName_en": "SABA INTERNATIONAL FRIENDLY Virtual PES 21 - 20 Mins Play",
+          "SportTypeName_en": "Soccer",
+          "HomeName_en": "Ukraine (V)",
+          "AwayName_en": "Argentina (V)",
+          "BetTypeName_en": "Handicap",
+          "MatchDateTime": "2024-09-12T00:15:00.000-04:00",
+          "BetRemark": ""
+        },
+        {
+          "MatchId": 92318856,
+          "HomeId": 674943,
+          "AwayId": 675431,
+          "HomeName": "Bahrain (V)",
+          "AwayName": "Indonesia (V)",
+          "KickOffTime": "2024-09-12T00:00:01.000-04:00",
+          "SportType": 1,
+          "SportTypeName": "Soccer",
+          "BetType": 1,
+          "BetTypeName": "Handicap",
+          "OddsId": 729707955,
+          "Odds": 1.95,
+          "OddsType": 3,
+          "BetChoice": "Bahrain (V)",
+          "BetChoice_en": "Bahrain (V)",
+          "LeagueId": 95731,
+          "LeagueName": "SABA INTERNATIONAL FRIENDLY Virtual PES 21 - 20 Mins Play",
+          "IsLive": false,
+          "Point": "0.25",
+          "Point2": "",
+          "BetTeam": "h",
+          "HomeScore": 0,
+          "AwayScore": 0,
+          "BaStatus": false,
+          "Excluding": "",
+          "LeagueName_en": "SABA INTERNATIONAL FRIENDLY Virtual PES 21 - 20 Mins Play",
+          "SportTypeName_en": "Soccer",
+          "HomeName_en": "Bahrain (V)",
+          "AwayName_en": "Indonesia (V)",
+          "BetTypeName_en": "Handicap",
+          "MatchDateTime": "2024-09-12T00:00:00.000-04:00",
+          "BetRemark": ""
+        }
+      ]
+    }
+  },
+  "ConfirmBetParlay": {
+    "key": "y2g53zl9g4",
+    "message": {
+      "Action": "ConfirmBetParlay",
+      "OperationId": "4351400_2_2665_U",
+      "UserId": "Starix1SW_4unxqhr8oh6g_test",
+      "UpdateTime": "2024-09-11T23:27:20.362-04:00",
+      "CreditAmount": 0,
+      "DebitAmount": 0,
+      "Txns": [
+        {
+          "CreditAmount": 0,
+          "DebitAmount": 0,
+          "Odds": 0.22,
+          "RefId": "4351400_1014_U",
+          "TxId": {
+            "$numberLong": "298405909598568489"
+          },
+          "LicenseeTxId": "1593",
+          "ActualAmount": 16,
+          "IsOddsChanged": false,
+
+          "WinlostDate": "2024-09-12T00:00:00.000-04:00"
+        },
+        {
+          "CreditAmount": 0,
+          "DebitAmount": 0,
+          "Odds": 0.3,
+          "RefId": "4351400_1017_U",
+          "TxId": {
+            "$numberLong": "298405909598568484"
+          },
+          "LicenseeTxId": "1596",
+          "ActualAmount": 1,
+          "IsOddsChanged": false,
+
+          "WinlostDate": "2024-09-12T00:00:00.000-04:00"
+        },
+        {
+          "CreditAmount": 0,
+          "DebitAmount": 0,
+          "Odds": 0.12,
+          "RefId": "4351400_1018_U",
+          "TxId": {
+            "$numberLong": "298405909598568485"
+          },
+          "LicenseeTxId": "1597",
+          "ActualAmount": 1,
+          "IsOddsChanged": false,
+
+          "WinlostDate": "2024-09-12T00:00:00.000-04:00"
+        }
+      ],
+      "TicketDetail": [
+        {
+          "MatchId": 92318906,
+          "SportType": 1,
+          "BetType": 1,
+          "OddsId": 729708282,
+          "Odds": 1.78,
+          "OddsType": 3,
+          "LeagueId": 95731,
+          "IsLive": false,
+          "IsOddsChanged": false
+        },
+        {
+          "MatchId": 92318856,
+          "SportType": 1,
+          "BetType": 1,
+          "OddsId": 729707955,
+          "Odds": 1.95,
+          "OddsType": 3,
+          "LeagueId": 95731,
+          "IsLive": false,
+          "IsOddsChanged": false
+        },
+        {
+          "MatchId": 92318848,
+          "SportType": 1,
+          "BetType": 1,
+          "OddsId": 729707806,
+          "Odds": 1.87,
+          "OddsType": 3,
+          "LeagueId": 95731,
+          "IsLive": false,
+          "IsOddsChanged": false
+        },
+        {
+          "MatchId": 92266927,
+          "SportType": 1,
+          "BetType": 1,
+          "OddsId": 729334303,
+          "Odds": 1.76,
+          "OddsType": 3,
+          "LeagueId": 95731,
+          "IsLive": false,
+          "IsOddsChanged": false
+        },
+        {
+          "MatchId": 92266921,
+          "SportType": 1,
+          "BetType": 1,
+          "OddsId": 729334154,
+          "Odds": 2,
+          "OddsType": 3,
+          "LeagueId": 95731,
+          "IsLive": false,
+          "IsOddsChanged": false
+        }
+      ],
+      "TransactionTime": "2024-09-11T23:27:20.000-04:00"
+    }
+  },
+  "PlaceBet": {
+    "key": "y2g53zl9g4",
+    "message": {
+      "BetAmount": 1,
+      "CreditAmount": 0,
+      "DebitAmount": 1,
+      "ActualAmount": 1,
+      "Action": "PlaceBet",
+      "OperationId": "4351400_1_1376_U",
+      "Odds": 0.75,
+      "OddsType": 1,
+      "UserId": "Starix1SW_4unxqj175ksf_test",
+      "Currency": 20,
+      "MatchId": 91708051,
+      "HomeId": 77,
+      "AwayId": 70,
+      "HomeName": "RCD Mallorca",
+      "AwayName": "Villarreal CF",
+      "KickOffTime": "2024-09-14T08:15:00.000-04:00",
+      "BetTime": "2024-09-06T04:59:22.721-04:00",
+      "SportType": 1,
+      "SportTypeName": "Soccer",
+      "BetType": 1,
+      "BetTypeName": "Handicap",
+      "OddsId": 725050318,
+      "BetChoice": "Villarreal CF",
+      "BetChoice_en": "Villarreal CF",
+      "UpdateTime": "2024-09-06T04:59:22.721-04:00",
+      "LeagueId": 43,
+      "LeagueName": "*SPAIN PRIMERA LALIGA",
+      "LeagueName_en": "*SPAIN PRIMERA LALIGA",
+      "SportTypeName_en": "Soccer",
+      "HomeName_en": "RCD Mallorca",
+      "AwayName_en": "Villarreal CF",
+      "BetTypeName_en": "Handicap",
+      "IP": "202.78.231.34",
+      "IsLive": false,
+      "RefId": "4351400_528_U",
+      "TsId": "",
+      "Point": "0.25",
+      "Point2": "",
+      "BetTeam": "a",
+      "HomeScore": 0,
+      "AwayScore": 0,
+      "BaStatus": false,
+      "Excluding": "",
+      "BetFrom": "W001",
+
+      "OddsInfo": "",
+      "MatchDateTime": "2024-09-14T08:00:00.000-04:00",
+      "BetRemark": "",
+      "VendorTransId": null,
+      "MmrPercentage": null,
+      "Voucher": null
+    }
+  },
+  "ConfirmBet": {
+    "key": "y2g53zl9g4",
+    "message": {
+      "Action": "ConfirmBet",
+      "OperationId": "4351400_2_1377_U",
+      "UserId": "Starix1SW_4unxqj175ksf_test",
+      "UpdateTime": "2024-09-06T04:59:23.316-04:00",
+      "TransactionTime": "2024-09-06T04:59:23.000-04:00",
+      "Txns": [
+        {
+          "ActualAmount": 1,
+          "CreditAmount": 0,
+          "DebitAmount": 0,
+          "Odds": 0.75,
+          "RefId": "4351400_528_U",
+          "TxId": 296264967185760260,
+          "LicenseeTxId": "471",
+
+          "OddsType": 1,
+          "IsOddsChanged": false,
+          "WinlostDate": "2024-09-14T00:00:00.000-04:00",
+          "MmrPercentage": 0,
+          "IsMmrPercentageChanged": false
+        }
+      ]
+    }
+  },
+  "CancelBet": {
+    "key": "y2g53zl9g4",
+    "message": {
+      "Action": "CancelBet",
+      "UserId": "Starix1SW_4unxqj175ksf_test",
+      "OperationId": "4351400_3_30003_M",
+      "UpdateTime": "2024-09-06T04:59:23.316-04:00",
+      "ErrorMessage": "BettingFailed",
+      "Txns": [
+        {
+          "RefId": "4351400_528_U",
+          "CreditAmount": 1,
+          "DebitAmount": 0
+        }
+      ]
+    }
+  },
+  "GetBalance": {
+    "key": "y2g53zl9g4",
+    "message": {
+      "Action": "GetBalance",
+      "UserId": "Starix1SW_4unxqj175ksf_test"
+    }
+  },
+  "Settle": {
+    "key": "y2g53zl9g4",
+    "message": {
+      "Action": "Settle",
+      "OperationId": "4351400_4_1569_U",
+      "Txns": [
+        {
+          "Payout": 0,
+          "CreditAmount": 0,
+          "DebitAmount": 0,
+          "Status": "won",
+          "UserId": "Starix1SW_4unxqj175ksf_test",
+          "RefId": "4351400_528_U",
+          "TxId": 297281238052372500,
+          "UpdateTime": "2024-09-08T23:19:19.690-04:00",
+          "WinlostDate": "2024-09-08T00:00:00.000-04:00",
+
+          "SettlementTime": "2024-09-08T23:19:08.583",
+          "ExtraStatus": ""
+        }
+      ]
+    }
+  },
+  "ReSettle": {
+    "key": "y2g53zl9g4",
+    "message": {
+      "Action": "Resettle",
+      "OperationId": "4351400_6_478_U",
+      "Txns": [
+        {
+          "Payout": 15,
+          "CreditAmount": 0,
+          "DebitAmount": 0,
+          "Status": "won",
+          "UserId": "Starix1SW_4unxqj175ksf_test",
+          "RefId": "4351400_528_U",
+          "TxId": 293676764058615900,
+          "UpdateTime": "2024-08-30T23:56:38.021-04:00",
+          "WinlostDate": "2024-08-31T00:00:00.000-04:00",
+          "SettlementTime": "0001-01-01T00:00:00",
+          "ExtraStatus": "",
+          "ExtraInfo": {
+            "IsOnlyWinlostDateChanged": false
+          }
+        }
+      ]
+    }
+  },
+  "UnSettle": {
+    "key": "y2g53zl9g4",
+    "message": {
+      "Action": "Unsettle",
+      "OperationId": "4351400_5_50005_M",
+      "Txns": [
+        {
+          "CreditAmount": 0,
+          "DebitAmount": 0,
+          "UserId": "Starix1SW_4unxqj175ksf_test",
+          "RefId": "4351400_5529965_M",
+          "TxId": 1400240193049,
+          "UpdateTime": "2024-09-07T02:32:53.656-04:00",
+          "ExtraStatus": ""
+        }
+      ]
+    }
+  }
+}
