@@ -8,19 +8,29 @@ import {
   voidGameApi,
 } from "../services/sabaPlusApi";
 import { nanoid } from "nanoid";
+
 const getPlaceBetSBPlusData = () => {
   const operatorCustId = store?.getState().userInfo.userId;
   const gameId = generateRandomNumber(4);
   const gameRoundId = `simulator_${gameId}_${generateRandomNumber(8)}`;
   const ticketNo = `${gameId}|$|${operatorCustId}|$|${gameRoundId}`;
   const stake = generateRandomStake();
+
+  const vendor = getProviderRandomAndGameType();
+  const walletSiteTokenParts = spPlusData.placeBet.Payload.WalletSideToken.split('@');
+  walletSiteTokenParts[0] = vendor.GameProviderCode;
+  const walletSiteToken = walletSiteTokenParts.join('@');
+
   return {
     ...spPlusData.placeBet,
     Seq: `${nanoid(8)}-${nanoid(4)}-${nanoid(4)}-${nanoid(4)}-${nanoid(8)}`,
     TimeStamp: moment().tz("UTC").format("YYYY/MM/DD HH:mm:ss.SSS"),
     Payload: {
       ...spPlusData.placeBet.Payload,
+      WalletSideToken: walletSiteToken,
       OperatorCustId: operatorCustId,
+      GameType: vendor.GameType,
+      GameProviderCode: vendor.GameProviderCode,
       BetDataSet: [
         {
           ...spPlusData.placeBet.Payload.BetDataSet[0],
@@ -41,14 +51,22 @@ const getPlaceFreeSpinSBPlusData = () => {
   const gameId = generateRandomNumber(4);
   const gameRoundId = `simulator_${gameId}_${generateRandomNumber(8)}`;
   const ticketNo = `${gameId}|$|${operatorCustId}|$|${gameRoundId}`;
-  const stake = generateRandomStake();
+
+  const vendor = getProviderRandomAndGameType();
+  const walletSiteTokenParts = spPlusData.placeBet.Payload.WalletSideToken.split('@');
+  walletSiteTokenParts[0] = vendor.GameProviderCode;
+  const walletSiteToken = walletSiteTokenParts.join('@');
+
   return {
     ...spPlusData.placeFreeSpin,
     Seq: `${nanoid(8)}-${nanoid(4)}-${nanoid(4)}-${nanoid(4)}-${nanoid(8)}`,
     TimeStamp: moment().tz("UTC").format("YYYY/MM/DD HH:mm:ss.SSS"),
     Payload: {
       ...spPlusData.placeFreeSpin.Payload,
+      WalletSideToken: walletSiteToken,
       OperatorCustId: operatorCustId,
+      GameType: vendor.GameType,
+      GameProviderCode: vendor.GameProviderCode,
       BetDataSet: [
         {
           ...spPlusData.placeFreeSpin.Payload.BetDataSet[0],
@@ -106,13 +124,21 @@ const getPlaceBetAndSettleSBPlusData = () => {
   const ticketNo = `${gameId}|$|${operatorCustId}|$|${gameRoundId}`;
   const stake = generateRandomStake();
 
+  const vendor = getProviderRandomAndGameType();
+  const walletSiteTokenParts = spPlusData.placeBet.Payload.WalletSideToken.split('@');
+  walletSiteTokenParts[0] = vendor.GameProviderCode;
+  const walletSiteToken = walletSiteTokenParts.join('@');
+
   return {
     ...spPlusData.placeBetAndSettle,
     Seq: `${nanoid(8)}-${nanoid(4)}-${nanoid(4)}-${nanoid(4)}-${nanoid(8)}`,
     TimeStamp: moment().tz("UTC").format("YYYY/MM/DD HH:mm:ss.SSS"),
     Payload: {
       ...spPlusData.placeBetAndSettle.Payload,
+      WalletSideToken: walletSiteToken,
       OperatorCustId: operatorCustId,
+      GameType: vendor.GameType,
+      GameProviderCode: vendor.GameProviderCode,
       BetDataSet: [
         {
           ...spPlusData.placeBetAndSettle.Payload.BetDataSet[0],
@@ -177,6 +203,16 @@ const generateRandomStake = () => {
   const max = 59;
   return Math.floor(Math.random() * (max - min + 1)) + min;
 };
+
+const getProviderRandomAndGameType = () => {
+  const providerName = store?.getState().sabaPlus.vendorOptions.name;
+  return {
+    ProviderName: providerName,
+    GameProviderCode: `SABAPLUS-${providerName}`,
+    GameType: store?.getState().sabaPlus.vendorOptions.gameTypes[Math.floor(Math.random() * store?.getState().sabaPlus.vendorOptions.gameTypes.length)]
+  }
+}
+
 
 const sabaPlusLookup = {
   placeBet: {

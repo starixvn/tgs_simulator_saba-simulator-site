@@ -14,6 +14,7 @@ import SabaIcon from "../components/SabaIcon/SabaIcon";
 import SabaPlusGroupAutoButton from "./SabaPlusGroupAutoButton";
 import SabaPlusGroupScheduleButton from "./SabaPlusGroupScheduleButton";
 import BetResultCheckButtonGroup from "./BetResultCheckButtonGroup";
+import SabaPlusGroupVendorOption from "./SabaPlusGroupVendorOption";
 const SabaPlusPopup = () => {
   const dispatch = useDispatch();
   const clickedButtons = useSelector((state) => state.sabaPlus.clickedButtons);
@@ -24,7 +25,7 @@ const SabaPlusPopup = () => {
   };
 
   const restartProcess = () => {
-    dispatch(restartSabaPlusStore());
+    dispatch(restartSabaPlusStore({}));
   };
 
   const handleActionClick = async (key) => {
@@ -47,6 +48,9 @@ const SabaPlusPopup = () => {
           className="custom-icon-class"
         ></SabaIcon>
         <SabaPlusUserInfo></SabaPlusUserInfo>
+      </div>
+      <div className="popup-body">
+        <SabaPlusGroupVendorOption headerText="Vendor"/>
       </div>
       <div className="popup-body">
         <TabPanel value="manual">

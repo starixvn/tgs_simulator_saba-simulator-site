@@ -1,9 +1,11 @@
 //@ts-nocheck
 import { createSlice } from "@reduxjs/toolkit";
+import { Provider, ProviderGameTypes } from "../../constant/Provider";
 const initialState = {
   clickedButtons: [],
   currentState: "",
   nextButtons: ["placeBet", "placeBetAndSettle", "placeFreeSpin"],
+  vendorOptions: {name: Provider.SBPLAY, gameTypes: ProviderGameTypes[Provider.SBPLAY][0]},
   betData: {
     placeBet: {
       request: null,
@@ -61,6 +63,10 @@ const sabaPlusSlice = createSlice({
           clicked: ["placeFreeSpin"],
           next: ["endGame", "voidGame"],
         },
+        voidGame: {
+          clicked: ["voidGame"],
+          next: [],
+        },
       };
 
       const actions = buttonActions[key] || { clicked: [], next: [] };
@@ -88,11 +94,14 @@ const sabaPlusSlice = createSlice({
     updateCurrentState: (state, action) => {
       state.currentState = action.payload;
     },
-    restartSabaPlusStore: (state) => {
-      return initialState;
+    restartSabaPlusStore: (state, action) => {
+      return {...initialState, ...action.payload};
     },
     updateScheduleData: (state, action) => {
       state.scheduleData = action.payload;
+    },
+    updateVendorOption: (state, action) => {
+      state.vendorOptions = action.payload;
     },
   },
 });
@@ -104,5 +113,6 @@ export const {
   restartSabaPlusStore,
   updateStateRetry,
   updateScheduleData,
+  updateVendorOption
 } = sabaPlusSlice.actions;
 export default sabaPlusSlice.reducer;
