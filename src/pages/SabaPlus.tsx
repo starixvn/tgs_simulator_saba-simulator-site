@@ -13,7 +13,7 @@ const SabaPlus = () => {
   const dispatch = useDispatch();
   const tabValue = useSelector((state) => state.tabSimulator.tabValue);
   const handleChangeTab = (event: React.SyntheticEvent, newValue: TTab) => {
-    dispatch(restartSabaPlusStore());
+    dispatch(restartSabaPlusStore({}));
     dispatch(updateTabValue(newValue));
   };
   return (

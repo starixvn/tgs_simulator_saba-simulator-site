@@ -11,7 +11,7 @@ function App() {
     // initialize State
     dispatch(restartSingleBetStore());
     dispatch(restartUserInfoStore());
-    dispatch(restartSabaPlusStore());
+    dispatch(restartSabaPlusStore({}));
   }, []);
 
   return (

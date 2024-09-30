@@ -13,6 +13,7 @@ type Props = {
 const SabaPlusGroupAutoButton = ({ headerText }: Props) => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.userInfo.userId);
+  const vendorOptions = useSelector((state) => state.sabaPlus.vendorOptions);
 
   const delay = (ms) => new Promise((res) => setTimeout(res, ms));
 
@@ -21,7 +22,13 @@ const SabaPlusGroupAutoButton = ({ headerText }: Props) => {
       alert("Please insert User Id then click save");
       return;
     }
-    dispatch(restartSabaPlusStore());
+    dispatch(
+      restartSabaPlusStore({
+        vendorOptions: {
+          ...vendorOptions
+        },
+      })
+    );
     for (let i = 0; i < keys.length; i++) {
       const dataSample = sabaPlusLookup[keys[i]]?.getSampleData();
       const response = await sabaPlusLookup[keys[i]]?.callApi(dataSample);
