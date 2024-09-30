@@ -24,8 +24,8 @@ const initialState = {
       response: null,
     },
     voidGame: {
-      interval: null,
-      loop: null,
+      request: null,
+      response: null,
     },
   },
   betRetryData: {
