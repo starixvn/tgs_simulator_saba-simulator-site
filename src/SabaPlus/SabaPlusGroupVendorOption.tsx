@@ -69,6 +69,7 @@ const SabaPlusGroupVendorOption = ({ headerText }: Props) => {
     <div className="button-group">
       <h4 className="header-text">{headerText}</h4>
       <div className="options">
+        <label>Game Provider:</label>
         <Select
           value={options.find((item) => item.value == vendor.name)}
           defaultValue={options.find((item) => item.value == vendor.name)}
@@ -76,6 +77,7 @@ const SabaPlusGroupVendorOption = ({ headerText }: Props) => {
           onChange={handleProviderChange}
         ></Select>
         <div className="gap"/>
+        <label>Game Type:</label>
         <Select
           value={gameOptions.find((item) => item.value == vendor.gameType)}
           defaultValue={gameOptions.find((item) => item.value == vendor.gameType)}
