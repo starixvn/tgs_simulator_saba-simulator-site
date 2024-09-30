@@ -250,6 +250,11 @@ const getProviderRandomAndGameType = () => {
 }
 
 const sabaPlusLookup = {
+  standaloneVoid: {
+    getSampleData: () => spPlusData.voidGame,
+    callApi: voidGameApi,
+    label: "Void",
+  },
   placeBet: {
     getSampleData: getPlaceBetSBPlusData,
     callApi: placeBetApi,

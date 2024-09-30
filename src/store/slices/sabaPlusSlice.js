@@ -4,7 +4,7 @@ import { Provider, ProviderGameTypes } from "../../constant/Provider";
 const initialState = {
   clickedButtons: [],
   currentState: "",
-  nextButtons: ["placeBet", "placeBetAndSettle", "placeFreeSpin"],
+  nextButtons: ["standaloneVoid", "placeBet", "placeBetAndSettle", "placeFreeSpin"],
   vendorOptions: {name: Provider.SIMULATOR, gameType: ProviderGameTypes[Provider.SIMULATOR][0]},
   betData: {
     placeBet: {
@@ -28,6 +28,10 @@ const initialState = {
       response: null,
     },
     freeSpin: {
+      request: null,
+      response: null,
+    },
+    standaloneVoid: {
       request: null,
       response: null,
     },
@@ -69,6 +73,10 @@ const sabaPlusSlice = createSlice({
         },
         voidGame: {
           clicked: ["voidGame"],
+          next: [],
+        },
+        standaloneVoid: {
+          clicked: ["standaloneVoid"],
           next: [],
         },
       };

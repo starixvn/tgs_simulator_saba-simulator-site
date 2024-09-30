@@ -11,7 +11,6 @@ WORKDIR /app
 
 COPY --from=dependencies /app/node_modules ./node_modules
 
-
 COPY . .
 
 RUN if [ "${TRANSFORM_CONFIG}" = "LOCAL" ]; then \
