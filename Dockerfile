@@ -1,12 +1,12 @@
 
-FROM node:18.18.0 AS dependencies
+FROM node:18.18.0-alpine AS dependencies
 ARG TRANSFORM_CONFIG
 WORKDIR /app
 COPY package.json yarn.lock ./
 
 RUN  yarn install
 
-FROM node:18.18.0 AS builder
+FROM node:18.18.0-alpine AS builder
 WORKDIR /app
 
 COPY --from=dependencies /app/node_modules ./node_modules
