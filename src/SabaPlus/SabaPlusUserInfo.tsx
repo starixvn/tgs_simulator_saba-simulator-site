@@ -7,14 +7,20 @@ import {
 import { balanceData } from "../constant/SabaPlusData.json";
 import ChangeCircleIcon from "@mui/icons-material/ChangeCircle";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
 const SabaPlusUserInfo = () => {
   const { userId, balance } = useSelector((state) => state.userInfo);
   const [userIdInput, setUserIdInput] = useState("");
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
+    const params = new URLSearchParams(location.search);
     const validCustId =
-      userId || localStorage.getItem("saba-simulator-saba-plus-userId");
+      params.get("userCustId") ||
+      userId ||
+      localStorage.getItem("saba-simulator-saba-plus-userId");
 
     if (validCustId) {
       const fetchBalance = async () => {
@@ -61,6 +67,7 @@ const SabaPlusUserInfo = () => {
   const handleOnChangeAccount = () => {
     localStorage.removeItem("saba-simulator-saba-plus-userId");
     setUserIdInput("");
+    navigate("/saba-plus", { replace: true });
     dispatch(restartUserInfoStore());
   };
 
