@@ -19,6 +19,25 @@ export const placeBetApi = async (betData) => {
   }
 };
 
+
+export const freeSpinApi = async (betData) => {
+  try {
+    const response = await axios.post(
+      `${apiUrl}/api/Simulator/sabaPlus-FreeSpin`,
+      betData,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    return error;
+  }
+};
+
 export const voidGameApi = async (betData) => {
   try {
     const response = await axios.post(

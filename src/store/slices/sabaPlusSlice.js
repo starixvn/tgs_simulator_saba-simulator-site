@@ -27,6 +27,10 @@ const initialState = {
       request: null,
       response: null,
     },
+    freeSpin: {
+      request: null,
+      response: null,
+    },
   },
   betRetryData: {
     placeBet: [],
@@ -49,19 +53,19 @@ const sabaPlusSlice = createSlice({
       const buttonActions = {
         placeBet: {
           clicked: ["placeBet"],
-          next: ["placeBet", "endGame", "voidGame"],
+          next: ["placeBet", "endGame", "voidGame", "freeSpin"],
         },
         endGame: {
           clicked: ["endGame"],
-          next: ["voidGame"],
+          next: ["voidGame", "freeSpin"],
         },
         placeBetAndSettle: {
           clicked: ["placeBetAndSettle"],
-          next: ["voidGame"],
+          next: ["voidGame", "freeSpin"],
         },
         placeFreeSpin: {
           clicked: ["placeFreeSpin"],
-          next: ["endGame", "voidGame"],
+          next: ["endGame", "voidGame", "freeSpin"],
         },
         voidGame: {
           clicked: ["voidGame"],

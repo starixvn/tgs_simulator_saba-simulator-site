@@ -6,6 +6,7 @@ import {
   endGameApi,
   placeBetAndSettleApi,
   voidGameApi,
+  freeSpinApi,
 } from "../services/sabaPlusApi";
 import { nanoid } from "nanoid";
 
@@ -179,6 +180,41 @@ const getVoidSBPlusData = () => {
   };
 };
 
+const getFreeSpinSBPlusData = () => {
+  const preData = getPlaceBetData();
+  const preRequest = preData.request;
+
+  const operatorCustId = store?.getState().userInfo.userId;
+
+  const vendor = getProviderRandomAndGameType();
+  const walletSiteTokenParts = spPlusData.placeBet.Payload.WalletSideToken.split('@');
+  walletSiteTokenParts[0] = vendor.GameProviderCode;
+  const walletSiteToken = walletSiteTokenParts.join('@');
+
+  return {
+    ...spPlusData.freeSpin,
+    Seq: `${nanoid(8)}-${nanoid(4)}-${nanoid(4)}-${nanoid(4)}-${nanoid(8)}`,
+    TimeStamp: moment().tz("UTC").format("YYYY/MM/DD HH:mm:ss.SSS"),
+    Payload: {
+      ...spPlusData.freeSpin.Payload,
+      WalletSideToken: walletSiteToken,
+      OperatorCustId: operatorCustId,
+      GameType: vendor.GameType,
+      GameProviderCode: vendor.GameProviderCode,
+      BetDataSet: preRequest.Payload.BetDataSet.map((item, inde) => (        {
+        ...spPlusData.freeSpin.Payload.BetDataSet[0],
+        GameId: item.GameId,
+        GameRoundId: item.GameRoundId,
+        TicketNo: item.TicketNo,
+        Stake: item.Stake,
+        ActualStake: item.Stake,
+        SettleDate: moment().tz("UTC").format("YYYY/MM/DD HH:mm:ss.SSS"),
+        SettleDateWithTz: moment().tz("UTC").format("YYYY-MM-DDTHH:mm:ssZ"),
+      }))
+    },
+  };
+};
+
 const getPlaceBetData = () => {
   const clickedAction = store?.getState().sabaPlus.clickedButtons;
 
@@ -233,6 +269,11 @@ const sabaPlusLookup = {
     getSampleData: getPlaceFreeSpinSBPlusData,
     callApi: placeBetApi,
     label: "Place Free Spin",
+  },
+  freeSpin: {
+    getSampleData: getFreeSpinSBPlusData,
+    callApi: freeSpinApi,
+    label: "Free Spin",
   },
   voidGame: {
     getSampleData: getVoidSBPlusData,

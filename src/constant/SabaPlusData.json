@@ -93,6 +93,32 @@
       "S1GameId": "8200054"
     }
   },
+  "freeSpin": {
+    "TimeStamp": "2024/09/18 07:12:01.273",
+    "Seq": "7480dfd7-0d61-4375-b099-d4c6109e5930",
+    "Payload": {
+      "OperatorCustId": "",
+      "WalletSideToken": "SABAPLUS-JILI@8200054@d0b8a2c4-a3bb-4332-9b58-e79e50d081bf",
+      "GameType": "JiLi",
+      "IpAddress": "120.72.109.34",
+      "BetDataSet": [
+        {
+          "TicketNo": "5153|$|4uo530qbs9ds_test|$|1370776337645750183",
+          "GameId": "5153",
+          "GameRoundId": "1370776337645750183",
+          "TransactionId": null,
+          "Stake": 0.3,
+          "ActualStake": 0.3,
+          "NetStake": 0.3,
+          "Payout": 0,
+          "SettleDate": "2024/09/18 03:12:01.000",
+          "BetChoice": "1"
+        }
+      ],
+      "GameProviderCode": "SABAPLUS-JILI",
+      "S1GameId": "8200054"
+    }
+  },
   "balanceData": {
     "TimeStamp": "2024/09/19 03:35:35.079",
     "Seq": "599c59ef-941a-49ac-86de-07fc439d782c",
