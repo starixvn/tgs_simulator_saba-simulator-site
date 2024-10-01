@@ -1,10 +1,10 @@
-import data from '../../seed-data/betData.json' assert { type: "json" };
+import data from '../../seed-data/betData.json';
 import { nanoid } from "nanoid";
-import { DateHelper, NumberHelper } from '../utils/index.js'
+import { DateHelper, NumberHelper } from '../utils'
 
 const betAmount = 7;
 
-export const generateBetData = (userId) => {  
+export const generateBetData = (userId: string) => {  
   const simulatedTime = DateHelper.formatCurrentDateTime();
 
   return {
@@ -25,7 +25,7 @@ export const generateBetData = (userId) => {
   };
 };
 
-export  const getConfirmBetData = (userId , placeBetResult) => {
+export const getConfirmBetData = (userId, placeBetResult) => {
   const { refId, licenseeTxId } = placeBetResult;
   const simulatedTime = DateHelper.formatCurrentDateTime();
   const simulatedDate = DateHelper.formatCurrentDate();
@@ -53,8 +53,9 @@ export  const getConfirmBetData = (userId , placeBetResult) => {
   };
 };
 
-export const getSettlleBetData = (userId, confirmBetRequest ) => {
-  let { ActualAmount, RefId, TxId, Odds } = confirmBetRequest.message.Txns[0];
+export const getSettlleBetData = (userId, confirmBetRequest) => {
+  let { ActualAmount } = confirmBetRequest.message.Txns[0];
+  const { RefId, TxId, Odds } = confirmBetRequest.message.Txns[0];
 
   const simulatedTime = DateHelper.formatCurrentDateTime();
   const simulatedDate = DateHelper.formatCurrentDate();
@@ -137,7 +138,7 @@ export const getUnsettleBetData = (userId, confirmBetRequest, settleBetRequest) 
   const txId = confirmBetRequest.message?.Txns[0].TxId;
 
   const simulatedTime = DateHelper.formatCurrentDateTime();
-  
+
   const betData = {
     ...data.UnSettle,
     message: {

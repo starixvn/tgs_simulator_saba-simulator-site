@@ -1,0 +1,159 @@
+{
+  "placeBet": {
+    "TimeStamp": "2024/09/19 03:08:13.043",
+    "Seq": "4034c713-2caa-4e6b-9c1a-07ffb621d726",
+    "Payload": {
+      "OperatorCustId": "",
+      "WalletSideToken": "SABAPLUS-MAXPLAY@7600001@8a16e864-415d-41e1-80c8-e15bbcf5ea57",
+      "GameType": "MaxGame",
+      "IpAddress": "202.78.231.34",
+      "BetDataSet": [
+        {
+          "TicketNo": "5402|$|4uo530qbs9ds_test|$|5402_30204458",
+          "GameId": "5402",
+          "GameRoundId": "5402_30204458",
+          "TransactionId": null,
+          "Stake": 10,
+          "ActualStake": 10,
+          "Odds": 0,
+          "BetChoice": null,
+          "TableCode": null,
+          "OtherBetInfo": null
+        }
+      ],
+      "GameProviderCode": "SABAPLUS-MAXPLAY",
+      "S1GameId": "7600001"
+    }
+  },
+  "voidGame": {
+    "TimeStamp": "2024/09/27 05:36:03.825",
+    "Seq": "f6a45a2b-d3da-4b8f-9c14-43ba59e364e9",
+    "Payload": {
+      "OperatorCustId": "4uo2mwf6dow8_test",
+      "GameType": "FaChai",
+      "BetDataSet": [
+        {
+          "Status": 5,
+          "TicketNo": "11314|$|4uo2mwf6dow8_test|$|66f51c802ffa022cbfa6783b",
+          "GameId": "11314",
+          "GameRoundId": "66f51c802ffa022cbfa6783b",
+          "TransactionId": null
+        }
+      ],
+      "Action": "VoidGame"
+    }
+  },
+  "endGame": {
+    "TimeStamp": "2024/09/19 03:08:19.723",
+    "Seq": "b4f0ab88-2b13-4faf-9543-09386f22eb58",
+    "Payload": {
+      "OperatorCustId": "",
+      "GameType": "MaxGame",
+      "BetDataSet": [
+        {
+          "TicketNo": "5402|$|4uo530qbs9ds_test|$|5402_30204458",
+          "GameId": "5402",
+          "GameRoundId": "5402_30204458",
+          "TransactionId": null,
+          "ActualStake": 30,
+          "NetStake": 30,
+          "Payout": 64.5,
+          "Odds": 0,
+          "GameResult": null,
+          "SettleDate": "2024/09/18 23:08:16.000",
+          "ResultId": null,
+          "OtherBetInfo": null
+        }
+      ]
+    }
+  },
+  "placeBetAndSettle": {
+    "TimeStamp": "2024/09/18 07:12:01.273",
+    "Seq": "7480dfd7-0d61-4375-b099-d4c6109e5930",
+    "Payload": {
+      "OperatorCustId": "",
+      "WalletSideToken": "SABAPLUS-JILI@8200054@d0b8a2c4-a3bb-4332-9b58-e79e50d081bf",
+      "GameType": "JiLi",
+      "IpAddress": "120.72.109.34",
+      "BetDataSet": [
+        {
+          "TicketNo": "5153|$|4uo530qbs9ds_test|$|1370776337645750183",
+          "GameId": "5153",
+          "GameRoundId": "1370776337645750183",
+          "TransactionId": null,
+          "Stake": 0.3,
+          "ActualStake": 0.3,
+          "NetStake": 0.3,
+          "Payout": 0,
+          "SettleDate": "2024/09/18 03:12:01.000",
+          "BetChoice": "1"
+        }
+      ],
+      "GameProviderCode": "SABAPLUS-JILI",
+      "S1GameId": "8200054"
+    }
+  },
+  "freeSpin": {
+    "TimeStamp": "2024/09/18 07:12:01.273",
+    "Seq": "7480dfd7-0d61-4375-b099-d4c6109e5930",
+    "Payload": {
+      "OperatorCustId": "",
+      "GameType": "JiLi",
+      "IpAddress": "120.72.109.34",
+      "BetDataSet": [
+        {
+          "TicketNo": "5153|$|4uo530qbs9ds_test|$|1370776337645750183",
+          "GameId": "5153",
+          "GameRoundId": "1370776337645750183",
+          "TransactionId": null,
+          "Stake": 0,
+          "ActualStake": 0,
+          "NetStake": 0,
+          "Payout": 0,
+          "SettleDate": "2024/09/18 03:12:01.000"
+        }
+      ],
+      "GameProviderCode": "SABAPLUS-JILI",
+      "S1GameId": "8200054"
+    }
+  },
+  "balanceData": {
+    "TimeStamp": "2024/09/19 03:35:35.079",
+    "Seq": "599c59ef-941a-49ac-86de-07fc439d782c",
+    "Payload": {
+      "OperatorCustId": "",
+      "WalletSideToken": "SABAPLUS-MAXPLAY@7600001@8a16e864-415d-41e1-80c8-e15bbcf5ea57",
+      "GameType": "MaxGame"
+    }
+  },
+  "placeFreeSpin": {
+    "TimeStamp": "2024/09/21 04:31:42.116",
+    "Seq": "bbfa4a0d-0282-4328-bed7-3bb74d155325",
+    "Payload": {
+      "OperatorCustId": "",
+      "WalletSideToken": "SABAPLUS-SBPLAY@8400004@8518ef5d-387e-4f5d-9694-f68b7b34558d",
+      "GameType": "SabaPlay",
+      "IpAddress": "120.72.109.34",
+      "BetDataSet": [
+        {
+          "TicketNo": "",
+          "GameId": "3835",
+          "GameRoundId": "16437",
+          "TransactionId": null,
+          "Stake": 0,
+          "ActualStake": 0,
+          "Odds": 0,
+          "BetChoice": null,
+          "TableCode": null,
+          "OtherBetInfo": {
+            "FreeBet": "False",
+            "FreeSpin": "True",
+            "ContributionAmount": "0.0",
+            "ContributionRate": "0.0"
+          }
+        }
+      ],
+      "GameProviderCode": "SABAPLUS-SBPLAY"
+    }
+  }
+}

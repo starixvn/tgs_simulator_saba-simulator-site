@@ -3,7 +3,7 @@ export const formatCurrentDateTime = () => {
   const utc = now.getTime() + now.getTimezoneOffset() * 60000;
   const timezoneOffset = -4 * 60 * 60 * 1000;
   const dateInTargetTimezone = new Date(utc + timezoneOffset);
-  const pad = (num) => String(num).padStart(2, "0");
+  const pad = (num: number) => String(num).padStart(2, "0");
   const year = dateInTargetTimezone.getFullYear();
   const month = pad(dateInTargetTimezone.getMonth() + 1);
   const day = pad(dateInTargetTimezone.getDate());
@@ -24,7 +24,7 @@ export const formatCurrentDate = () => {
   const timezoneOffset = -4 * 60 * 60 * 1000;
   const dateInTargetTimezone = new Date(utc + timezoneOffset);
 
-  const pad = (num) => String(num).padStart(2, "0");
+  const pad = (num: number) => String(num).padStart(2, "0");
   const year = dateInTargetTimezone.getFullYear();
   const month = pad(dateInTargetTimezone.getMonth() + 1);
   const day = pad(dateInTargetTimezone.getDate());

@@ -1,4 +1,4 @@
-export const generateRandomNumber = (length) => {
+export const generateRandomNumber = (length: number) => {
     if (length < 1) return "";
   
     const min = Math.pow(10, length - 1);
