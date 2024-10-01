@@ -136,9 +136,7 @@ const getSettleBetData = () => {
 
 const getResettleBetData = () => {
   const settleBetData = store?.getState()?.singleBet?.betData?.settleBet;
-  const txId =
-    store?.getState()?.singleBet?.betData?.confirmBet?.request?.message?.Txns[0]
-      .TxId;
+  const txId = store?.getState()?.singleBet?.betData?.confirmBet?.request?.message?.Txns[0].TxId;
   const simulatedTime = formatCurrentDateTime();
   const simulatedDate = formatCurrentDate();
   const userId = store.getState().userInfo.userId;

@@ -1,11 +1,13 @@
 {
   "name": "simulator-generator",
-  "version": "1.0.4",
+  "version": "1.0.9",
   "description": "",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "reg": "npm set registry http://npm.lumigame.com",
+    "pub": "tsc & npm publish --registry https://npm.lumigame.com"
   },
   "author": "",
   "license": "ISC",
