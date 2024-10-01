@@ -6,7 +6,7 @@ import {
   ProviderGameTypes,
 } from "../../seed-data/Provider";
 
-export const getPlaceBetSBPlusData = (operatorCustId: string) => {
+export const getPlaceBetSBPlusRequest = (operatorCustId: string) => {
   const gameId = generateRandomNumber(4);
   const gameRoundId = `simulator_${gameId}_${generateRandomNumber(8)}`;
   const ticketNo = `${gameId}|$|${operatorCustId}|$|${gameRoundId}`;
@@ -44,7 +44,7 @@ export const getPlaceBetSBPlusData = (operatorCustId: string) => {
   };
 };
 
-export const getPlaceFreeSpinSBPlusData = (operatorCustId: string) => {
+export const getPlaceFreeSpinSBPlusRequest = (operatorCustId: string) => {
   const gameId = generateRandomNumber(4);
   const gameRoundId = `simulator_${gameId}_${generateRandomNumber(8)}`;
   const ticketNo = `${gameId}|$|${operatorCustId}|$|${gameRoundId}`;
@@ -79,7 +79,7 @@ export const getPlaceFreeSpinSBPlusData = (operatorCustId: string) => {
   };
 };
 
-export const getPlaceBetAndSettleSBPlusData = (operatorCustId: string) => {
+export const getPlaceBetAndSettleSBPlusRequest = (operatorCustId: string) => {
   const gameId = generateRandomNumber(4);
   const gameRoundId = `simulator_${gameId}_${generateRandomNumber(8)}`;
   const ticketNo = `${gameId}|$|${operatorCustId}|$|${gameRoundId}`;
@@ -117,7 +117,7 @@ export const getPlaceBetAndSettleSBPlusData = (operatorCustId: string) => {
   };
 };
 
-export const getEndGameSBPlusData = (placeBetRequest) => {
+export const getEndGameSBPlusRequest = (placeBetRequest) => {
   const { GameId, GameRoundId, ActualStake, TicketNo, Stake } =
     placeBetRequest.Payload.BetDataSet[0];
   const operatorCustId = placeBetRequest.Payload.OperatorCustId;
@@ -148,7 +148,7 @@ export const getEndGameSBPlusData = (placeBetRequest) => {
   return endGameData;
 };
 
-export const getVoidSBPlusData = (placeBetRequest) => {
+export const getVoidSBPlusRequest = (placeBetRequest) => {
   return {
     ...spPlusData.voidGame,
     Seq: `${nanoid(8)}-${nanoid(4)}-${nanoid(4)}-${nanoid(4)}-${nanoid(8)}`,
@@ -167,7 +167,7 @@ export const getVoidSBPlusData = (placeBetRequest) => {
   };
 };
 
-export const getFreeSpinSBPlusData = (operatorCustId: string) => {
+export const getFreeSpinSBPlusRequest = (operatorCustId: string) => {
   const gameId = generateRandomNumber(4);
   const gameRoundId = `simulator_${gameId}_${generateRandomNumber(8)}`;
   const ticketNo = `${gameId}|$|${operatorCustId}|$|${gameRoundId}`;

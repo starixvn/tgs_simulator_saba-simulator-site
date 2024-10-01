@@ -2,7 +2,7 @@ import data from "../../seed-data/betData.json";
 import { nanoid } from "nanoid";
 import { DateHelper, NumberHelper } from "../utils";
 
-export const getPlaceBetParlayData = (userId: string) => {
+export const getPlaceBetParlayRequest = (userId: string) => {
   const now = DateHelper.formatCurrentDateTime();
 
   const betData = {
@@ -24,11 +24,11 @@ export const getPlaceBetParlayData = (userId: string) => {
   return betData;
 };
 
-export const getConfirmBetParlayData = (
+export const getConfirmBetParlayRequest = (
   placeBetRequest,
   placeBetResponse
 ) => {
-  const { UserId, UpdateTime, CreditAmount, DebitAmount } = placeBetRequest;
+  const { UserId, UpdateTime, CreditAmount, DebitAmount } = placeBetRequest.message;
 
   const getTicketDetail = (ticketDetail) => ({
     MatchId: ticketDetail.MatchId,
@@ -51,8 +51,8 @@ export const getConfirmBetParlayData = (
       CreditAmount: CreditAmount,
       DebitAmount: DebitAmount,
       TransactionTime: UpdateTime,
-      Txns: placeBetRequest.message.Txns.map((index) => ({
-        ...data.ConfirmBetParlay.message.Txns[index],
+      Txns: placeBetRequest.message.Txns.map((item, index) => ({
+        ...data.ConfirmBetParlay.message.Txns[0],
         LicenseeTxId: placeBetResponse.txns[index].licenseeTxId,
         RefId: placeBetRequest.message.Txns[index].RefId,
         ActualAmount: placeBetRequest.message.Txns[index].BetAmount,
@@ -63,7 +63,7 @@ export const getConfirmBetParlayData = (
   };
 };
 
-export const getCancelBetParlayData = (placeBetRequest) => {
+export const getCancelBetParlayRequest = (placeBetRequest) => {
   const { UserId } = placeBetRequest.message;
 
   const betData = {
@@ -83,7 +83,7 @@ export const getCancelBetParlayData = (placeBetRequest) => {
   return betData;
 };
 
-export const getSettleBetParlayData = (
+export const getSettleBetParlayRequest = (
   placeBetRequest,
   confirmBetRequest
 ) => {
@@ -118,7 +118,7 @@ export const getSettleBetParlayData = (
   return betData;
 };
 
-export const getResettleParlayBetData = (
+export const getResettleParlayBetRequest = (
   placeBetRequest,
   confirmBetRequest,
   settleBetRequest
@@ -160,7 +160,7 @@ export const getResettleParlayBetData = (
   return betData;
 };
 
-export const getUnsettleParlayBetData = (
+export const getUnsettleParlayBetRequest = (
   placeBetRequest,
   settleBetRequest,
 ) => {

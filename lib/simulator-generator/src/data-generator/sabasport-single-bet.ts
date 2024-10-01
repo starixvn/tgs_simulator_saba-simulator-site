@@ -4,7 +4,7 @@ import { DateHelper, NumberHelper } from '../utils'
 
 const betAmount = 7;
 
-export const generateBetData = (userId: string) => {  
+export const generateBetRequest = (userId: string) => {  
   const simulatedTime = DateHelper.formatCurrentDateTime();
 
   return {
@@ -25,7 +25,7 @@ export const generateBetData = (userId: string) => {
   };
 };
 
-export const getCancelBetData = (placeBetRequest) => {
+export const getCancelBetRequest = (placeBetRequest) => {
   const { BetAmount, RefId } = placeBetRequest.message;
 
   const userId = placeBetRequest.message.UserId;
@@ -51,7 +51,7 @@ export const getCancelBetData = (placeBetRequest) => {
 };
 
 
-export const getConfirmBetData = (userId, placeBetResult) => {
+export const getConfirmBetRequest = (userId, placeBetResult) => {
   const { refId, licenseeTxId } = placeBetResult;
   const simulatedTime = DateHelper.formatCurrentDateTime();
   const simulatedDate = DateHelper.formatCurrentDate();
@@ -79,7 +79,7 @@ export const getConfirmBetData = (userId, placeBetResult) => {
   };
 };
 
-export const getSettlleBetData = (userId, confirmBetRequest) => {
+export const getSettlleBetRequest = (userId, confirmBetRequest) => {
   let { ActualAmount } = confirmBetRequest.message.Txns[0];
   const { RefId, TxId, Odds } = confirmBetRequest.message.Txns[0];
 
@@ -114,7 +114,7 @@ export const getSettlleBetData = (userId, confirmBetRequest) => {
   return betData;
 };
 
-export const getResettleBetData = (userId, confirmBetRequest, settleBetRequest) => {
+export const getResettleBetRequest = (userId, confirmBetRequest, settleBetRequest) => {
   const { Payout, RefId, Status } = settleBetRequest.message.Txns[0];
   const txId = confirmBetRequest.message.Txns[0].TxId;
 
@@ -158,7 +158,7 @@ export const getResettleBetData = (userId, confirmBetRequest, settleBetRequest) 
   return betData;
 };
 
-export const getUnsettleBetData = (userId, confirmBetRequest, settleBetRequest) => {
+export const getUnsettleBetRequest = (userId, confirmBetRequest, settleBetRequest) => {
   const { Payout, RefId, Status } = settleBetRequest.message.Txns[0];
 
   const txId = confirmBetRequest.message?.Txns[0].TxId;
