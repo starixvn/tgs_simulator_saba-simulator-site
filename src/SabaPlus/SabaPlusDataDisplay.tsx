@@ -32,7 +32,7 @@ const SabaPlusDataDisplay = () => {
       ? clickedButtons.includes(currentState.type)
       : currentState.retryId ||
         clickedButtons
-          .filter((item) => item !== "placeBet")
+          .filter((item) => item !== "placeBet" && item !== "endGame")
           .includes(currentState.type);
 
   const handleOnSubmitManual = async (betAction, requestRaw) => {

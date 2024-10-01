@@ -90,7 +90,7 @@ const getEndGameSBPlusData = () => {
 
   const betData = preRequest.Payload.BetDataSet[0];
   const operatorCustId = store?.getState().userInfo.userId;
-  const { GameId, GameRoundId, ActualStake, TicketNo, Stake } = betData;
+  const { GameId, GameRoundId, TicketNo, ActualStake } = betData;
 
   const endGameData = {
     ...spPlusData.endGame,
@@ -106,8 +106,7 @@ const getEndGameSBPlusData = () => {
           GameId: GameId,
           GameRoundId: GameRoundId,
           TicketNo: TicketNo,
-          Stake: ActualStake,
-          ActualStake: Stake,
+          ActualStake: ActualStake,
           SettleDate: moment().tz("UTC").format("YYYY/MM/DD HH:mm:ss.SSS"),
           SettleDateWithTz: moment().tz("UTC").format("YYYY-MM-DDTHH:mm:ssZ"),
         },
