@@ -25,6 +25,32 @@ export const generateBetData = (userId: string) => {
   };
 };
 
+export const getCancelBetData = (placeBetRequest) => {
+  const { BetAmount, RefId } = placeBetRequest.message;
+
+  const userId = placeBetRequest.message.UserId;
+  const simulatedTime = DateHelper.formatCurrentDateTime();
+  const betData = {
+    ...data.CancelBet,
+    message: {
+      ...data.CancelBet.message,
+      OperationId: nanoid(20),
+      UpdateTime: simulatedTime,
+      UserId: userId,
+      Txns: [
+        {
+          ...data.CancelBet.message.Txns[0],
+          CreditAmount: BetAmount,
+          RefId: RefId,
+        },
+        ...data.ConfirmBet.message.Txns.slice(1),
+      ],
+    },
+  };
+  return betData;
+};
+
+
 export const getConfirmBetData = (userId, placeBetResult) => {
   const { refId, licenseeTxId } = placeBetResult;
   const simulatedTime = DateHelper.formatCurrentDateTime();
