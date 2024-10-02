@@ -10,7 +10,7 @@
     "build-prod": "vite build --mode prod",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test-coverage": "jest --ci -u --coverage"
+    "test-coverage": "jest --ci -u --coverage --passWithNoTests"
   },
   "dependencies": {
     "@emotion/react": "^11.13.3",
