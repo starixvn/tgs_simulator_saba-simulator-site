@@ -1,14 +1,16 @@
 import moment from "moment-timezone";
-import { nanoid } from "nanoid";
 import spPlusData from "../../seed-data/SabaPlusData.json";
 import {
   Provider,
   ProviderGameTypes,
 } from "../../seed-data/Provider";
+import Nanoid from "~/utils/CustomNanoid";
+
+const requestPrefix = 'loadtest_'
 
 export const getPlaceBetSBPlusRequest = (operatorCustId: string) => {
   const gameId = generateRandomNumber(4);
-  const gameRoundId = `simulator_${gameId}_${generateRandomNumber(8)}`;
+  const gameRoundId = `${requestPrefix}${gameId}_${generateRandomNumber(8)}`;
   const ticketNo = `${gameId}|$|${operatorCustId}|$|${gameRoundId}`;
 
   const stake = generateRandomStake();
@@ -22,7 +24,7 @@ export const getPlaceBetSBPlusRequest = (operatorCustId: string) => {
 
   return {
     ...spPlusData.placeBet,
-    Seq: `${nanoid(8)}-${nanoid(4)}-${nanoid(4)}-${nanoid(4)}-${nanoid(8)}`,
+    Seq: `${Nanoid(8)}-${Nanoid(4)}-${Nanoid(4)}-${Nanoid(4)}-${Nanoid(8)}`,
     TimeStamp: moment().tz("UTC").format("YYYY/MM/DD HH:mm:ss.SSS"),
     Payload: {
       ...spPlusData.placeBet.Payload,
@@ -46,7 +48,7 @@ export const getPlaceBetSBPlusRequest = (operatorCustId: string) => {
 
 export const getPlaceFreeSpinSBPlusRequest = (operatorCustId: string) => {
   const gameId = generateRandomNumber(4);
-  const gameRoundId = `simulator_${gameId}_${generateRandomNumber(8)}`;
+  const gameRoundId = `${requestPrefix}${gameId}_${generateRandomNumber(8)}`;
   const ticketNo = `${gameId}|$|${operatorCustId}|$|${gameRoundId}`;
 
   const vendor = getProviderRandomAndGameType();
@@ -57,7 +59,7 @@ export const getPlaceFreeSpinSBPlusRequest = (operatorCustId: string) => {
 
   return {
     ...spPlusData.placeFreeSpin,
-    Seq: `${nanoid(8)}-${nanoid(4)}-${nanoid(4)}-${nanoid(4)}-${nanoid(8)}`,
+    Seq: `${Nanoid(8)}-${Nanoid(4)}-${Nanoid(4)}-${Nanoid(4)}-${Nanoid(8)}`,
     TimeStamp: moment().tz("UTC").format("YYYY/MM/DD HH:mm:ss.SSS"),
     Payload: {
       ...spPlusData.placeFreeSpin.Payload,
@@ -81,7 +83,7 @@ export const getPlaceFreeSpinSBPlusRequest = (operatorCustId: string) => {
 
 export const getPlaceBetAndSettleSBPlusRequest = (operatorCustId: string) => {
   const gameId = generateRandomNumber(4);
-  const gameRoundId = `simulator_${gameId}_${generateRandomNumber(8)}`;
+  const gameRoundId = `${requestPrefix}${gameId}_${generateRandomNumber(8)}`;
   const ticketNo = `${gameId}|$|${operatorCustId}|$|${gameRoundId}`;
   const stake = generateRandomStake();
 
@@ -93,7 +95,7 @@ export const getPlaceBetAndSettleSBPlusRequest = (operatorCustId: string) => {
 
   return {
     ...spPlusData.placeBetAndSettle,
-    Seq: `${nanoid(8)}-${nanoid(4)}-${nanoid(4)}-${nanoid(4)}-${nanoid(8)}`,
+    Seq: `${Nanoid(8)}-${Nanoid(4)}-${Nanoid(4)}-${Nanoid(4)}-${Nanoid(8)}`,
     TimeStamp: moment().tz("UTC").format("YYYY/MM/DD HH:mm:ss.SSS"),
     Payload: {
       ...spPlusData.placeBetAndSettle.Payload,
@@ -118,13 +120,12 @@ export const getPlaceBetAndSettleSBPlusRequest = (operatorCustId: string) => {
 };
 
 export const getEndGameSBPlusRequest = (placeBetRequest) => {
-  const { GameId, GameRoundId, ActualStake, TicketNo, Stake } =
-    placeBetRequest.Payload.BetDataSet[0];
+  const { GameId, GameRoundId, ActualStake, TicketNo } = placeBetRequest.Payload.BetDataSet[0];
   const operatorCustId = placeBetRequest.Payload.OperatorCustId;
 
   const endGameData = {
     ...spPlusData.endGame,
-    Seq: `${nanoid(8)}-${nanoid(4)}-${nanoid(4)}-${nanoid(4)}-${nanoid(8)}`,
+    Seq: `${Nanoid(8)}-${Nanoid(4)}-${Nanoid(4)}-${Nanoid(4)}-${Nanoid(8)}`,
     TimeStamp: moment().tz("UTC").format("YYYY/MM/DD HH:mm:ss.SSS"),
     Payload: {
       ...spPlusData.endGame.Payload,
@@ -136,8 +137,7 @@ export const getEndGameSBPlusRequest = (placeBetRequest) => {
           GameId: GameId,
           GameRoundId: GameRoundId,
           TicketNo: TicketNo,
-          Stake: ActualStake,
-          ActualStake: Stake,
+          ActualStake: ActualStake,
           SettleDate: moment().tz("UTC").format("YYYY/MM/DD HH:mm:ss.SSS"),
           SettleDateWithTz: moment().tz("UTC").format("YYYY-MM-DDTHH:mm:ssZ"),
         },
@@ -151,7 +151,7 @@ export const getEndGameSBPlusRequest = (placeBetRequest) => {
 export const getVoidSBPlusRequest = (placeBetRequest) => {
   return {
     ...spPlusData.voidGame,
-    Seq: `${nanoid(8)}-${nanoid(4)}-${nanoid(4)}-${nanoid(4)}-${nanoid(8)}`,
+    Seq: `${Nanoid(8)}-${Nanoid(4)}-${Nanoid(4)}-${Nanoid(4)}-${Nanoid(8)}`,
     TimeStamp: moment().tz("UTC").format("YYYY/MM/DD HH:mm:ss.SSS"),
     Payload: {
       ...spPlusData.voidGame.Payload,
@@ -169,14 +169,14 @@ export const getVoidSBPlusRequest = (placeBetRequest) => {
 
 export const getFreeSpinSBPlusRequest = (operatorCustId: string) => {
   const gameId = generateRandomNumber(4);
-  const gameRoundId = `simulator_${gameId}_${generateRandomNumber(8)}`;
+  const gameRoundId = `${requestPrefix}${gameId}_${generateRandomNumber(8)}`;
   const ticketNo = `${gameId}|$|${operatorCustId}|$|${gameRoundId}`;
 
   const vendor = getProviderRandomAndGameType();
 
   return {
     ...spPlusData.freeSpin,
-    Seq: `${nanoid(8)}-${nanoid(4)}-${nanoid(4)}-${nanoid(4)}-${nanoid(8)}`,
+    Seq: `${Nanoid(8)}-${Nanoid(4)}-${Nanoid(4)}-${Nanoid(4)}-${Nanoid(8)}`,
     TimeStamp: moment().tz("UTC").format("YYYY/MM/DD HH:mm:ss.SSS"),
     Payload: {
       ...spPlusData.freeSpin.Payload,

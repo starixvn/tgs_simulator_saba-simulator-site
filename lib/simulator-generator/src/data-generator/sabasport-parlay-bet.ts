@@ -1,22 +1,24 @@
+import Nanoid from "~/utils/CustomNanoid";
 import data from "../../seed-data/betData.json";
-import { nanoid } from "nanoid";
 import { DateHelper, NumberHelper } from "../utils";
+
+const requestPrefix = 'loadtest_';
 
 export const getPlaceBetParlayRequest = (userId: string) => {
   const now = DateHelper.formatCurrentDateTime();
 
   const betData = {
-    key: nanoid(10),
+    key: Nanoid(10),
     message: {
       ...data.PlaceBetParlay.message,
-      OperationId: nanoid(20),
+      OperationId: Nanoid(20),
       UserId: userId,
       BetTime: now,
       UpdateTime: now,
       CreditAmount: 0,
       Txns: data.PlaceBetParlay.message.Txns.map((item) => ({
         ...item,
-        RefId: `simulator_${nanoid(15)}`,
+        RefId: `${requestPrefix}${Nanoid(15)}`,
       })),
     },
   };
@@ -42,10 +44,10 @@ export const getConfirmBetParlayRequest = (
   });
 
   return {
-    key: nanoid(10),
+    key: Nanoid(10),
     message: {
       ...data.ConfirmBetParlay.message,
-      OperationId: nanoid(20),
+      OperationId: Nanoid(20),
       UserId: UserId,
       UpdateTime: UpdateTime,
       CreditAmount: CreditAmount,
@@ -67,10 +69,10 @@ export const getCancelBetParlayRequest = (placeBetRequest) => {
   const { UserId } = placeBetRequest.message;
 
   const betData = {
-    key: nanoid(10),
+    key: Nanoid(10),
     message: {
       ...data.CancelBet.message,
-      OperationId: nanoid(20),
+      OperationId: Nanoid(20),
       UserId: UserId,
       Txns: placeBetRequest.message.Txns.map((item) => ({
         ...data.CancelBet.message.Txns[0],
@@ -90,11 +92,11 @@ export const getSettleBetParlayRequest = (
   const { UserId } = placeBetRequest.message;
 
   const betData = {
-    key: nanoid(10),
+    key: Nanoid(10),
 
     message: {
       ...data.Settle.message,
-      OperationId: nanoid(20),
+      OperationId: Nanoid(20),
       Txns: placeBetRequest.message.Txns.map((item, index) => {
         let actualAmount = confirmBetRequest.message.Txns[index].ActualAmount;
         const odds = confirmBetRequest.message.Txns[index].Odds;
@@ -126,10 +128,10 @@ export const getResettleParlayBetRequest = (
   const { UserId } = placeBetRequest.message;
 
   const betData = {
-    key: nanoid(10),
+    key: Nanoid(10),
     message: {
       ...data.ReSettle.message,
-      OperationId: nanoid(20),
+      OperationId: Nanoid(20),
       Txns: placeBetRequest.message.Txns.map((item, index) => {
         const { Payout, Status } = settleBetRequest.message.Txns[index];
         const finalBetData =
@@ -167,10 +169,10 @@ export const getUnsettleParlayBetRequest = (
   const { UserId } = placeBetRequest.message;
 
   const betData = {
-    key: nanoid(10),
+    key: Nanoid(10),
     message: {
       ...data.UnSettle.message,
-      OperationId: nanoid(20),
+      OperationId: Nanoid(20),
       Txns: placeBetRequest.message.Txns.map((item, index) => {
         const { Payout, Status } = settleBetRequest.message.Txns[index];
         return {

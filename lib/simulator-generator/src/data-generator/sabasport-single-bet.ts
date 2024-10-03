@@ -1,8 +1,19 @@
+import Nanoid from '~/utils/CustomNanoid';
 import data from '../../seed-data/betData.json';
-import { nanoid } from "nanoid";
 import { DateHelper, NumberHelper } from '../utils'
 
+const requestPrefix = 'loadtest_';
 const betAmount = 7;
+
+export const getBalanceRequest = (userId: string) => {
+  return {
+    key: Nanoid(10),
+    message: {
+      ...data.GetBalance,
+      UserId:  userId
+    }
+  }
+}
 
 export const generateBetRequest = (userId: string) => {  
   const simulatedTime = DateHelper.formatCurrentDateTime();
@@ -18,8 +29,8 @@ export const generateBetRequest = (userId: string) => {
       BetTime: simulatedTime,
       UpdateTime: simulatedTime,
       MatchDateTime: simulatedTime,
-      RefId: `simulator_${nanoid(15)}`,
-      OperationId: nanoid(20),
+      RefId: `${requestPrefix}${Nanoid(15)}`,
+      OperationId: Nanoid(20),
       UserId: userId,
     },
   };
@@ -34,7 +45,7 @@ export const getCancelBetRequest = (placeBetRequest) => {
     ...data.CancelBet,
     message: {
       ...data.CancelBet.message,
-      OperationId: nanoid(20),
+      OperationId: Nanoid(20),
       UpdateTime: simulatedTime,
       UserId: userId,
       Txns: [
@@ -50,7 +61,6 @@ export const getCancelBetRequest = (placeBetRequest) => {
   return betData;
 };
 
-
 export const getConfirmBetRequest = (userId, placeBetResult) => {
   const { refId, licenseeTxId } = placeBetResult;
   const simulatedTime = DateHelper.formatCurrentDateTime();
@@ -60,7 +70,7 @@ export const getConfirmBetRequest = (userId, placeBetResult) => {
     ...data.ConfirmBet,
     message: {
       ...data.ConfirmBet.message,
-      OperationId: nanoid(20),
+      OperationId: Nanoid(20),
       UpdateTime: simulatedTime,
       TransactionTime: simulatedTime,
       UserId: userId,
@@ -95,7 +105,7 @@ export const getSettlleBetRequest = (userId, confirmBetRequest) => {
     ...data.Settle,
     message: {
       ...data.Settle.message,
-      OperationId: nanoid(20),
+      OperationId: Nanoid(20),
       Txns: [
         {
           ...data.Settle.message.Txns[0],
@@ -139,7 +149,7 @@ export const getResettleBetRequest = (userId, confirmBetRequest, settleBetReques
     ...data.ReSettle,
     message: {
       ...data.ReSettle.message,
-      OperationId: nanoid(20),
+      OperationId: Nanoid(20),
       Txns: [
         {
           ...data.ReSettle.message.Txns[0],
@@ -169,7 +179,7 @@ export const getUnsettleBetRequest = (userId, confirmBetRequest, settleBetReques
     ...data.UnSettle,
     message: {
       ...data.UnSettle.message,
-      OperationId: nanoid(20),
+      OperationId: Nanoid(20),
       Txns: [
         {
           ...data.UnSettle.message.Txns[0],
