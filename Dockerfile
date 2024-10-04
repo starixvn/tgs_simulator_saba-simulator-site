@@ -16,12 +16,8 @@ COPY . .
 
 RUN if [ "${TRANSFORM_CONFIG}" = "LOCAL" ]; then \
         yarn run build ; \
-    elif [ "${TRANSFORM_CONFIG}" = "UAT" ]; then \
-        yarn run build:uat ; \
-    elif [ "${TRANSFORM_CONFIG}" = "PROD" ]; then \
-        yarn run build:prod ; \
     else \
-        yarn build; \
+        yarn run build:env ${TRANSFORM_CONFIG}; \
     fi
 
 FROM caddy:2.1.1-alpine AS runner

@@ -373,7 +373,7 @@
           "Payout": 0,
           "CreditAmount": 0,
           "DebitAmount": 0,
-          "Status": "won",
+          "Status": "void",
           "UserId": "Starix1SW_4unxqj175ksf_test",
           "RefId": "4351400_528_U",
           "TxId": 297281238052372500,
