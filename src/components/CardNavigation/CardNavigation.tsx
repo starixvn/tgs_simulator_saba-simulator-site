@@ -5,16 +5,17 @@ import CardActions from "@mui/joy/CardActions";
 import CardContent from "@mui/joy/CardContent";
 import CardOverflow from "@mui/joy/CardOverflow";
 import Typography from "@mui/joy/Typography";
-import BakeryDiningIcon from "@mui/icons-material/BakeryDining";
 import { Link } from "react-router-dom";
+import { ReactElement } from "react";
 
 type Props = {
   title: string;
   description: string;
   link: string;
+  icon: ReactElement;
 };
 
-export default function CardNavigation({ title, description, link }: Props) {
+export default function CardNavigation({ title, description, link, icon }: Props) {
   return (
     <Card
       data-resizable
@@ -40,20 +41,14 @@ export default function CardNavigation({ title, description, link }: Props) {
           sx={{
             m: "auto",
             transform: "translateY(50%)",
-            borderRadius: "50%",
+            borderRadius: "10%",
             width: "var(--icon-size)",
             boxShadow: "sm",
             bgcolor: "background.surface",
             position: "relative",
           }}
         >
-          <div>
-            <BakeryDiningIcon
-              color="warning"
-              sx={{ fontSize: "4rem" }}
-              style={{ color: "#302f59" }}
-            />
-          </div>
+          {icon}
         </AspectRatio>
       </CardOverflow>
       <Typography level="title-lg" sx={{ mt: "calc(var(--icon-size) / 2)" }}>

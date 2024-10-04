@@ -7,16 +7,19 @@ import {
 } from "../store/slices/sabaPlusSlice";
 import {  Provider, ProviderGameTypes } from "../constant/Provider";
 
+const isUseSimulatorProvider = import.meta.env.VITE_USE_SIMULATOR_PROVIDER;
+
 type Option = {
   value: Provider;
   label: string;
 };
 
-const options = Object.values(Provider).map((provider) => ({
+const options =  Object.values(Provider).map((provider) => ({
   value: provider,
   label: provider.toString(),
 }));
 
+const providerOptions = isUseSimulatorProvider ? options : options.filter(item => item.value !== Provider.SIMULATOR)
 
 type Props = {
   headerText: string;
@@ -71,9 +74,9 @@ const SabaPlusGroupVendorOption = ({ headerText }: Props) => {
       <div className="options">
         <label>Game Provider:</label>
         <Select
-          value={options.find((item) => item.value == vendor.name)}
-          defaultValue={options.find((item) => item.value == vendor.name)}
-          options={options}
+          value={providerOptions.find((item) => item.value == vendor.name)}
+          defaultValue={providerOptions.find((item) => item.value == vendor.name)}
+          options={providerOptions}
           onChange={handleProviderChange}
         ></Select>
         <div className="gap"/>
