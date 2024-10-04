@@ -4,10 +4,10 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --mode dev",
-    "build": "vite build --mode local1",
-    "build-uat": "vite build --mode uat",
-    "build-prod": "vite build --mode prod",
+    "dev": "vite --mode DEV",
+    "build": "vite build --mode LOCAL1",
+    "build:uat": "vite build --mode UAT",
+    "build:prod": "vite build --mode PROD",
     "lint": "eslint .",
     "preview": "vite preview",
     "test-coverage": "jest --ci -u --coverage --passWithNoTests"
