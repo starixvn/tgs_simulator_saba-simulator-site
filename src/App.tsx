@@ -34,6 +34,7 @@ function App() {
           we will send all the relevant bet details in Saba Plus API
           Project."
         icon={<CasinoOutlinedIcon />}
+        iconWrapper={{borderRadius: "10%" }}
         link="/saba-plus"
       ></CardNavigation>
     </>

@@ -7,15 +7,17 @@ import CardOverflow from "@mui/joy/CardOverflow";
 import Typography from "@mui/joy/Typography";
 import { Link } from "react-router-dom";
 import { ReactElement } from "react";
+import { SxProps } from "@mui/material";
 
 type Props = {
   title: string;
   description: string;
   link: string;
   icon: ReactElement;
+  iconWrapper?: SxProps;
 };
 
-export default function CardNavigation({ title, description, link, icon }: Props) {
+export default function CardNavigation({ title, description, link, icon, iconWrapper }: Props) {
   return (
     <Card
       data-resizable
@@ -41,11 +43,12 @@ export default function CardNavigation({ title, description, link, icon }: Props
           sx={{
             m: "auto",
             transform: "translateY(50%)",
-            borderRadius: "10%",
+            borderRadius: "50%",
             width: "var(--icon-size)",
             boxShadow: "sm",
             bgcolor: "background.surface",
             position: "relative",
+            ...iconWrapper
           }}
         >
           {icon}

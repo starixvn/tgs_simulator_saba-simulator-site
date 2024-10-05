@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --mode DEV",
-    "build:env": "vite build",
+    "build:env": "vite build --mode",
     "build": "vite build --mode LOCAL1",
     "build:uat": "vite build --mode UAT",
     "build:prod": "vite build --mode PROD",
