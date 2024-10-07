@@ -3,7 +3,7 @@ import data from '../../seed-data/betData.json';
 import { DateHelper, NumberHelper } from '../utils'
 
 const requestPrefix = 'loadtest_';
-const betAmount = 7;
+const betAmount = 1;
 
 export const getBalanceRequest = (userId: string) => {
   return {

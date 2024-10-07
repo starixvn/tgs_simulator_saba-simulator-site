@@ -19,7 +19,6 @@ export const placeBetApi = async (betData) => {
   }
 };
 
-
 export const freeSpinApi = async (betData) => {
   try {
     const response = await axios.post(
