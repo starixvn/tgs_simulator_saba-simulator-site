@@ -8,6 +8,13 @@ import Nanoid from "~/utils/CustomNanoid";
 
 const requestPrefix = 'loadtest_'
 
+export const getBalance = ( operatorCustId ) => {
+  const balanceData = { ...spPlusData.balanceData };
+  balanceData.Payload.OperatorCustId = operatorCustId;
+
+  return balanceData;
+}
+
 export const getPlaceBetSBPlusRequest = (operatorCustId: string) => {
   const gameId = generateRandomNumber(4);
   const gameRoundId = `${requestPrefix}${gameId}_${generateRandomNumber(8)}`;
